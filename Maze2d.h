@@ -4,19 +4,29 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
 
 using namespace std;
+
+class Position
+{
+public:
+//implement << operator
+private:
+	int x;
+	int y;
+};
+
+
 
 class Maze2d
 {
 public:
-	void Maze2dGenerator()
-	{
-
-	};
-	std::string  measureAlgorithmTime();
+	
 private:
-
+	std::vector<std::vector<int>> maze;
+	Position start, end, current;
 };
 
 
