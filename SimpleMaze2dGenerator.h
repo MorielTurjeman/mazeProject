@@ -4,10 +4,11 @@
 
 #ifndef MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
 #define MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
+#include "Maze2dGenerator.h"
 
-
-class SimpleMaze2dGenerator {
-
+class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
+{
+    virtual Maze2d generate(int size);
 };
 
 
