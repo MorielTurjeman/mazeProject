@@ -6,5 +6,5 @@
 
 std::string Maze2d::measureAlgorithmTime()
 {
-
+    
 }
