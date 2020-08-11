@@ -1,0 +1,14 @@
+//
+// Created by Sapir Ezra on 11/08/2020.
+//
+
+#ifndef MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
+#define MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
+
+
+class SimpleMaze2dGenerator {
+
+};
+
+
+#endif //MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
