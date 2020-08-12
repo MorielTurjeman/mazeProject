@@ -26,7 +26,7 @@ class Searchable
 
 };
 
-class Maze2dSearchable : public Maze2d, public Searchable
+class Maze2dSearchable : public Searchable
 {
 
 };
