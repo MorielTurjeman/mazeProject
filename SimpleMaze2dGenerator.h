@@ -19,7 +19,7 @@ class MyMaze2dGenerator : public Maze2dGenerator
 
 class Solver
 {
-    virtual void solve(Maze2d& maze); //check what the function needs to return
+    virtual void solve(Maze2d& maze)=0; //check what the function needs to return
     //how do we keep the path to the goal
 };
 
@@ -31,7 +31,7 @@ class BFS : public Solver
 
 class AStar : public BFS
 {
-        void solve(Maze2d& maze)
+    virtual void solve(Maze2d& maze);
 };
 
 
