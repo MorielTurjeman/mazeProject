@@ -34,13 +34,13 @@ class CommonSearcher : public Searcher
 
 };
 
-class BFS : public Searcher
+class BFS : public CommonSearcher
 {
     virtual void priorityFunction(); // i dont know what parameters should be here
 };
 
 
-class AStar : public BFS
+class AStar : public CommonSearcher
 {
     virtual void priorityFunction(); // i dont know what parameters should be here
 };
