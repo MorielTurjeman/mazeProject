@@ -28,49 +28,35 @@ private:
 	int _y;
 };
 
-/**************************************************************************************/ 
+//represent state in a search problem(the position and distance from root)
+class State{
 
+public:
+	Position p;
+	int cost;
+
+
+};
 
 //class Searchable represents a problem that can be searched
 class Searchable
 {
-	virtual Position& getStartPosition()=0;
-	virtual Position& getGoalPosition()=0;
-	virtual std::vector<string> getPossibleMoves()=0;
+	virtual const Position& getStartPosition()=0;
+	virtual const Position& getGoalPosition()=0;
+	virtual const std::vector<State> getPossibleStates(State& currState)=0; // we need to return search state and not position. the vector holds serach states (the tree).
 };
 
-/**************************************************************************************/ 
-
+//create search states for maze problem
 class Maze2dSearchable : public Searchable
 {
 public:
 	Maze2dSearchable(Maze2d& maze): _maze(maze){}
-
-public:
-	virtual const Position& getStartPosition(){return  _maze.getStartPosition();}
+	virtual const Position& getStartPosition(){return _maze.getStartPosition();}
 	virtual const Position& getGoalPosition(){return _maze.getEndPosition();}
-	virtual const std::vector<Position> getPossibleMoves(Position &p)
-	{
-		std::vector<Position> possibleMoves;
-		int x=p.getXPosition();
-		int y=p.getYPosition();
-		if(_maze.getMaze[x+1][y])
-		{
-			possibleMoves.push_back(x+1, y);
-		}
-		if(_maze.getMaze[x-1][y]==0)
-		{
-			possibleMoves.push_back(x-1, y);
-		}
-		if(_maze.getMaze[x][y+1]==0))
-		{
-			possibleMoves.push_back(x, y+1);
-		}
-		if(_maze.getMaze[x][y-1]==0))
-		{
-			possibleMoves.push_back(x, y-1);
-		}
-	}
+
+
+	virtual const std::vector<State> getPossibleStates(State& currState); 
+
 
 private:
 	Maze2d _maze;
@@ -114,6 +100,26 @@ public:
 	
 	//TODO MAYBE: implement == operator if we need it for caching
 	
+	virtual const std::vector<string> getPossibleMoves(Position &p)
+	{
+		std::vector<string> possibleMoves;
+		if(p.getXPosition+1 == 0)
+		{
+			possibleMoves.push_back("Right");
+		}
+		if(p.getXPosition-1 == 0)
+		{
+			possibleMoves.push_back("Left");
+		}
+		if(p.getYPosition+1 == 0)
+		{
+			possibleMoves("Down");
+		}
+		if(p.getYPosition-1 == 0)
+		{
+			possibleMoves("Up");
+		}
+	}
 private:
 	std::vector<std::vector<int> > maze;
 	Position start, end, current;

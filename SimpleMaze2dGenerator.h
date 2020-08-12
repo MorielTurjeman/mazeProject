@@ -13,7 +13,7 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 };
 
 
-class MyMaze2dGenerator : public Maze2dGenerator
+class MyMaze2dGenerator : public Maze2dGeneratorAbs
 {
     virtual Maze2d generate(int size);
 };
