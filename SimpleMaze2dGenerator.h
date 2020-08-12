@@ -18,6 +18,7 @@ class MyMaze2dGenerator : public Maze2dGenerator
     virtual Maze2d generate(int size);
 };
 
+//class Searcher represents algorithms that solve problems by searching
 class Searcher
 {
     virtual void search(Searchable& searchable)=0; //check what the function needs to return

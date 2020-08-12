@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//class Position represents a possible position to be in during the game
 class Position
 {
 public:
@@ -25,6 +26,7 @@ private:
 };
 
 
+//class Searchable represents a problem that can be searched
 class Searchable
 {
 	virtual Position& getStartPosition()=0;
