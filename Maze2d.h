@@ -49,24 +49,26 @@ public:
 public:
 	virtual const Position& getStartPosition(){return  _maze.getStartPosition();}
 	virtual const Position& getGoalPosition(){return _maze.getEndPosition();}
-	virtual const std::vector<string> getPossibleMoves(Position &p)
+	virtual const std::vector<Position> getPossibleMoves(Position &p)
 	{
-		std::vector<string> possibleMoves;
-		if(p.getXPosition+1 == 0)
+		std::vector<Position> possibleMoves;
+		int x=p.getXPosition();
+		int y=p.getYPosition();
+		if(_maze.getMaze[x+1][y])
 		{
-			possibleMoves.push_back("Right");
+			possibleMoves.push_back(x+1, y);
 		}
-		if(p.getXPosition-1 == 0)
+		if(_maze.getMaze[x-1][y]==0)
 		{
-			possibleMoves.push_back("Left");
+			possibleMoves.push_back(x-1, y);
 		}
-		if(p.getYPosition+1 == 0)
+		if(_maze.getMaze[x][y+1]==0))
 		{
-			possibleMoves("Down");
+			possibleMoves.push_back(x, y+1);
 		}
-		if(p.getYPosition-1 == 0)
+		if(_maze.getMaze[x][y-1]==0))
 		{
-			possibleMoves("Up");
+			possibleMoves.push_back(x, y-1);
 		}
 	}
 
@@ -102,6 +104,7 @@ public:
         } 
 	}
 	Maze2d(){Maze2d(10);} //if no size was given, the default will be 10x10 board
+	std::vector<std::vector<int> > getMaze(){return maze;}
 
 public:
 	Position getStartPosition(){return this->start;}
