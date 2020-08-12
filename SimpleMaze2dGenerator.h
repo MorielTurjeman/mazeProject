@@ -25,6 +25,7 @@ class Searcher
     //how do we keep the path to the goal
 };
 
+//commonly, search algorithms have a priority queue for evaluating the next best option to go to
 class CommonSearcher : public Searcher
 {
     virtual void priorityFunction() = 0; // i dont know what parameters should be here

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Maze2d.h"
 
 
 using namespace std;
@@ -13,19 +14,21 @@ using namespace std;
 class Position
 {
 public:
-//implement << operator
-//implement = operator
+	Position():_x(0), _y(0){}
+	Position(int x, int y): _x(x), _y(y){}
 
-Position():_x(NULL), _y(NULL){}
-Position(int x, int y): _x(x), _y(y){}
-
-
-//bool operator == (Position& position) {return ()} //??? 
-
+public:
+	//bool operator == (Position& position) {return ()} //??? 
+	//implement << operator
+	//implement = operator
+	int getXPosition(){return _x;};
+	int getYPosition(){return _y;};
 private:
 	int _x;
 	int _y;
 };
+
+/**************************************************************************************/ 
 
 
 //class Searchable represents a problem that can be searched
@@ -36,17 +39,43 @@ class Searchable
 	virtual std::vector<string> getPossibleMoves()=0;
 };
 
+/**************************************************************************************/ 
+
 class Maze2dSearchable : public Searchable
 {
 public:
 	Maze2dSearchable(Maze2d& maze): _maze(maze){}
-	virtual Position& getStartPosition(){return _maze.getStartPosition();}
-	virtual Position& getGoalPosition(){return _maze.getEndPosition();}
+
+public:
+	virtual const Position& getStartPosition(){return  _maze.getStartPosition();}
+	virtual const Position& getGoalPosition(){return _maze.getEndPosition();}
+	virtual const std::vector<string> getPossibleMoves(Position &p)
+	{
+		std::vector<string> possibleMoves;
+		if(p.getXPosition+1 == 0)
+		{
+			possibleMoves.push_back("Right");
+		}
+		if(p.getXPosition-1 == 0)
+		{
+			possibleMoves.push_back("Left");
+		}
+		if(p.getYPosition+1 == 0)
+		{
+			possibleMoves("Down");
+		}
+		if(p.getYPosition-1 == 0)
+		{
+			possibleMoves("Up");
+		}
+	}
 
 private:
 	Maze2d _maze;
 
 };
+
+/**************************************************************************************/ 
 
 class Maze2d
 {
@@ -63,21 +92,24 @@ public:
             } 
         } 
 
-        // for (int i = 0; i < size; i++) 
-        // { 
-        //     for (int j = 0; j < size; j++)
-        //     { 
-        //         std::cout<< maze[i][j]<< " "; 
-        //     } 
-        // std::cout<< "\n"; 
-        // } 
+        for (int i = 0; i < size; i++) 
+        { 
+            for (int j = 0; j < size; j++)
+            { 
+                std::cout<< maze[i][j]<< " "; 
+            } 
+        std::cout<< "\n"; 
+        } 
 	}
+	Maze2d(){Maze2d(10);} //if no size was given, the default will be 10x10 board
+
+public:
 	Position getStartPosition(){return this->start;}
 	Position getEndPosition(){return this->end;}
-	Position getCurrentPosition(){return this->current;} ///not sure if necessary, delete later if not!!!!
+	Position getCurrentPosition(){return this->current;} //not sure if necessary, delete later if not!!!!!
+
 	
 	//TODO MAYBE: implement == operator if we need it for caching
-	
 	
 private:
 	std::vector<std::vector<int> > maze;
