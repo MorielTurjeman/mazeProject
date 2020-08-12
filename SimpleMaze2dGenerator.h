@@ -25,15 +25,24 @@ class Searcher
     //how do we keep the path to the goal
 };
 
+class AbstractBlaBlaSearcher : public Searcher
+{
+    virtual void priorityFunction() = 0; // i dont know what parameters should be here
+    virtual void search(Searchable& searchable) {
+        //here you have to combined logic of BFS and ASTAR
+    }
+
+}
+
 class BFS : public Searcher
 {
-    virtual void search(Searchable& searchable);
+    virtual void priorityFunction(); // i dont know what parameters should be here
 };
 
 
 class AStar : public BFS
 {
-    virtual void search(Searchable& searchable);
+    virtual void priorityFunction(); // i dont know what parameters should be here
 };
 
 
