@@ -5,6 +5,7 @@
 #ifndef MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
 #define MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
 #include "Maze2dGenerator.h"
+#include <queue>
 
 class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 {
@@ -17,21 +18,21 @@ class MyMaze2dGenerator : public Maze2dGenerator
     virtual Maze2d generate(int size);
 };
 
-class Solver
+class Searcher
 {
-    virtual void solve(Maze2d& maze); //check what the function needs to return
+    virtual void search(Maze2d& maze)=0; //check what the function needs to return
     //how do we keep the path to the goal
 };
 
-class BFS : public Solver
+class BFS : public Searcher
 {
-    virtual void solve(Maze2d& maze);
+    virtual void search(Maze2d& maze);
 };
 
 
 class AStar : public BFS
 {
-        void solve(Maze2d& maze)
+    virtual void search(Maze2d& maze);
 };
 
 
