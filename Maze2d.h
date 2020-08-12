@@ -23,7 +23,9 @@ private:
 
 class Searchable
 {
-
+	virtual Position& getStartPosition()=0;
+	virtual Position& getGoalPosition()=0;
+	virtual std::vector<string> getPossibleMoves()=0;
 };
 
 class Maze2dSearchable : public Searchable
@@ -34,10 +36,10 @@ class Maze2dSearchable : public Searchable
 class Maze2d
 {
 public:
-	Position getStartPosition();
+	
 	//TODO MAYBE: implement == operator if we need it for caching
-	std::vector<string> getPossibleMoves();
-	Position getGoalPosition();
+	
+	
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
