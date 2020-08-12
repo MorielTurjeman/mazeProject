@@ -6,11 +6,16 @@
 #define MAZEPROJECT_MAZE2DGENERATOR_H
 #include "Maze2d.h"
 #include <string>
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> //for measureAlgorithmTime
 
 
 class Maze2dGenerator
 {
 public:
+    Maze2dGenerator(int size){}
+    
     virtual Maze2d generate(int size)=0;
 
     virtual std::string measureAlgorithmTime()=0;
@@ -21,8 +26,14 @@ public:
 class Maze2dGeneratorAbs : public Maze2dGenerator
 {
     virtual Maze2d generate(int size)=0;
-    virtual std::string measureAlgorithmTime(); 
-    
+    virtual std::string measureAlgorithmTime(int size)
+    {
+        time_t start_time = time(NULL); 
+        ctime(&start_time);
+        this->generate(size);
+        time_t end_time = time(NULL); 
+        ctime(&end_time);
+    }
 
 };
 

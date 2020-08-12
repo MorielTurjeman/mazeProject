@@ -25,7 +25,7 @@ class Searcher
     //how do we keep the path to the goal
 };
 
-class AbstractBlaBlaSearcher : public Searcher
+class CommonSearcher : public Searcher
 {
     virtual void priorityFunction() = 0; // i dont know what parameters should be here
     virtual void search(Searchable& searchable) {
