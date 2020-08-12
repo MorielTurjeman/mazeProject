@@ -32,7 +32,7 @@ class AbstractBlaBlaSearcher : public Searcher
         //here you have to combined logic of BFS and ASTAR
     }
 
-}
+};
 
 class BFS : public Searcher
 {

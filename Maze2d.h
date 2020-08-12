@@ -16,13 +16,13 @@ public:
 //implement << operator
 //implement = operator
 
-Position(int xPosition, int yPosition): x(xPosition), y(yPosition){}
+Position(int x, int y): _x(x), _y(y){}
 
 //bool operator == (Position& position) {return ()} //??? 
 
 private:
-	int x;
-	int y;
+	int _x;
+	int _y;
 };
 
 
