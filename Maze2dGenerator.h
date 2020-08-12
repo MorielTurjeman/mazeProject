@@ -21,8 +21,11 @@ public:
 class Maze2dGeneratorAbs : public Maze2dGenerator
 {
     virtual Maze2d generate(int size)=0;
-    virtual std::string measureAlgorithmTime();
+    virtual std::string measureAlgorithmTime(); 
+    
+
 };
+
 
 
 #endif //MAZEPROJECT_MAZE2DGENERATOR_H

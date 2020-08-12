@@ -13,6 +13,8 @@ class Position
 {
 public:
 //implement << operator
+//implement = operator
+
 private:
 	int x;
 	int y;
@@ -23,7 +25,10 @@ private:
 class Maze2d
 {
 public:
-	
+	Position getStartPosition();
+	//TODO MAYBE: implement == operator if we need it for caching
+	std::vector<string> getPossibleMoves();
+	Position getGoalPosition();
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
