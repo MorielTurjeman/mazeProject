@@ -20,7 +20,7 @@ class MyMaze2dGenerator : public Maze2dGenerator
 
 class Searcher
 {
-    virtual void search(Maze2d& maze)=0; //check what the function needs to return
+    virtual void search(Searchable& searchable)=0; //check what the function needs to return
     //how do we keep the path to the goal
 };
 
