@@ -20,11 +20,7 @@ class MyMaze2dGenerator : public Maze2dGenerator
 
 class Searcher
 {
-<<<<<<< HEAD
-    virtual void solve(Maze2d& maze)=0; //check what the function needs to return
-=======
     virtual void search(Maze2d& maze)=0; //check what the function needs to return
->>>>>>> ee8cc0e26a6eb0ef1f8dd526f859d78bb2e6f7ad
     //how do we keep the path to the goal
 };
 
@@ -36,11 +32,7 @@ class BFS : public Searcher
 
 class AStar : public BFS
 {
-<<<<<<< HEAD
-    virtual void solve(Maze2d& maze);
-=======
     virtual void search(Maze2d& maze);
->>>>>>> ee8cc0e26a6eb0ef1f8dd526f859d78bb2e6f7ad
 };
 
 
