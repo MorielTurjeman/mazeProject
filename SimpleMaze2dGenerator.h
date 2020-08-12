@@ -19,18 +19,24 @@ class MyMaze2dGenerator : public Maze2dGenerator
 
 class Solver
 {
-    void solve(Maze2d& maze); //check what the function needs to return
+    virtual void solve(Maze2d& maze); //check what the function needs to return
     //how do we keep the path to the goal
 };
 
-// class AStar
-// {
+class BFS : public Solver
+{
+    virtual void solve(Maze2d& maze);
+};
 
-// };
 
-// class BFS
-// {
+class AStar : public BFS
+{
+        void solve(Maze2d& maze)
+};
 
-// };
 
 #endif //MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
+
+
+
+
