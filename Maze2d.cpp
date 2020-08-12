@@ -4,7 +4,12 @@
 
 #include "Maze2d.h"
 
-std::string Maze2d::measureAlgorithmTime()
-{
+// std::string Maze2d::measureAlgorithmTime()
+// {
     
-}
+// }
+
+ const std::vector<State> Maze2dSearchable::getPossibleStates(State& currState){
+    //  std::vector<state> states= _maze.getPossibleMoves(currState.p);
+    _maze.getPossibleMoves(currState.p);
+ }
