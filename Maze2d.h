@@ -15,6 +15,10 @@ public:
 //implement << operator
 //implement = operator
 
+Position(int xPosition, int yPosition): x(xPosition), y(yPosition){}
+
+//bool operator == (Position& position) {return ()} //??? 
+
 private:
 	int x;
 	int y;
