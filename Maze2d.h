@@ -115,11 +115,11 @@ public:
 		}
 		if(maze[x][y+1])
 		{
-			possibleMoves(x, y+1);
+			possibleMoves.push_back(x, y+1);
 		}
 		if(maze[x][y-1])
 		{
-			possibleMoves(x, y-1);
+			possibleMoves.push_back(x, y-1);
 		}
 	}
 private:
