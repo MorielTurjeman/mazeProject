@@ -3,6 +3,7 @@
 #include <vector>
 #include "Maze2d.h"
 #include "Maze2dGenerator.h"
+#include "SimpleMaze2dGenerator.h"
 
 int main(int argc, char const *argv[])
 {
@@ -12,7 +13,6 @@ int main(int argc, char const *argv[])
     std::cout << ctime(&start_time) << std::endl;
 
     Maze2d m(10);
-    
     
 
     time_t end_time = time(NULL); 

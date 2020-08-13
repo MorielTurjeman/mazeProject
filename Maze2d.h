@@ -6,8 +6,6 @@
 #include <string>
 #include <vector>
 #include "Maze2d.h"
-
-
 using namespace std;
 
 //class Position represents a possible position to be in during the game
@@ -31,7 +29,7 @@ private:
 
 /**************************************************************************************/ 
 
-//represent state in a search problem(the position and the distance from root)
+//represents a state in a search problem(the position and the distance from root)
 class State{
 
 public:

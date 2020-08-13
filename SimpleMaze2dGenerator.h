@@ -26,53 +26,69 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         srand (time(NULL));
         int endIndex = rand()%size; //pick a random index in the wall chosen for end
 
-        switch (startWall)
+        if (startWall==0) //start is at the top wall, end is at the bottom
         {
-        case 0: //start is at the top wall, end is at the bottom
-            // endWall=2;
             Position startPosition(startIndex, 0);
             Position endPosition(endIndex, size);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);
-            break;
-
-        case 1: //the start is at the right wall, end is at the left
+        }
+        if (startWall==1) //the start is at the right wall, end is at the left
+        {
             Position startPosition(size, startIndex);
             Position endPosition(0, endIndex);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);
-            break;
-
-        case 2: //the start is at the bottom wall, the end is a the top
+        }
+        if (startWall==2) //the start is at the bottom wall, the end is a the top
+        {
             Position startPosition(startIndex, size);
             Position endPosition(endIndex, 0);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);
-            break;
-
-        case 3: //the start is at the left wall, the end is at the right
+        }
+        if (startWall==3) //the start is at the left wall, the end is at the right
+        {
             Position startPosition(0, startIndex);
             Position endPosition(size, endIndex);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);
-            break;
-        
-        default:
-            break;
         }
+        
+        // switch (startWall)
+        // {
+        // case 0: //start is at the top wall, end is at the bottom
+            
+        //     break;
+
+        // case 1: //the start is at the right wall, end is at the left
+            
+        //     break;
+
+        // case 2: //the start is at the bottom wall, the end is a the top
+            
+        //     break;
+
+        // case 3: //the start is at the left wall, the end is at the right
+            
+        //     break;
+        
+        // default:
+        //     break;
+        // }
         Position startPosition = maze.getStartPosition();
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
         std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
 
-        //go randomly from start to end
+        //we go randomly from start position to end position
         //since the board is currently all 0's, we mark the path with 2's.
         //then we randomly place walls (marked as 1's) and passages (marked by 0's)
-        //you can walk where the are passages, but not where there are walls
+        //you can walk where there are passages, but not where there are walls
         //the path to the goal (marked with 2's) will be changed after the random walls were placed to 0's
         while (currentPosition != endPosition)
         {
@@ -103,7 +119,9 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
                 }
             }
         }
+        return maze;
     }
+    
 };
 
 
