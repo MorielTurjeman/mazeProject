@@ -28,6 +28,8 @@ private:
 	int _y;
 };
 
+/**************************************************************************************/ 
+
 //represent state in a search problem(the position and the distance from root)
 class State{
 
@@ -62,7 +64,6 @@ public:
         std::cout<< "\n"; 
         } 
 	}
-	Maze2d(){Maze2d(10);} //if no size was given, the default will be 10x10 board
 
 public:
 	std::vector<std::vector<int> > getMaze(){return maze;}
