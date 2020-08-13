@@ -13,7 +13,9 @@
 
 class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 {
+public:
     SimpleMaze2dGenerator()=default;
+    ~SimpleMaze2dGenerator(){}
     virtual Maze2d generate(int size)
     {
         Maze2d maze(size);
@@ -30,14 +32,14 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         if (startWall==0) //start is at the top wall, end is at the bottom
         {
             Position startPosition(startIndex, 0);
-            Position endPosition(endIndex, size);
+            Position endPosition(endIndex, size-1);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);
         }
         if (startWall==1) //the start is at the right wall, end is at the left
         {
-            Position startPosition(size, startIndex);
+            Position startPosition(size-1, startIndex);
             Position endPosition(0, endIndex);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
@@ -45,7 +47,7 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         }
         if (startWall==2) //the start is at the bottom wall, the end is a the top
         {
-            Position startPosition(startIndex, size);
+            Position startPosition(startIndex, size-1);
             Position endPosition(endIndex, 0);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
@@ -54,7 +56,7 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         if (startWall==3) //the start is at the left wall, the end is at the right
         {
             Position startPosition(0, startIndex);
-            Position endPosition(size, endIndex);
+            Position endPosition(size-1, endIndex);
             maze.setStartPosition(startPosition);
             maze.setCurrentPosition(startPosition);
             maze.setEndPosition(endPosition);

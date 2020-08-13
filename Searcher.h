@@ -14,7 +14,8 @@ class Searcher
 class CommonSearcher : public Searcher
 {
     virtual void priorityFunction() = 0; // i dont know what parameters should be here
-    virtual void search(Searchable& searchable) {
+    virtual void search(Searchable& searchable) 
+    {
         //here you have to combined logic of BFS and ASTAR
     }
 
