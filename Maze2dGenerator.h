@@ -33,6 +33,11 @@ class Maze2dGeneratorAbs : public Maze2dGenerator
         this->generate(size);
         time_t end_time = time(NULL); 
         ctime(&end_time);
+        std::string timeMeasured;
+
+        //implement substraction
+
+        return timeMeasured;
     }
 
 };
