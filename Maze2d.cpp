@@ -22,6 +22,4 @@ const std::vector<State> Maze2dSearchable::getPossibleStates(State &currState)
    }
 
    return S;
-
-  
 }
