@@ -13,6 +13,7 @@
 
 class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 {
+    SimpleMaze2dGenerator()=default;
     virtual Maze2d generate(int size)
     {
         Maze2d maze(size);
