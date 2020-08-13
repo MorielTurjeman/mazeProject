@@ -38,9 +38,6 @@ public:
 
 };
 
-//class Searchable represents a problem that can be searched
-
-
 /**************************************************************************************/ 
 
 class Maze2d
@@ -68,9 +65,9 @@ public:
         } 
 	}
 	Maze2d(){Maze2d(10);} //if no size was given, the default will be 10x10 board
-	std::vector<std::vector<int> > getMaze(){return maze;}
 
 public:
+	std::vector<std::vector<int> > getMaze(){return maze;}
 	Position getStartPosition(){return this->start;}
 	Position getEndPosition(){return this->end;}
 	Position getCurrentPosition(){return this->current;} //not sure if necessary, delete later if not!!!!!

@@ -2,6 +2,7 @@
 
 #include "Maze2d.h"
 
+//class Searchable represents a problem that can be searched
 class Searchable
 {
 	virtual const Position& getStartPosition()=0;
