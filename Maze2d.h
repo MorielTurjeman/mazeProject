@@ -20,7 +20,7 @@ public:
 public:
 	bool operator==(Position& position) {return false;} //implement here
 	//implement << operator
-	//implement = operator
+	void operator = (Position position): this->_x=p._x, this->_y=p._y{}  //delete if not used!!!!!!!!!!!!
 	int getXPosition(){return _x;};
 	int getYPosition(){return _y;};
 private:
@@ -28,18 +28,15 @@ private:
 	int _y;
 };
 
-//represent state in a search problem(the position and distance from root)
+/**************************************************************************************/ 
+
+//represent state in a search problem(the position and the distance from root)
 class State{
 
 public:
 	Position p;
 	int cost;
-
-
 };
-
-//class Searchable represents a problem that can be searched
-
 
 /**************************************************************************************/ 
 
@@ -67,13 +64,15 @@ public:
         std::cout<< "\n"; 
         } 
 	}
-	Maze2d(){Maze2d(10);} //if no size was given, the default will be 10x10 board
-	std::vector<std::vector<int> > getMaze(){return maze;}
 
 public:
+	std::vector<std::vector<int> > getMaze(){return maze;}
 	Position getStartPosition(){return this->start;}
 	Position getEndPosition(){return this->end;}
 	Position getCurrentPosition(){return this->current;} //not sure if necessary, delete later if not!!!!!
+	void setStartPosition(Position p){this->start = p;}
+	void setEndPosition(Position p){this->end = p;}
+	void setCurrentPosition(Position p) {this->current = p;}
 
 	
 	//TODO MAYBE: implement == operator if we need it for caching

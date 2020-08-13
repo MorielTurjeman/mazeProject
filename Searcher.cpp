@@ -4,7 +4,8 @@
 
 
 
- void CommonSearcher::search(Searchable& Searchable){
+ void CommonSearcher::search(Searchable& Searchable)
+ {
 
      
 
