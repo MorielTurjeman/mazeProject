@@ -20,7 +20,7 @@ public:
 public:
 	bool operator==(Position& position) {return false;} //implement here
 	//implement << operator
-	//implement = operator
+	void operator = (Position position): this->_x=p._x, this->_y=p._y{}  //delete if not used!!!!!!!!!!!!
 	int getXPosition(){return _x;};
 	int getYPosition(){return _y;};
 private:
@@ -28,14 +28,12 @@ private:
 	int _y;
 };
 
-//represent state in a search problem(the position and distance from root)
+//represent state in a search problem(the position and the distance from root)
 class State{
 
 public:
 	Position p;
 	int cost;
-
-
 };
 
 /**************************************************************************************/ 
@@ -71,6 +69,8 @@ public:
 	Position getStartPosition(){return this->start;}
 	Position getEndPosition(){return this->end;}
 	Position getCurrentPosition(){return this->current;} //not sure if necessary, delete later if not!!!!!
+	void setStartPosition(Position p){this->start = p; this->current = p;}
+	void setEndPosition(Position p){this->end = p;}
 
 	
 	//TODO MAYBE: implement == operator if we need it for caching
