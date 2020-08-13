@@ -19,6 +19,7 @@ public:
 
 public:
 	bool operator==(Position& position) {return false;} //implement here
+	bool operator != (Position position) {return !(this._x == position._x) && (this._y == position._y)}
 	//implement << operator
 	void operator = (Position position): this->_x=p._x, this->_y=p._y{}  //delete if not used!!!!!!!!!!!!
 	int getXPosition(){return _x;};

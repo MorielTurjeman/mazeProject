@@ -63,6 +63,15 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         default:
             break;
         }
+        Position startPosition = maze.getStartPosition();
+        Position currentPosition = maze.getCurrentPosition();
+        Position endPosition = maze.getEndPosition();
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
+        while (currentPosition != endPosition)
+        {
+            currentPosition = possibleMoves.pop_back();
+        }
+        
     }
 };
 
