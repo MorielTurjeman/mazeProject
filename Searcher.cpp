@@ -1,12 +1,7 @@
-#include<queue>
+#include <queue>
 #include "Maze2d.h"
 #include "Searcher.h"
 
-
-
- void CommonSearcher::search(Searchable& Searchable)
- {
-
-     
-
- }
+void CommonSearcher::search(Searchable &Searchable)
+{
+}

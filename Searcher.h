@@ -6,27 +6,25 @@
 //class Searcher represents algorithms that solve problems by searching
 class Searcher
 {
-    virtual void search(Searchable& searchable)=0; //check what the function needs to return
+    virtual void search(Searchable &searchable) = 0; //check what the function needs to return
     //how do we keep the path to the goal
 };
 
 //commonly, search algorithms have a priority queue for evaluating the next best option to go to
 class CommonSearcher : public Searcher
 {
-    virtual void priorityFunction() = 0; // i dont know what parameters should be here
-    virtual void search(Searchable& searchable) {
-        //here you have to combined logic of BFS and ASTAR
+    virtual bool priorityFunction(const State &a, const State &b) = 0;
+    virtual void search(Searchable &searchable)
+    {
     }
-
 };
 
 class BFS : public CommonSearcher
 {
-    virtual void priorityFunction(); // i dont know what parameters should be here
+    virtual bool priorityFunction(const State &a, const State &b);
 };
-
 
 class AStar : public CommonSearcher
 {
-    virtual void priorityFunction(); // i dont know what parameters should be here
+    virtual bool priorityFunction(const State &a, const State &b);
 };
