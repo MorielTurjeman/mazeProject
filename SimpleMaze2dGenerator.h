@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 
 class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 {
@@ -67,11 +68,41 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
         std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
+
+        //go randomly from start to end
+        //since the board is currently all 0's, we mark the path with 2's.
+        //then we randomly place walls (marked as 1's) and passages (marked by 0's)
+        //you can walk where the are passages, but not where there are walls
+        //the path to the goal (marked with 2's) will be changed after the random walls were placed to 0's
         while (currentPosition != endPosition)
         {
-            currentPosition = possibleMoves.pop_back();
+            maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
+            srand (time(NULL));
+            currentPosition = possibleMoves[rand()%possibleMoves.size()]; //pick a possible move randomly from the vector of possible moves
         }
-        
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (maze.getMaze()[i][j] != 2)
+                {
+                    srand (time(NULL));
+                    maze.getMaze()[i][j] = rand()%2; //pick randomly, 1 for wall, 0 for passage
+                }
+            }
+        }
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (maze.getMaze()[i][j] == 2)
+                {
+                    maze.getMaze()[i][j] = 0; //mark the path to the goal as a passage
+                }
+            }
+        }
     }
 };
 
@@ -80,6 +111,8 @@ class MyMaze2dGenerator : public Maze2dGeneratorAbs
 {
     virtual Maze2d generate(int size);
 };
+
+
 
 
 

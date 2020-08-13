@@ -19,9 +19,9 @@ public:
 
 public:
 	bool operator==(Position& position) {return false;} //implement here
-	bool operator != (Position position) {return !(this._x == position._x) && (this._y == position._y)}
+	bool operator!=(Position position) {return !(_x == position._x) && (_y == position._y);}
 	//implement << operator
-	void operator = (Position position): this->_x=p._x, this->_y=p._y{}  //delete if not used!!!!!!!!!!!!
+	// void operator = (Position position){this->_x=p._x; this->_y=p._y;}  //delete if not used!!!!!!!!!!!!
 	int getXPosition(){return _x;};
 	int getYPosition(){return _y;};
 private:
@@ -54,16 +54,7 @@ public:
             { 
                 maze[i][j]=0;
             } 
-        } 
-
-        for (int i = 0; i < size; i++) 
-        { 
-            for (int j = 0; j < size; j++)
-            { 
-                std::cout<< maze[i][j]<< " "; 
-            } 
-        std::cout<< "\n"; 
-        } 
+        }
 	}
 
 public:
@@ -85,20 +76,37 @@ public:
 		int y=p.getYPosition();
 		if(maze[x+1][y])
 		{
-			possibleMoves.push_back({x+1, y});
+			Position p(x+1, y);
+			possibleMoves.push_back(p);
 		}
 		if(maze[x-1][y])
 		{
-			possibleMoves.push_back({x-1, y});
+			Position p(x-1, y);
+			possibleMoves.push_back(p);
 		}
 		if(maze[x][y+1])
 		{
-			possibleMoves.push_back({x, y+1});
+			Position p(x, y+1);
+			possibleMoves.push_back(p);
 		}
 		if(maze[x][y-1])
 		{
-			possibleMoves.push_back({x, y-1});
+			Position p(x, y-1);
+			possibleMoves.push_back(p);
 		}
+		return possibleMoves;
+	}
+
+	void printMaze()
+	{
+		for (int i = 0; i < maze.size(); i++) 
+        { 
+            for (int j = 0; j < maze.size(); j++)
+            { 
+                std::cout<< maze[i][j]<< " "; 
+            } 
+        	std::cout<< "\n"; 
+        }
 	}
 private:
 	std::vector<std::vector<int> > maze;
