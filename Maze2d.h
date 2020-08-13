@@ -18,7 +18,7 @@ public:
 	Position(int x, int y): _x(x), _y(y){}
 
 public:
-	//bool operator == (Position& position) {return ()} //??? 
+	bool operator==(Position& position) {return false;} //implement here
 	//implement << operator
 	//implement = operator
 	int getXPosition(){return _x;};
@@ -39,29 +39,7 @@ public:
 };
 
 //class Searchable represents a problem that can be searched
-class Searchable
-{
-	virtual const Position& getStartPosition()=0;
-	virtual const Position& getGoalPosition()=0;
-	virtual const std::vector<State> getPossibleStates(State& currState)=0; // we need to return search state and not position. the vector holds serach states (the tree).
-};
 
-//create search states for maze problem
-class Maze2dSearchable : public Searchable
-{
-public:
-	Maze2dSearchable(Maze2d& maze): _maze(maze){}
-	virtual const Position& getStartPosition(){return _maze.getStartPosition();}
-	virtual const Position& getGoalPosition(){return _maze.getEndPosition();}
-
-
-	virtual const std::vector<State> getPossibleStates(State& currState); 
-
-
-private:
-	Maze2d _maze;
-
-};
 
 /**************************************************************************************/ 
 
@@ -102,24 +80,24 @@ public:
 	
 	virtual const std::vector<Position> getPossibleMoves(Position &p)
 	{
-		std::vector<string> possibleMoves;
+		std::vector<Position> possibleMoves;
 		int x=p.getXPosition();
 		int y=p.getYPosition();
 		if(maze[x+1][y])
 		{
-			possibleMoves.push_back(x+1, y);
+			possibleMoves.push_back({x+1, y});
 		}
 		if(maze[x-1][y])
 		{
-			possibleMoves.push_back(x-1, y);
+			possibleMoves.push_back({x-1, y});
 		}
 		if(maze[x][y+1])
 		{
-			possibleMoves.push_back(x, y+1);
+			possibleMoves.push_back({x, y+1});
 		}
 		if(maze[x][y-1])
 		{
-			possibleMoves.push_back(x, y-1);
+			possibleMoves.push_back({x, y-1});
 		}
 	}
 private:
