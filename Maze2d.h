@@ -69,8 +69,9 @@ public:
 	Position getStartPosition(){return this->start;}
 	Position getEndPosition(){return this->end;}
 	Position getCurrentPosition(){return this->current;} //not sure if necessary, delete later if not!!!!!
-	void setStartPosition(Position p){this->start = p; this->current = p;}
+	void setStartPosition(Position p){this->start = p;}
 	void setEndPosition(Position p){this->end = p;}
+	void setCurrentPosition(Position p) {this->current = p;}
 
 	
 	//TODO MAYBE: implement == operator if we need it for caching

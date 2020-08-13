@@ -15,42 +15,54 @@ class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
     virtual Maze2d generate(int size)
     {
         Maze2d maze(size);
-        //the start position will be picked randomly from any index in the top wall or the left wall of the maze
-        srand (time(NULL));
-        int startWall = rand()%2; //0 for top wall, 1 for left wall
-        srand (time(NULL));
-        int endWall = rand()%2; //0 for bottom wall, 1 for right wall
-        srand (time(NULL));
-        int startIndex = rand()%size; //pick an index in the wall chosen for start
-        srand (time(NULL));
-        int endIndex = rand()%size; //pick an index in the wall chosen for end
-
         
+        srand (time(NULL));
+        int startWall = rand()%4; //we pick randomly the wall for the start, 0-top wall, 1-right wall, 2-bottom wall, 3-left wall
+        //the end position will be at the opposite wall
+        
+        srand (time(NULL));
+        int startIndex = rand()%size; //pick a random index in the wall chosen for start
+        srand (time(NULL));
+        int endIndex = rand()%size; //pick a random index in the wall chosen for end
 
-        if (startWall) //if the start is at the left wall
+        switch (startWall)
         {
-            Position startPosition(0, startIndex);
-            maze.setStartPosition(startPosition);
-        }
-        else //if the end is at the top wall
-        {
+        case 0: //start is at the top wall, end is at the bottom
+            // endWall=2;
             Position startPosition(startIndex, 0);
-            maze.setStartPosition(startPosition);
-        }
-        if (endWall) //if the end is at the right wall
-        {
-            Position endPosition(size, endIndex);
-        }
-        else //if the end is at the bottom wall
-        {
             Position endPosition(endIndex, size);
-        }
-        
-        
-        
-        
-        
+            maze.setStartPosition(startPosition);
+            maze.setCurrentPosition(startPosition);
+            maze.setEndPosition(endPosition);
+            break;
 
+        case 1: //the start is at the right wall, end is at the left
+            Position startPosition(size, startIndex);
+            Position endPosition(0, endIndex);
+            maze.setStartPosition(startPosition);
+            maze.setCurrentPosition(startPosition);
+            maze.setEndPosition(endPosition);
+            break;
+
+        case 2: //the start is at the bottom wall, the end is a the top
+            Position startPosition(startIndex, size);
+            Position endPosition(endIndex, 0);
+            maze.setStartPosition(startPosition);
+            maze.setCurrentPosition(startPosition);
+            maze.setEndPosition(endPosition);
+            break;
+
+        case 3: //the start is at the left wall, the end is at the right
+            Position startPosition(0, startIndex);
+            Position endPosition(size, endIndex);
+            maze.setStartPosition(startPosition);
+            maze.setCurrentPosition(startPosition);
+            maze.setEndPosition(endPosition);
+            break;
+        
+        default:
+            break;
+        }
     }
 };
 
