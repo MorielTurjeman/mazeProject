@@ -3,6 +3,7 @@
 #include "Searcable.h"
 #include "Maze2d.h"
 
+
 //class Searcher represents algorithms that solve problems by searching
 class Searcher
 {
@@ -14,9 +15,8 @@ class Searcher
 class CommonSearcher : public Searcher
 {
     virtual bool priorityFunction(const State &a, const State &b) = 0;
-    virtual void search(Searchable &searchable)
-    {
-    }
+    virtual void search(Searchable &searchable);
+
 };
 
 class BFS : public CommonSearcher

@@ -19,8 +19,8 @@ public:
 	// bool operator==(Position &position) { return false; } //implement here
 	bool operator!=(Position position) { return !(_x == position._x) && (_y == position._y); }
 	//implement << operator
-	int getXPosition() { return _x; };
-	int getYPosition() { return _y; };
+	int getXPosition() const { return _x; };
+	int getYPosition() const { return _y; };
 
 private:
 	int _x;
@@ -38,7 +38,7 @@ public:
 	int cost;
 	bool operator==(const State &other) const
 	{
-		if (this->p.getXPosition() == other.getXposition() && this->p.getYPosition() == other->p.getYPosition())
+		if (this->p.getXPosition() == other.p.getXPosition() && this->p.getYPosition() == other.p.getYPosition())
 			return true;
 		return false;
 	}
