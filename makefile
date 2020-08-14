@@ -1,4 +1,4 @@
-OBJS := main.o, maze2d.o, maze2dGenerator.o, SimpleMaze2dGenerator.o
+OBJS := main.o Maze2d.o Maze2dGenerator.o  Searcher.o Solution.o 
 
 CXXFLAGS += -g
 
