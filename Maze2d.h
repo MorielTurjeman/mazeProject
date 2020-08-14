@@ -38,7 +38,7 @@ public:
 	int cost;
 	bool operator==(const State &other) const
 	{
-		if (this->p.getXPosition() == other.getXposition() && this->p.getYPosition() == other->p.getYPosition())
+		if (this->p.getXPosition() == other.p.getXPosition()) && this->p.getYPosition() == other->p.getYPosition())
 			return true;
 		return false;
 	}
@@ -63,7 +63,7 @@ public:
 	}
 
 public:
-	std::vector<std::vector<int>> getMaze() { return maze; }
+	std::vector<std::vector<int> > getMaze() { return maze; }
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
 	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
@@ -114,7 +114,7 @@ public:
 	}
 
 private:
-	std::vector<std::vector<int>> maze;
+	std::vector<std::vector<int> > maze;
 	Position start, end, current;
 };
 
