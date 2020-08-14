@@ -1,6 +1,6 @@
 OBJS := main.o Maze2d.o Maze2dGenerator.o  Searcher.o Solution.o 
 
-CXXFLAGS += -g
+CXXFLAGS += -g -std=c++17
 
 all: $(OBJS)
 	$(CXX) $(OBJS) -o project

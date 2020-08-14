@@ -62,27 +62,6 @@ public:
             maze.setEndPosition(endPosition);
         }
         
-        // switch (startWall)
-        // {
-        // case 0: //start is at the top wall, end is at the bottom
-            
-        //     break;
-
-        // case 1: //the start is at the right wall, end is at the left
-            
-        //     break;
-
-        // case 2: //the start is at the bottom wall, the end is a the top
-            
-        //     break;
-
-        // case 3: //the start is at the left wall, the end is at the right
-            
-        //     break;
-        
-        // default:
-        //     break;
-        // }
         Position startPosition = maze.getStartPosition();
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
