@@ -38,11 +38,7 @@ public:
 	int cost;
 	bool operator==(const State &other) const
 	{
-<<<<<<< HEAD
-		if (this->p.getXPosition() == other.p.getXPosition()) && this->p.getYPosition() == other->p.getYPosition())
-=======
 		if (this->p.getXPosition() == other.p.getXPosition() && this->p.getYPosition() == other.p.getYPosition())
->>>>>>> 1ffdcb0feb5994ed69ba8955d800180b0ddb275e
 			return true;
 		return false;
 	}
