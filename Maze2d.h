@@ -16,7 +16,7 @@ public:
 	Position(int x, int y) : _x(x), _y(y) {}
 
 public:
-	// bool operator==(Position &position) { return false; } //implement here
+	bool operator==(Position &position) { return (_x == position._x) && (_y == position._y); } 
 	bool operator!=(Position position) { return !(_x == position._x) && (_y == position._y); }
 	//implement << operator
 	int getXPosition() const { return _x; };
@@ -63,7 +63,7 @@ public:
 	}
 
 public:
-	std::vector<std::vector<int> > getMaze() { return maze; }
+	std::vector<std::vector<int> > &getMaze() {return maze; }
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
 	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
