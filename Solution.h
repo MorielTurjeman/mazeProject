@@ -4,12 +4,13 @@
 
 #pragma once
 
-class Solution{
+class Solution
+{
 public:
-Solution() {};
+    Solution() {};
 
 private:
-std::vector<Solution> path;// should be uniqe ptr for saving each stap once\protect from Deletion
+    std::vector<Solution> path;// should be uniqe ptr for saving each stap once\protect from Deletion
 
 
 };
