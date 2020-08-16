@@ -67,7 +67,7 @@ public:
 		std::vector<Position> possibleMoves;
 		int x = p.getXPosition();
 		int y = p.getYPosition();
-		if (x < mazeSize && (maze.at(x + 1).at(y))==0)
+		if (x < mazeSize-1 && (maze.at(x + 1).at(y))==0)
 		{
 			Position p(x + 1, y);
 			possibleMoves.push_back(p);
@@ -77,7 +77,7 @@ public:
 			Position p(x - 1, y);
 			possibleMoves.push_back(p);
 		}
-		if (y < mazeSize && (maze.at(x).at(y+1))==0)
+		if (y < mazeSize-1 && (maze.at(x).at(y+1))==0)
 		{
 			Position p(x, y + 1);
 			possibleMoves.push_back(p);

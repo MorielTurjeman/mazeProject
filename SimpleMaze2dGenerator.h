@@ -21,6 +21,12 @@ public:
     {
         Maze2d maze(size);
         
+        maze.printMaze();
+        
+        
+        //we pick randomly the wall for the start, 0-top wall, 1-right wall, 2-bottom wall, 3-left wall
+        //the end position will be at the opposite wall
+        
         std::random_device                  rand_dev;
         std::mt19937                        generator(rand_dev());
         std::uniform_int_distribution<int>  distr(0, 3);
@@ -69,33 +75,35 @@ public:
         }
         
         Position startPosition = maze.getStartPosition();
+        std::cout << "Start position is: " << startPosition.getXPosition() << ", " << startPosition.getYPosition() <<std::endl;
+
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
+        std::cout << "End position is: " << endPosition.getXPosition() << ", " << endPosition.getYPosition() <<std::endl;
+
         std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
 
-        //we go randomly from start position to end position
-        //since the board is currently all 0's, we mark the path with 2's.
-        //then we randomly place walls (marked as 1's) and passages (marked by 0's)
-        //you can walk where there are passages, but not where there are walls
-        //the path to the goal (marked with 2's) will be changed after the random walls were placed to 0's
         std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
-        while (currentPosition != endPosition)
+        while (!(currentPosition.getXPosition() == endPosition.getXPosition())&&(currentPosition.getYPosition()==endPosition.getYPosition()))
         {
+            maze.printMaze();
             maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
             int randomMoveIndex=randomMove(generator);
-            currentPosition = possibleMoves[randomMoveIndex]; //pick a possible move randomly from the vector of possible moves
+            currentPosition = possibleMoves.at(randomMoveIndex); //pick a possible move randomly from the vector of possible moves
+            possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
         }
 
-        std::uniform_int_distribution<int>  randomWall(0, 1);
-        for (int i = 0; i < size; i++)
+        std::uniform_int_distribution<int>  randomOneOrZero(0, 1);
+        for (int i = 0; i < (maze.getMaze().size()); i++)
         {
-            for (int j = 0; j < size; j++)
+            for (int j = 0; j < (maze.getMaze()[i].size()); j++)
             {
-                if (maze.getMaze()[i][j] != 2)
+                if (maze.getMaze()[i][j]!= 2)
                 {
-                    int randomWallOrPassage = randomWall(generator);
+                    int randomWallOrPassage = randomOneOrZero(generator);
                     maze.getMaze()[i][j] = randomWallOrPassage; //pick randomly, 1 for wall, 0 for passage
                 }
+                
             }
         }
 
@@ -109,9 +117,11 @@ public:
                 }
             }
         }
+        maze.getMaze().at(startPosition.getXPosition()).at(startPosition.getYPosition())=2;
+        maze.getMaze().at(endPosition.getXPosition()).at(endPosition.getYPosition())=3;
+        maze.printMaze();
         return maze;
     }
-    
 };
 
 
