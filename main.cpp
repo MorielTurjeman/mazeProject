@@ -10,7 +10,7 @@ Maze2d generate(int size)
     {
         Maze2d maze(size);
         
-        maze.printMaze();
+        // maze.printMaze();
         
         
         //we pick randomly the wall for the start, 0-top wall, 1-right wall, 2-bottom wall, 3-left wall
@@ -72,14 +72,22 @@ Maze2d generate(int size)
 
         std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
 
-        std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
-        while (!(currentPosition.getXPosition() == endPosition.getXPosition())&&(currentPosition.getYPosition()==endPosition.getYPosition()))
+        maze.getMaze().at(startPosition.getXPosition()).at(startPosition.getYPosition())=4;
+        maze.getMaze().at(endPosition.getXPosition()).at(endPosition.getYPosition())=3;
+        int count=0;
+        while (currentPosition != endPosition)
         {
+            std::cout<< "Loop count: " << count << std::endl;
+            count++;
+            std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
             maze.printMaze();
             maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
             int randomMoveIndex=randomMove(generator);
+            std::cout << "Next move is: (" << possibleMoves.at(randomMoveIndex).getXPosition()<<","<<possibleMoves.at(randomMoveIndex).getYPosition()<<")"<<std::endl;
             currentPosition = possibleMoves.at(randomMoveIndex); //pick a possible move randomly from the vector of possible moves
+            
             possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
+            std::cout <<"entered" <<std::endl;
         }
 
         std::uniform_int_distribution<int>  randomOneOrZero(0, 1);
@@ -102,11 +110,11 @@ Maze2d generate(int size)
             {
                 if (maze.getMaze()[i][j] == 2)
                 {
-                    maze.getMaze()[i][j] = 0; //mark the path to the goal as a passage
+                    maze.getMaze()[i][j] = 5; //mark the path to the goal as a passage
                 }
             }
         }
-        maze.getMaze().at(startPosition.getXPosition()).at(startPosition.getYPosition())=2;
+        maze.getMaze().at(startPosition.getXPosition()).at(startPosition.getYPosition())=4;
         maze.getMaze().at(endPosition.getXPosition()).at(endPosition.getYPosition())=3;
         maze.printMaze();
         return maze;
