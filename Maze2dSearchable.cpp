@@ -19,8 +19,7 @@ const std::vector<State<Position>> Maze2dSearchable::getPossibleStates(State<Pos
    std::vector<State<Position>> S;
    for (auto &p : position)
    {
-
-      S.push_back({p, currState.cost + 1});
+      S.push_back({p, currState.cost + 1, std::make_shared<State<Position>>(currState)});
    }
 
    return S;

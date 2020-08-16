@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Maze2d.h"
+#include<memory>
 
 template <class T>
 class State
@@ -9,6 +10,7 @@ class State
 public:
 	T data; //former position
 	int cost;
+    std::shared_ptr<State<T>> parent;
 	bool operator==(const State &other) const
 	{
 		if (this->data == other->data)
