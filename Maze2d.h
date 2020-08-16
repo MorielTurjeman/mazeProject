@@ -16,8 +16,8 @@ public:
 	Position(int x, int y) : _x(x), _y(y) {}
 
 public:
-	bool operator==(Position &position) { return (_x == position._x) && (_y == position._y); } 
-	bool operator!=(Position position) { return !(_x == position._x) && (_y == position._y); }
+	bool operator==(const Position &position)const { return (_x == position._x) && (_y == position._y); } 
+	bool operator!=(const Position &position)const { return !this->operator==(position); }
 	//implement << operator
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
@@ -30,19 +30,8 @@ private:
 /**************************************************************************************/
 
 //represents a state in a search problem(the position and the distance from root)
-class State
-{
 
-public:
-	Position p;
-	int cost;
-	bool operator==(const State &other) const
-	{
-		if (this->p.getXPosition() == other.p.getXPosition() && this->p.getYPosition() == other.p.getYPosition())
-			return true;
-		return false;
-	}
-};
+
 
 /**************************************************************************************/
 
