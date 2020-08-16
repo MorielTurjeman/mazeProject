@@ -9,7 +9,7 @@
 Maze2d generate(int size)
     {
         Maze2d maze(size);
-        maze.getMaze()[0][0]=2;
+        
         maze.printMaze();
         
         
@@ -64,26 +64,32 @@ Maze2d generate(int size)
         }
         
         Position startPosition = maze.getStartPosition();
+        std::cout << "Start position is: " << startPosition.getXPosition() << ", " << startPosition.getYPosition() <<std::endl;
+
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
-        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
+        std::cout << "End position is: " << endPosition.getXPosition() << ", " << endPosition.getYPosition() <<std::endl;
 
-        std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
-        while (currentPosition != endPosition)
-        {
-            maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
-            int randomMoveIndex=randomMove(generator);
-            currentPosition = possibleMoves[randomMoveIndex]; //pick a possible move randomly from the vector of possible moves
-        }
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
 
-        std::uniform_int_distribution<int>  randomWall(0, 1);
-        for (int i = 0; i < (size-1); i++)
+        // std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
+        // while (!(currentPosition.getXPosition() == endPosition.getXPosition())&&(currentPosition.getYPosition()==endPosition.getYPosition()))
+        // {
+        //     maze.printMaze();
+        //     maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
+        //     int randomMoveIndex=randomMove(generator);
+        //     currentPosition = possibleMoves.at(randomMoveIndex); //pick a possible move randomly from the vector of possible moves
+        //     possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
+        // }
+
+        std::uniform_int_distribution<int>  randomOneOrZero(0, 1);
+        for (int i = 0; i < (maze.getMaze().size()); i++)
         {
-            for (int j = 0; j < (size-1); j++)
+            for (int j = 0; j < (maze.getMaze()[i].size()); j++)
             {
                 if (maze.getMaze()[i][j]!= 2)
                 {
-                    int randomWallOrPassage = randomWall(generator);
+                    int randomWallOrPassage = randomOneOrZero(generator);
                     maze.getMaze()[i][j] = randomWallOrPassage; //pick randomly, 1 for wall, 0 for passage
                 }
                 

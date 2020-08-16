@@ -12,7 +12,7 @@
 
 const std::vector<State> Maze2dSearchable::getPossibleStates(State &currState)
 {
-   std::vector<Position> position = _maze.getPossibleMoves(currState.p);
+   std::vector<Position> position = _maze.getPossibleMoves(currState.p, _maze.getMaze().size());
 
    std::vector<State> S;
    for (auto &p : position)
