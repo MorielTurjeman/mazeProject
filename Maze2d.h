@@ -73,27 +73,27 @@ public:
 
 	//TODO MAYBE: implement == operator if we need it for caching
 
-	virtual const std::vector<Position> getPossibleMoves(Position &p)
+	virtual const std::vector<Position> getPossibleMoves(Position &p, int mazeSize)
 	{
 		std::vector<Position> possibleMoves;
 		int x = p.getXPosition();
 		int y = p.getYPosition();
-		if (maze[x + 1][y])
+		if (x < mazeSize && (maze.at(x + 1).at(y))==0)
 		{
 			Position p(x + 1, y);
 			possibleMoves.push_back(p);
 		}
-		if (maze[x - 1][y])
+		if (x > 0 && (maze.at(x-1).at(y)==0))
 		{
 			Position p(x - 1, y);
 			possibleMoves.push_back(p);
 		}
-		if (maze[x][y + 1])
+		if (y < mazeSize && (maze.at(x).at(y+1))==0)
 		{
 			Position p(x, y + 1);
 			possibleMoves.push_back(p);
 		}
-		if (maze[x][y - 1])
+		if (y > 0 && (maze.at(x).at(y-1)==0))
 		{
 			Position p(x, y - 1);
 			possibleMoves.push_back(p);

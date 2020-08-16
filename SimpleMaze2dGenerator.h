@@ -71,7 +71,7 @@ public:
         Position startPosition = maze.getStartPosition();
         Position currentPosition = maze.getCurrentPosition();
         Position endPosition = maze.getEndPosition();
-        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
 
         //we go randomly from start position to end position
         //since the board is currently all 0's, we mark the path with 2's.
