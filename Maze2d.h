@@ -19,6 +19,7 @@ public:
 	bool operator==(const Position &position)const { return (_x == position._x) && (_y == position._y); } 
 	bool operator!=(const Position &position)const { return !this->operator==(position); }
 	//implement << operator
+	void operator<<(Position p)const {std::cout<<"("<<p.getXPosition()<<","<<p.getYPosition()<<")"<<std::endl;}
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
 
