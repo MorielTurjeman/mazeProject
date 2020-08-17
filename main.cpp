@@ -130,6 +130,107 @@ Maze2d generate(int size)
         return maze;
     }
 
+Maze2d generate2(int size)
+{
+    Maze2d maze(size);
+    // std::cout << "Initial maze:" <<std::endl;
+    // maze.printMaze();
+
+    std::random_device                  rand_dev;
+    std::mt19937                        generator(rand_dev());
+    std::uniform_int_distribution<int>  randomIndexDistr(0, size-1);
+    int randIndex= randomIndexDistr(generator);
+
+    Position startPosition(randIndex, 0);
+    Position endPosition(randIndex, size-1);
+    maze.setStartPosition(startPosition);
+    maze.setCurrentPosition(startPosition);
+    maze.setEndPosition(endPosition);
+
+    
+
+    for (int i = 0; i < size; i++)
+    {
+        maze.getMaze()[randIndex][i]=2;
+        
+    }
+    
+
+    std::uniform_int_distribution<int>  randomOneOrZero(0, 1);
+    for (int i = 0; i < (maze.getMaze().size()); i++)
+    {
+        for (int j = 0; j < (maze.getMaze()[i].size()); j++)
+        {
+            if (maze.getMaze()[i][j]!= 2)
+            {
+                int randomWallOrPassage = randomOneOrZero(generator);
+                maze.getMaze()[i][j] = randomWallOrPassage; //pick randomly, 1 for wall, 0 for passage
+            }
+            
+        }
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            if (maze.getMaze()[i][j] == 2)
+            {
+                maze.getMaze()[i][j] = 0; //mark the path to the goal as a passage
+            }
+        }
+    }
+    
+    maze.getMaze()[startPosition.getXPosition()][startPosition.getYPosition()]=4;
+    maze.getMaze()[endPosition.getXPosition()][endPosition.getYPosition()]=3;
+    maze.printMaze();
+
+    return maze;
+
+}
+
+Maze2d checkPossibleMoves(int size)
+{
+    Maze2d maze(size);
+    std::random_device                  rand_dev;
+    std::mt19937                        generator(rand_dev());
+    std::uniform_int_distribution<int>  randomIndexDistr(0, size-1);
+    int randIndex= randomIndexDistr(generator);
+
+    Position startPosition(randIndex, 0);
+    Position currentPosition(randIndex, 0);
+    Position endPosition(randIndex, size-1);
+    maze.setStartPosition(startPosition);
+    maze.setCurrentPosition(startPosition);
+    maze.setEndPosition(endPosition);
+
+    maze.getMaze()[startPosition.getXPosition()][startPosition.getYPosition()]=4;
+    maze.getMaze()[endPosition.getXPosition()][endPosition.getYPosition()]=3;
+
+    std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+    int count = 0;
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            std::cout <<"Loop count: "<< count <<std::endl;
+            count++;
+            Position currPos(i,j);
+            maze.setCurrentPosition(currPos);
+            std::cout<<"Possible moves for (" <<i<<","<<j<<"): "<<std::endl;
+            possibleMoves = maze.getPossibleMoves(currPos, maze.getMaze().size());
+            for (int k = 0; k < possibleMoves.size(); k++)
+            {
+                std::cout << "(" <<possibleMoves.at(k).getXPosition() << "," <<possibleMoves.at(k).getYPosition()<<")"<<std::endl;
+            }
+            
+        }
+        
+    }
+    return maze;
+    
+}
+
 int main(int argc, char const *argv[])
 {
     std::cout << "hello world" << std::endl;
@@ -137,7 +238,7 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
-    generate(10);
+    checkPossibleMoves(3);
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;

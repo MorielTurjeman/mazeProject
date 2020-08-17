@@ -60,6 +60,7 @@ public:
 	void setStartPosition(Position p) { this->start = p; }
 	void setEndPosition(Position p) { this->end = p; }
 	void setCurrentPosition(Position p) { this->current = p; }
+	void setCurrentPosition(int x, int y){Position p(x,y); this->current=p;}
 
 	//TODO MAYBE: implement == operator if we need it for caching
 
