@@ -78,6 +78,10 @@ Maze2d generate(int size)
         {
             std::cout<< "Loop count: " << count << std::endl;
             count++;
+            if (possibleMoves.size() == 0)
+            {
+                std::cout << "error" <<std::endl;
+            }
             std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
             maze.printMaze();
             maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
