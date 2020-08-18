@@ -60,6 +60,12 @@
         "utility": "cpp",
         "vector": "cpp",
         "numeric": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "clocale": "cpp",
+        "memory_resource": "cpp",
+        "optional": "cpp",
+        "fstream": "cpp"
     }
 }

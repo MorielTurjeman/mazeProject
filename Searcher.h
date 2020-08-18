@@ -17,7 +17,7 @@ template <class T>
 class CommonSearcher : public Searcher<T>
 {
     virtual bool priorityFunction(const State<T> &a, const State<T> &b) = 0;
-    virtual void search(Searchable<T> &searchable)
+    virtual Solution<T> search(Searchable<T> &searchable)
     {
         auto comperatorLambda = [&](State<T> a, State<T> b) -> bool { return priorityFunction(a, b); };
         std::priority_queue<State<T>, std::vector<State<T>>, decltype(comperatorLambda)> pq(comperatorLambda);
@@ -30,6 +30,8 @@ class CommonSearcher : public Searcher<T>
 
             if (Searchable<T>.getGoalState() == state)
             {
+                auto sol = Solution(std::make_shared<State<T>>(state));
+                return sol;
                 //return Class solution (maybe new file) that will return vector with all the path to the solution.
             }
 
@@ -50,11 +52,17 @@ class CommonSearcher : public Searcher<T>
 template <class T>
 class BFS : public CommonSearcher<T>
 {
-    virtual bool priorityFunction(const State<T> &a, const State<T> &b);
+    virtual bool priorityFunction(const State<T> &a, const State<T> &b)
+    {
+        return (a.cost > b.cost);
+    }
 };
 
 template <class T>
 class AStar : public CommonSearcher<T>
 {
-    virtual bool priorityFunction(const State<T> &a, const State<T> &b);
+    virtual bool priorityFunction(const State<T> &a, const State<T> &b)
+    {
+        
+    }
 };

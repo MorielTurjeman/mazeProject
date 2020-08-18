@@ -242,7 +242,7 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
-    checkPossibleMoves(3);
+    checkPossibleMoves(10);
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
