@@ -231,6 +231,7 @@ Maze2d checkPossibleMoves(int size)
         }
         
     }
+    maze.printMaze();
     return maze;
     
 }
@@ -242,7 +243,7 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
-    checkPossibleMoves(3);
+    generate2(10);
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
