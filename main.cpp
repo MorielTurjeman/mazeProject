@@ -231,6 +231,7 @@ Maze2d checkPossibleMoves(int size)
         }
         
     }
+    maze.printMaze();
     return maze;
     
 }

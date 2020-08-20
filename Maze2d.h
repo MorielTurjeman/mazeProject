@@ -104,6 +104,42 @@ public:
 		}
 	}
 
+		void alternativePrintMaze()
+	{
+		for (int i = 0; i < maze.size(); i++)
+		{
+			for (int j = 0; j < maze.size(); j++)
+			{
+				if (maze[i][j]==maze[this->getStartPosition().getXPosition()][this->getStartPosition().getYPosition()])
+				{
+					std::cout<<"S ";
+					continue;
+				}
+				if (maze[i][j]==maze[this->getEndPosition().getXPosition()][this->getEndPosition().getYPosition()])
+				{
+					std::cout<<" E";
+					continue;
+				}
+				
+				if(maze[i][j]==1)
+				{
+					std::cout<<"{}";
+				}
+					
+				if(maze[i][j]==0)
+				{
+					std::cout<<"  ";
+				}
+				// std::cout << "|";
+				
+				// std::cout << maze[i][j] << " ";
+				
+			}
+			std::cout << "\n";
+		}
+		
+	}
+
 private:
 	std::vector<std::vector<int> > maze;
 	Position start, end, current;

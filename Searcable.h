@@ -3,6 +3,8 @@
 #include "Maze2d.h"
 #include<memory>
 
+
+//represents a state in a search problem(the position and the distance from root)
 template <class T>
 class State
 {
@@ -17,8 +19,9 @@ public:
 	}
 };
 
+/**************************************************************************************/
 
-//class Searchable represents a problem that can be searched, and refer to state only
+//class Searchable represents a problem that can be searched, and refers to state only
 template <class T>
 class Searchable
 {
