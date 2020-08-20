@@ -15,7 +15,7 @@
 class SimpleMaze2dGenerator : public Maze2dGeneratorAbs
 {
 public:
-    SimpleMaze2dGenerator()=default;
+    SimpleMaze2dGenerator();
     ~SimpleMaze2dGenerator(){}
     virtual Maze2d generate(int size)
     {
