@@ -5,9 +5,9 @@
 #include <queue>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <vector>
 #include <random>
+#include <stack>
 
 class MyMaze2dGenerator: public Maze2dGeneratorAbs
 {
@@ -27,6 +27,18 @@ public:
         maze.setCurrentPosition(startPosition);
         maze.setEndPosition(endPosition);
 
+        while (!_stack.empty())
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    /* code */
+                }
+                
+            }
+            
+        }
         
 
         /*
@@ -40,6 +52,8 @@ public:
                 Mark the chosen cell as visited and push it to the stack
         */
 
+
+
         /*
         Given a current cell as a parameter,
         Mark the current cell as visited
@@ -52,4 +66,7 @@ public:
         
         
     }
+
+private:
+    std::queue<std::vector<int> > _stack;
 };
