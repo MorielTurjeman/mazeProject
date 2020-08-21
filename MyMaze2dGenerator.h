@@ -28,7 +28,7 @@ public:
         maze.setEndPosition(endPosition);
 
         //Choose the initial cell, mark it as visited and push it to the stack
-
+        _stack.push(maze.getCurrentPosition());
 
         //While the stack is not empty
         while (!_stack.empty())

@@ -64,6 +64,16 @@ public:
 
 	//TODO MAYBE: implement == operator if we need it for caching
 
+	std::vector<int> getData(Maze2d maze)
+	{
+		std::vector<int> mazeData;
+		mazeData.push_back(maze.getStartPosition().getXPosition());
+		mazeData.push_back(maze.getStartPosition().getYPosition());
+		mazeData.push_back(maze.getEndPosition().getYPosition());
+		mazeData.push_back(maze.getEndPosition().getYPosition());
+		mazeData.push_back(maze.)
+	}
+
 	virtual const std::vector<Position> getPossibleMoves(Position &p, int mazeSize)
 	{
 		std::vector<Position> possibleMoves;
