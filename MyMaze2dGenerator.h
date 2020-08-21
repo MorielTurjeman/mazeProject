@@ -27,13 +27,23 @@ public:
         maze.setCurrentPosition(startPosition);
         maze.setEndPosition(endPosition);
 
+        //Choose the initial cell, mark it as visited and push it to the stack
+
+
+        //While the stack is not empty
         while (!_stack.empty())
         {
+            maze.setCurrentPosition(_stack.pop());
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    /* code */
+                    
+                    if (maze.getCurrentPosition() == maze.getStartPosition())
+                    {
+                        /* code */
+                    }
+                    
                 }
                 
             }
@@ -68,5 +78,5 @@ public:
     }
 
 private:
-    std::queue<std::vector<int> > _stack;
+    std::queue<Position> _stack;
 };
