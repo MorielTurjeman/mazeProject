@@ -2,7 +2,7 @@
 #include "Searcable.h"
 #include "Searcher.h"
 #include <cmath>
-#include <bits/stdc++.h>
+
 //create search states for maze problem
 class Maze2dSearchable : public Searchable<Position>
 {

@@ -33,7 +33,7 @@ public:
         //While the stack is not empty
         while (!_stack.empty())
         {
-            maze.setCurrentPosition(_stack.pop());
+            // maze.setCurrentPosition(_stack.pop());
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)

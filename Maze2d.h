@@ -71,7 +71,16 @@ public:
 		mazeData.push_back(maze.getStartPosition().getYPosition());
 		mazeData.push_back(maze.getEndPosition().getYPosition());
 		mazeData.push_back(maze.getEndPosition().getYPosition());
-		mazeData.push_back(maze.)
+		mazeData.push_back(maze.getMaze().size());
+		int size = maze.getMaze().size();
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				mazeData.push_back(maze[i][j]);
+			}
+		}
+		return mazeData;
 	}
 
 	virtual const std::vector<Position> getPossibleMoves(Position &p, int mazeSize)
