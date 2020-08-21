@@ -30,12 +30,6 @@ private:
 
 /**************************************************************************************/
 
-//represents a state in a search problem(the position and the distance from root)
-
-
-
-/**************************************************************************************/
-
 class Maze2d
 {
 public:
@@ -50,6 +44,25 @@ public:
 				maze[i][j] = 0;
 			}
 		}
+	}
+	Maze2d(std::vector<int> mazeData)
+	{
+		Position startPosition(mazeData[0], mazeData[1]);
+		this->setStartPosition(startPosition);
+		Position endPosition(mazeData[2], mazeData[3]);
+		this->setEndPosition(endPosition);
+		int size = mazeData[4]
+		Maze2d _maze(size);
+		int count=5;
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				_maze[i][j] = mazeData[count];
+				count++;
+			}
+		}
+		
 	}
 
 public:
