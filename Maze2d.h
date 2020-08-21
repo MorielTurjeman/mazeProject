@@ -45,6 +45,8 @@ public:
 			}
 		}
 	}
+
+	//this constructor uses a vector created by the 'getData' method in this class
 	Maze2d(std::vector<int> mazeData)
 	{
 		Position startPosition(mazeData[0], mazeData[1]);
