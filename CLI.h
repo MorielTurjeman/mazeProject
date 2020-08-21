@@ -4,10 +4,17 @@
 
 #ifndef MAZEPROJECT_CLI_H
 #define MAZEPROJECT_CLI_H
+#include<iostream>
 
 
-class CLI {
+class CLI
+{
+public:
+	void start();
 
+private:
+	std::istream in;
+	std::ostream out;
 };
 
 

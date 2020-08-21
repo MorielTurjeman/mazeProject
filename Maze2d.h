@@ -53,14 +53,14 @@ public:
 		this->setStartPosition(startPosition);
 		Position endPosition(mazeData[2], mazeData[3]);
 		this->setEndPosition(endPosition);
-		int size = mazeData[4]
+		int size = mazeData[4];
 		Maze2d _maze(size);
 		int count=5;
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				_maze[i][j] = mazeData[count];
+				_maze.getMaze()[i][j] = mazeData[count];
 				count++;
 			}
 		}
@@ -92,7 +92,7 @@ public:
 		{
 			for (int j = 0; j < size; j++)
 			{
-				mazeData.push_back(maze[i][j]);
+				mazeData.push_back(maze.getMaze()[i][j]);
 			}
 		}
 		return mazeData;
