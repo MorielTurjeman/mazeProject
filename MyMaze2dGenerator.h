@@ -2,6 +2,12 @@
 
 #include "Maze2d.h"
 #include "Maze2dGenerator.h"
+#include <queue>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <vector>
+#include <random>
 
 class MyMaze2dGenerator: public Maze2dGeneratorAbs
 {
@@ -15,8 +21,8 @@ public:
         std::mt19937                        generator(rand_dev());
         std::uniform_int_distribution<int>  distr(0, size);
 
-        startPosition(distr(generator), 0);
-        endPosition(distr(generator), size-1);
+        Position startPosition(distr(generator), 0);
+        Position endPosition(distr(generator), size-1);
         maze.setStartPosition(startPosition);
         maze.setCurrentPosition(startPosition);
         maze.setEndPosition(endPosition);
