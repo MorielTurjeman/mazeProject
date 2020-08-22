@@ -4,6 +4,7 @@
 #include "Maze2d.h"
 #include "Maze2dGenerator.h"
 #include "SimpleMaze2dGenerator.h"
+#include "MyMaze2dGenerator.h"
 #include <random>
 
 Maze2d generate(int size)
@@ -243,12 +244,16 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
+    MyMaze2dGenerator g;
+    auto maze = g.generate(11);
+    maze.printMaze();
     // checkPossibleMoves(10);
-    Maze2d maze(12);
-    std::cout << maze.getMaze().size() << std::endl;
+    // std::cout << maze.getMaze().size() << std::endl;
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
+
+
 
     return 0;
 }

@@ -125,15 +125,6 @@ public:
 };
 
 
-class MyMaze2dGenerator : public Maze2dGeneratorAbs
-{
-    virtual Maze2d generate(int size);
-};
-
-
-
-
-
 #endif //MAZEPROJECT_SIMPLEMAZE2DGENERATOR_H
 
 

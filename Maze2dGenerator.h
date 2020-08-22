@@ -14,17 +14,19 @@
 class Maze2dGenerator
 {
 public:
-    Maze2dGenerator(int size){}
+    Maze2dGenerator(){}
     
     virtual Maze2d generate(int size)=0;
 
-    virtual std::string measureAlgorithmTime()=0;
+    virtual std::string measureAlgorithmTime(int size)=0;
 
+    ~Maze2dGenerator(){}
 
 };
 
 class Maze2dGeneratorAbs : public Maze2dGenerator
 {
+    public:
     virtual Maze2d generate(int size)=0;
     virtual std::string measureAlgorithmTime(int size)
     {
@@ -39,6 +41,9 @@ class Maze2dGeneratorAbs : public Maze2dGenerator
 
         return timeMeasured;
     }
+
+    ~Maze2dGeneratorAbs(){}
+
 
 };
 

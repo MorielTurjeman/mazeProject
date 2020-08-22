@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Maze2d.h"
 using namespace std;
 
@@ -103,37 +104,76 @@ public:
 		return mazeData;
 	}
 
-	virtual const std::vector<Position> getPossibleMoves(Position &p)
+	virtual const std::vector<Position> getNeighbours(Position &p)
 	{
 		std::vector<Position> pMoves;
 		int row = p.getYPosition();
 		int col = p.getXPosition();
 
-		if (row - 1 >= 0 && maze[row - 1][col] != 1)
+		if (row - 2 >= 1)
 		{
-			Position up(col, row - 1);
+			Position up(col, row - 2);
 			pMoves.push_back(up);
 		}
 
-		if (row + 1 <= maze.size() - 1 && maze[row + 1][col] != 1)
+		if (row + 2 <= maze.size() - 2)
 		{
 
-			Position down(col, row + 1);
+			Position down(col, row + 2);
 			pMoves.push_back(down);
 		}
 
-		if (col - 1 >= 0 && maze[row][col - 1] != 1)
+		if (col - 2 >= 1)
 		{
-			Position left(col - 1, row);
+			Position left(col - 2, row);
 			pMoves.push_back(left);
 		}
 
-		if (col + 1 <= maze.size() - 1 && maze[row][col + 1] != 1)
+		if (col + 2 <= maze.size() - 2)
 		{
-			Position right(col + 1, row);
+			Position right(col + 2, row);
 			pMoves.push_back(right);
 		}
 
+		return pMoves;
+	}
+	
+	virtual const std::vector<Position> getPossibleMoves(Position &p)
+	{
+		// std::vector<Position> pMoves;
+		// int row = p.getYPosition();
+		// int col = p.getXPosition();
+
+		// if (row - 1 >= 0 && maze[row - 1][col] != 1)
+		// {
+		// 	Position up(col, row - 1);
+		// 	pMoves.push_back(up);
+		// }
+
+		// if (row + 1 <= maze.size() - 1 && maze[row + 1][col] != 1)
+		// {
+
+		// 	Position down(col, row + 1);
+		// 	pMoves.push_back(down);
+		// }
+
+		// if (col - 1 >= 0 && maze[row][col - 1] != 1)
+		// {
+		// 	Position left(col - 1, row);
+		// 	pMoves.push_back(left);
+		// }
+
+		// if (col + 1 <= maze.size() - 1 && maze[row][col + 1] != 1)
+		// {
+		// 	Position right(col + 1, row);
+		// 	pMoves.push_back(right);
+		// }
+
+		auto neighbors = getNeighbours(p);
+		vector<Position> pMoves;
+		for (auto p : neighbors)
+			if (maze[p.getYPosition()][p.getXPosition()] == 0)
+				pMoves.push_back(p);
 		return pMoves;
 	}
 
@@ -185,15 +225,33 @@ public:
 		}
 	}
 
-	void removeWall(Position &p)
+	void removeWall(Position &first, Position& second)
+	{
+		maze[first.getYPosition()][first.getXPosition()] = 5;
+		maze[second.getYPosition()][second.getXPosition()] = 5;
+		if(first.getXPosition() == second.getXPosition())
+			maze[std::min(first.getYPosition(), second.getYPosition())+1][first.getXPosition()] = 5;
+		else
+			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition())+1] = 5;
+		
+		// int col = p.getXPosition();
+		// int row = p.getYPosition();
+
+		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
+		// maze[row][col] = 0;
+		return;
+	}
+
+	void setWall(Position &p)
 	{
 		int col = p.getXPosition();
 		int row = p.getYPosition();
 
 		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
-		maze[row][col] = 0;
+		maze[row][col] = 1;
 		return;
 	}
+
 
 private:
 	std::vector<std::vector<int>> maze;
