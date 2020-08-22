@@ -19,7 +19,7 @@ public:
 	bool operator==(const Position &position) const { return (_x == position._x) && (_y == position._y); }
 	bool operator!=(const Position &position) const { return !this->operator==(position); }
 	//implement << operator
-	void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; }
+	// void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; } should be friend
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
 
@@ -33,8 +33,9 @@ private:
 class Maze2d
 {
 public:
-	Maze2d(int size, bool fillWalls = false)
+	Maze2d(int size, bool fillWalls = false) 
 	{
+
 		int defaultValue = fillWalls ? 1 : 0;
 		maze.resize(size);
 		for (int i = 0; i < size; i++)
@@ -88,7 +89,7 @@ public:
 		std::vector<int> mazeData;
 		mazeData.push_back(maze.getStartPosition().getXPosition());
 		mazeData.push_back(maze.getStartPosition().getYPosition());
-		mazeData.push_back(maze.getEndPosition().getYPosition());
+		mazeData.push_back(maze.getEndPosition().getXPosition());
 		mazeData.push_back(maze.getEndPosition().getYPosition());
 		mazeData.push_back(maze.getMaze().size());
 		int size = maze.getMaze().size();
@@ -102,33 +103,41 @@ public:
 		return mazeData;
 	}
 
-	virtual const std::vector<Position> getPossibleMoves(Position &p, int mazeSize)
+	virtual const std::vector<Position> getPossibleMoves(Position &p)
 	{
-		std::vector<Position> possibleMoves;
-		int x = p.getXPosition();
-		int y = p.getYPosition();
-		if (((x < mazeSize - 1) && (((maze.at(x + 1).at(y) == 0) || (maze.at(x + 1).at(y) == 2)))))
+		std::vector<Position> pMoves;
+		int row = p.getYPosition();
+		int col = p.getXPosition();
+
+		if (row - 1 >= 0 && maze[row - 1][col] != 1)
 		{
-			Position p(x + 1, y);
-			possibleMoves.push_back(p);
+			Position up(col, row - 1);
+			pMoves.push_back(up);
 		}
-		if (((x > 0) && (((maze.at(x - 1).at(y) == 0)) || (maze.at(x - 1).at(y) == 2))))
+
+		if (row + 1 <= maze.size() - 1 && maze[row + 1][col] != 1)
 		{
-			Position p(x - 1, y);
-			possibleMoves.push_back(p);
+
+			Position down(col, row + 1);
+			pMoves.push_back(down);
 		}
-		if (((y < mazeSize - 1) && (((maze.at(x).at(y + 1) == 0) || (maze.at(x).at(y + 1) == 2)))))
+
+		if (col - 1 >= 0 && maze[row][col - 1] != 1)
 		{
-			Position p(x, y + 1);
-			possibleMoves.push_back(p);
+			Position left(col - 1, row);
+			pMoves.push_back(left);
 		}
-		if (((y > 0) && (((maze.at(x).at(y - 1) == 0)) || (maze.at(x).at(y - 1) == 0))))
+
+		if (col + 1 <= maze.size() - 1 && maze[row][col + 1] != 1)
 		{
-			Position p(x, y - 1);
-			possibleMoves.push_back(p);
+			Position right(col + 1, row);
+			pMoves.push_back(right);
 		}
-		return possibleMoves;
+
+		return pMoves;
 	}
+
+
 
 	void printMaze()
 	{
@@ -178,7 +187,7 @@ public:
 
 	void removeWall(Position &p)
 	{
-		int col = p.getXPosition(); 
+		int col = p.getXPosition();
 		int row = p.getYPosition();
 
 		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
@@ -189,6 +198,9 @@ public:
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
+	// int _width; if decided to be rectangle then should be width and height
+	//int height;
+	
 };
 
 #endif //MAZEPROJECT_MAZE2D_H

@@ -81,7 +81,7 @@ public:
         Position endPosition = maze.getEndPosition();
         std::cout << "End position is: " << endPosition.getXPosition() << ", " << endPosition.getYPosition() <<std::endl;
 
-        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
 
         std::uniform_int_distribution<int>  randomMove(0, possibleMoves.size()-1);
         while (!(currentPosition.getXPosition() == endPosition.getXPosition())&&(currentPosition.getYPosition()==endPosition.getYPosition()))
@@ -90,7 +90,7 @@ public:
             maze.getMaze()[currentPosition.getXPosition()][currentPosition.getYPosition()] = 2;
             int randomMoveIndex=randomMove(generator);
             currentPosition = possibleMoves.at(randomMoveIndex); //pick a possible move randomly from the vector of possible moves
-            possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
+            possibleMoves = maze.getPossibleMoves(currentPosition);
         }
 
         std::uniform_int_distribution<int>  randomOneOrZero(0, 1);

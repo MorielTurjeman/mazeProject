@@ -70,7 +70,7 @@ Maze2d generate(int size)
         Position endPosition = maze.getEndPosition();
         std::cout << "End position is: " << endPosition.getXPosition() << ", " << endPosition.getYPosition() <<std::endl;
 
-        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition );
 
         
         int count=0;
@@ -97,7 +97,7 @@ Maze2d generate(int size)
             }
             
                 
-            possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
+            possibleMoves = maze.getPossibleMoves(currentPosition);
             std::cout <<"entered" <<std::endl;
         }
 
@@ -211,7 +211,7 @@ Maze2d checkPossibleMoves(int size)
     maze.getMaze()[startPosition.getXPosition()][startPosition.getYPosition()]=4;
     maze.getMaze()[endPosition.getXPosition()][endPosition.getYPosition()]=3;
 
-    std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+    std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
     int count = 0;
     for (int i = 0; i < size; i++)
     {
@@ -222,7 +222,7 @@ Maze2d checkPossibleMoves(int size)
             Position currPos(i,j);
             maze.setCurrentPosition(currPos);
             std::cout<<"Possible moves for (" <<i<<","<<j<<"): "<<std::endl;
-            possibleMoves = maze.getPossibleMoves(currPos, maze.getMaze().size());
+            possibleMoves = maze.getPossibleMoves(currPos);
             for (int k = 0; k < possibleMoves.size(); k++)
             {
                 std::cout << "(" <<possibleMoves.at(k).getXPosition() << "," <<possibleMoves.at(k).getYPosition()<<")"<<std::endl;
