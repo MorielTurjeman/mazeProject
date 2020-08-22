@@ -56,13 +56,13 @@ public:
 		this->setEndPosition(endPosition);
 		int size = mazeData[4];
 		Maze2d _maze(size);
-		int count = 5;
+		int currVectorIndex = 5;
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				_maze.getMaze()[i][j] = mazeData[count];
-				count++;
+				_maze.getMaze()[i][j] = mazeData[currVectorIndex];
+				currVectorIndex++;
 			}
 		}
 	}
