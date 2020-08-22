@@ -2,7 +2,7 @@
 
 #include "Searcable.h"
 #include "Maze2d.h"
-#include "queue"
+#include <queue>
 #include "Solution.h"
 #include <vector>
 //class Searcher represents algorithms that solve problems by searching
