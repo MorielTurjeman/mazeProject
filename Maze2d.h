@@ -30,12 +30,6 @@ private:
 
 /**************************************************************************************/
 
-//represents a state in a search problem(the position and the distance from root)
-
-
-
-/**************************************************************************************/
-
 class Maze2d
 {
 public:
@@ -52,6 +46,27 @@ public:
 		}
 	}
 
+	//this constructor uses a vector created by the 'getData' method in this class
+	Maze2d(std::vector<int> mazeData)
+	{
+		Position startPosition(mazeData[0], mazeData[1]);
+		this->setStartPosition(startPosition);
+		Position endPosition(mazeData[2], mazeData[3]);
+		this->setEndPosition(endPosition);
+		int size = mazeData[4];
+		Maze2d _maze(size);
+		int count=5;
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				_maze.getMaze()[i][j] = mazeData[count];
+				count++;
+			}
+		}
+		
+	}
+
 public:
 	std::vector<std::vector<int> > &getMaze() {return maze; }
 	Position getStartPosition() { return this->start; }
@@ -63,6 +78,25 @@ public:
 	void setCurrentPosition(int x, int y){Position p(x,y); this->current=p;}
 
 	//TODO MAYBE: implement == operator if we need it for caching
+
+	std::vector<int> getData(Maze2d maze)
+	{
+		std::vector<int> mazeData;
+		mazeData.push_back(maze.getStartPosition().getXPosition());
+		mazeData.push_back(maze.getStartPosition().getYPosition());
+		mazeData.push_back(maze.getEndPosition().getYPosition());
+		mazeData.push_back(maze.getEndPosition().getYPosition());
+		mazeData.push_back(maze.getMaze().size());
+		int size = maze.getMaze().size();
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				mazeData.push_back(maze.getMaze()[i][j]);
+			}
+		}
+		return mazeData;
+	}
 
 	virtual const std::vector<Position> getPossibleMoves(Position &p, int mazeSize)
 	{

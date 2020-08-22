@@ -2,9 +2,20 @@
 
 #include "Maze2d.h"
 #include "Maze2dGenerator.h"
+<<<<<<< HEAD
 #include <random>
 #include <stack>
 class MyMaze2dGenerator : public Maze2dGeneratorAbs
+=======
+#include <queue>
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <random>
+#include <stack>
+
+class MyMaze2dGenerator: public Maze2dGeneratorAbs
+>>>>>>> 099007457da1ca73786ec8fd7810785a9d5cecc9
 {
 public:
     ~MyMaze2dGenerator() {}
@@ -61,7 +72,48 @@ public:
         // maze.setStartPosition(startPosition);
         // maze.setCurrentPosition(startPosition);
         // maze.setEndPosition(endPosition);
+        // Position startPosition(distr(generator), 0);
+        // Position endPosition(distr(generator), size-1);
+        // maze.setStartPosition(startPosition);
+        // maze.setCurrentPosition(startPosition);
+        // maze.setEndPosition(endPosition);
+
+        // //Choose the initial cell, mark it as visited and push it to the stack
+        // _stack.push(maze.getCurrentPosition());
+
+        // //While the stack is not empty
+        // while (!_stack.empty())
+        // {
+        //     // maze.setCurrentPosition(_stack.pop());
+        //     for (int i = 0; i < size; i++)
+        //     {
+        //         for (int j = 0; j < size; j++)
+        //         {
+                    
+        //             if (maze.getCurrentPosition() == maze.getStartPosition())
+        //             {
+        //                 /* code */
+        //             }
+                    
+        //         }
+                
+        //     }
+            
+        // }
         
+
+        /*
+        Choose the initial cell, mark it as visited and push it to the stack
+        While the stack is not empty
+            Pop a cell from the stack and make it a current cell
+            If the current cell has any neighbours which have not been visited
+                Push the current cell to the stack
+                Choose one of the unvisited neighbours
+                Remove the wall between the current cell and the chosen cell
+                Mark the chosen cell as visited and push it to the stack
+        */
+
+
 
         /*
         Given a current cell as a parameter,
@@ -73,4 +125,7 @@ public:
 
         */
     }
+
+private:
+    std::queue<Position> _stack;
 };

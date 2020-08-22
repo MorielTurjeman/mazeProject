@@ -243,7 +243,9 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
-    checkPossibleMoves(10);
+    // checkPossibleMoves(10);
+    Maze2d maze(12);
+    std::cout << maze.getMaze().size() << std::endl;
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
