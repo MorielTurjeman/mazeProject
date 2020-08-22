@@ -16,10 +16,10 @@ public:
 	Position(int x, int y) : _x(x), _y(y) {}
 
 public:
-	bool operator==(const Position &position)const { return (_x == position._x) && (_y == position._y); } 
-	bool operator!=(const Position &position)const { return !this->operator==(position); }
+	bool operator==(const Position &position) const { return (_x == position._x) && (_y == position._y); }
+	bool operator!=(const Position &position) const { return !this->operator==(position); }
 	//implement << operator
-	void operator<<(Position p)const {std::cout<<"("<<p.getXPosition()<<","<<p.getYPosition()<<")"<<std::endl;}
+	void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; }
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
 
@@ -33,15 +33,16 @@ private:
 class Maze2d
 {
 public:
-	Maze2d(int size)
+	Maze2d(int size, bool fillWalls = false)
 	{
+		int defaultValue = fillWalls ? 1 : 0;
 		maze.resize(size);
 		for (int i = 0; i < size; i++)
 		{
 			maze[i].resize(size);
 			for (int j = 0; j < size; j++)
 			{
-				maze[i][j] = 0;
+				maze[i][j] = fillWalls;
 			}
 		}
 	}
@@ -55,7 +56,7 @@ public:
 		this->setEndPosition(endPosition);
 		int size = mazeData[4];
 		Maze2d _maze(size);
-		int count=5;
+		int count = 5;
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
@@ -64,18 +65,21 @@ public:
 				count++;
 			}
 		}
-		
 	}
 
 public:
-	std::vector<std::vector<int> > &getMaze() {return maze; }
+	std::vector<std::vector<int>> &getMaze() { return maze; }
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
 	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
 	void setStartPosition(Position p) { this->start = p; }
 	void setEndPosition(Position p) { this->end = p; }
 	void setCurrentPosition(Position p) { this->current = p; }
-	void setCurrentPosition(int x, int y){Position p(x,y); this->current=p;}
+	void setCurrentPosition(int x, int y)
+	{
+		Position p(x, y);
+		this->current = p;
+	}
 
 	//TODO MAYBE: implement == operator if we need it for caching
 
@@ -103,22 +107,22 @@ public:
 		std::vector<Position> possibleMoves;
 		int x = p.getXPosition();
 		int y = p.getYPosition();
-		if (((x < mazeSize-1) && (((maze.at(x + 1).at(y)==0) || (maze.at(x + 1).at(y)==2)))))
+		if (((x < mazeSize - 1) && (((maze.at(x + 1).at(y) == 0) || (maze.at(x + 1).at(y) == 2)))))
 		{
 			Position p(x + 1, y);
 			possibleMoves.push_back(p);
 		}
-		if (((x > 0) && (((maze.at(x-1).at(y)==0)) || (maze.at(x-1).at(y)==2))))
+		if (((x > 0) && (((maze.at(x - 1).at(y) == 0)) || (maze.at(x - 1).at(y) == 2))))
 		{
 			Position p(x - 1, y);
 			possibleMoves.push_back(p);
 		}
-		if (((y < mazeSize-1) && (((maze.at(x).at(y+1)==0) || (maze.at(x).at(y+1)==2)))))
+		if (((y < mazeSize - 1) && (((maze.at(x).at(y + 1) == 0) || (maze.at(x).at(y + 1) == 2)))))
 		{
 			Position p(x, y + 1);
 			possibleMoves.push_back(p);
 		}
-		if (((y > 0) && (((maze.at(x).at(y-1)==0)) || (maze.at(x).at(y-1)==0))))
+		if (((y > 0) && (((maze.at(x).at(y - 1) == 0)) || (maze.at(x).at(y - 1) == 0))))
 		{
 			Position p(x, y - 1);
 			possibleMoves.push_back(p);
@@ -138,44 +142,52 @@ public:
 		}
 	}
 
-		void alternativePrintMaze()
+	void alternativePrintMaze()
 	{
 		for (int i = 0; i < maze.size(); i++)
 		{
 			for (int j = 0; j < maze.size(); j++)
 			{
-				if (maze[i][j]==maze[this->getStartPosition().getXPosition()][this->getStartPosition().getYPosition()])
+				if (maze[i][j] == maze[this->getStartPosition().getXPosition()][this->getStartPosition().getYPosition()])
 				{
-					std::cout<<"S ";
+					std::cout << "S ";
 					continue;
 				}
-				if (maze[i][j]==maze[this->getEndPosition().getXPosition()][this->getEndPosition().getYPosition()])
+				if (maze[i][j] == maze[this->getEndPosition().getXPosition()][this->getEndPosition().getYPosition()])
 				{
-					std::cout<<" E";
+					std::cout << " E";
 					continue;
 				}
-				
-				if(maze[i][j]==1)
+
+				if (maze[i][j] == 1)
 				{
-					std::cout<<"{}";
+					std::cout << "{}";
 				}
-					
-				if(maze[i][j]==0)
+
+				if (maze[i][j] == 0)
 				{
-					std::cout<<"  ";
+					std::cout << "  ";
 				}
 				// std::cout << "|";
-				
+
 				// std::cout << maze[i][j] << " ";
-				
 			}
 			std::cout << "\n";
 		}
-		
+	}
+
+	void removeWall(Position &p)
+	{
+		int col = p.getXPosition(); 
+		int row = p.getYPosition();
+
+		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
+		maze[row][col] = 0;
+		return;
 	}
 
 private:
-	std::vector<std::vector<int> > maze;
+	std::vector<std::vector<int>> maze;
 	Position start, end, current;
 };
 
