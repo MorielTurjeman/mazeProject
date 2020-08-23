@@ -4,6 +4,7 @@
 #include "Maze2d.h"
 #include "Maze2dGenerator.h"
 #include "SimpleMaze2dGenerator.h"
+#include "MyMaze2dGenerator.h"
 #include <random>
 
 Maze2d generate(int size)
@@ -70,7 +71,7 @@ Maze2d generate(int size)
         Position endPosition = maze.getEndPosition();
         std::cout << "End position is: " << endPosition.getXPosition() << ", " << endPosition.getYPosition() <<std::endl;
 
-        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+        std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition );
 
         
         int count=0;
@@ -97,7 +98,7 @@ Maze2d generate(int size)
             }
             
                 
-            possibleMoves = maze.getPossibleMoves(currentPosition, maze.getMaze().size());
+            possibleMoves = maze.getPossibleMoves(currentPosition);
             std::cout <<"entered" <<std::endl;
         }
 
@@ -211,7 +212,7 @@ Maze2d checkPossibleMoves(int size)
     maze.getMaze()[startPosition.getXPosition()][startPosition.getYPosition()]=4;
     maze.getMaze()[endPosition.getXPosition()][endPosition.getYPosition()]=3;
 
-    std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition, maze.getMaze().size());
+    std::vector<Position> possibleMoves = maze.getPossibleMoves(startPosition);
     int count = 0;
     for (int i = 0; i < size; i++)
     {
@@ -222,7 +223,7 @@ Maze2d checkPossibleMoves(int size)
             Position currPos(i,j);
             maze.setCurrentPosition(currPos);
             std::cout<<"Possible moves for (" <<i<<","<<j<<"): "<<std::endl;
-            possibleMoves = maze.getPossibleMoves(currPos, maze.getMaze().size());
+            possibleMoves = maze.getPossibleMoves(currPos);
             for (int k = 0; k < possibleMoves.size(); k++)
             {
                 std::cout << "(" <<possibleMoves.at(k).getXPosition() << "," <<possibleMoves.at(k).getYPosition()<<")"<<std::endl;
@@ -243,12 +244,16 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
+    MyMaze2dGenerator g;
+    auto maze = g.generate(11);
+    maze.printMaze();
     // checkPossibleMoves(10);
-    Maze2d maze(12);
-    std::cout << maze.getMaze().size() << std::endl;
+    // std::cout << maze.getMaze().size() << std::endl;
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
+
+
 
     return 0;
 }
