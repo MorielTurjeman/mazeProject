@@ -16,7 +16,10 @@ public:
 	{
 		for(const std::pair<Maze2d, Solution<T>> &val : solutionCacheMap)
 		{
+			if ()
+			{
 
+			}
 		}
 	}
 
