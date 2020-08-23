@@ -15,10 +15,10 @@ public:
 	virtual void execute()=0;
 };
 
-class Dir : public Command
+class DirCommand : public Command
 {
 public:
-	Dir(std::string path): _path(path){}
+	DirCommand(std::string path): _path(path){}
 	void execute() override
 	{
 
@@ -28,10 +28,10 @@ private:
 	std::string  _path;
 };
 
-class GenerateMaze : public Command
+class GenerateMazeCommand : public Command
 {
 public:
-	GenerateMaze(std::string name, int size, std::string mazeGenerationAlgorithm): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
+	GenerateMazeCommand(std::string name, int size, std::string mazeGenerationAlgorithm): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
 	void execute() override
 	{
 
@@ -44,10 +44,10 @@ private:
 };
 
 //display maze
-class Display : public Command
+class DisplayCommand : public Command
 {
 public:
-	Display(std::string name): _name(name){}
+	DisplayCommand(std::string name): _name(name){}
 	void execute() override
 	{
 
@@ -57,10 +57,10 @@ private:
 	std::string _name;
 };
 
-class SaveMaze : public Command
+class SaveMazeCommand : public Command
 {
 public:
-	SaveMaze(std::string name, std::string fileName): _name(name), _fileName(fileName){}
+	SaveMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute() override
 	{
 
@@ -71,10 +71,10 @@ private:
 	std::string  _fileName;
 };
 
-class LoadMaze : public Command
+class LoadMazeCommand : public Command
 {
 public:
-	LoadMaze(std::string name, std::string fileName): _name(name), _fileName(fileName){}
+	LoadMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute() override
 	{
 
@@ -85,10 +85,10 @@ private:
 	std::string  _fileName;
 };
 
-class MazeSize : public Command
+class MazeSizeCommand : public Command
 {
 public:
-	MazeSize(std::string name): _name(name){}
+	MazeSizeCommand(std::string name): _name(name){}
 	void execute() override
 	{
 
@@ -98,10 +98,10 @@ private:
 	std::string  _name;
 };
 
-class FileSize : public Command
+class FileSizeCommand : public Command
 {
 public:
-	FileSize(std::string name): _name(name){}
+	FileSizeCommand(std::string name): _name(name){}
 	void execute() override
 	{
 
@@ -111,10 +111,10 @@ private:
 	std::string  _name;
 };
 
-class Solve : public Command
+class SolveCommand : public Command
 {
 public:
-	Solve(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
+	SolveCommand(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
 	void execute() override
 	{
 
@@ -125,10 +125,10 @@ private:
 	std::string  _algorithm;
 };
 
-class DisplaySolution : public Command
+class DisplaySolutionCommand : public Command
 {
 public:
-	DisplaySolution(std::string name): _name(name){}
+	DisplaySolutionCommand(std::string name): _name(name){}
 	void execute() override
 	{
 
@@ -138,13 +138,25 @@ private:
 	std::string  _name;
 };
 
-class Exit : public Command
+class ExitCommand : public Command
 {
-	Exit(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
+	ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
 	void execute() override
 	{
 
 	}
+};
+
+class Invoker //todo: rename later!!!!!!!!!!!!!!!!!!!!!!!!!!! and move
+{
+public:
+	void setCommand(Command *command)
+	{
+		_command = command;
+	}
+
+private:
+	Command *_command;
 };
 
 #endif //MAZEPROJECT_COMMAND_H
