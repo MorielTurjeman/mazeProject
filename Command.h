@@ -43,74 +43,98 @@ private:
 	std::string _mazeGenerationAlgorithm;
 };
 
-class Display : public Command
+class DisplayMaze : public Command
 {
 public:
-	Display(std::string name);
+	DisplayMaze(std::string name): _name(name){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string _name;
 };
 
 class SaveMaze : public Command
 {
 public:
-	SaveMaze(std::string name, std::string fileName);
+	SaveMaze(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
+	std::string  _fileName;
 };
 
 class LoadMaze : public Command
 {
 public:
-	LoadMaze(std::string name, std::string fileName);
+	LoadMaze(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
+	std::string  _fileName;
 };
 
 class MazeSize : public Command
 {
 public:
-	MazeSize(std::string name);
+	MazeSize(std::string name): _name(name){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
 };
 
 class FileSize : public Command
 {
 public:
-	FileSize(std::string name);
+	FileSize(std::string name): _name(name){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
 };
 
 class Solve : public Command
 {
 public:
-	Solve(std::string name, std::string algorithm);
+	Solve(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
+	std::string  _algorithm;
 };
 
 class DisplaySolution : public Command
 {
 public:
-	DisplaySolution(std::string name);
+	DisplaySolution(std::string name): _name(name){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
 };
 
 class Exit : public Command
@@ -118,7 +142,7 @@ class Exit : public Command
 	Exit(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
 	void execute() override
 	{
-
+		
 	}
 };
 
