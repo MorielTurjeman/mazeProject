@@ -4,13 +4,25 @@
 
 #ifndef MAZEPROJECT_MYMODEL_H
 #define MAZEPROJECT_MYMODEL_H
-#include <map>
+#include <unordered_map>
 #include "Maze2d.h"
 #include "Solution.h"
 
+template<T>
 class MyModel
 {
-	std::map<Maze2d, Solution<Position>> solutionCache;
+public:
+	Solution<T> checkIfSolutionIsInCacheMap(Maze2d)
+	{
+		for(const std::pair<Maze2d, Solution<T>> &val : solutionCacheMap)
+		{
+
+		}
+	}
+
+
+private:
+	std::unordered_map<Maze2d, Solution<T>> solutionCacheMap;
 };
 
 

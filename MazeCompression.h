@@ -21,6 +21,8 @@ class MazeCompression
 		compressedMazeData[4] = mazeData[4]; //for maze size
 
 		int x = 0;
+//		int currentIndexOfUncompressedVector = 5;
+//		int currentIndexOfCompressedVector = 5;
 		for (int i = 5; i < mazeData[4]; i++)
 		{
 			
