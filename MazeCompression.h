@@ -21,7 +21,7 @@ class MazeCompression
 
 		int numOfOccurrencesInARow = 1;
 
-		for (int i = 5; i < mazeData[4]; i++)
+		for (int i = 5; i < mazeData.size(); i++)
 		{
 			if (mazeData.at(i) == mazeData.at(i+1))
 			{
@@ -39,7 +39,20 @@ class MazeCompression
 	std::vector<int> decompress(std::vector<int> compressedMazeData)
 	{
 		std::vector<int> decompressedMazeData;
-		
+		decompressedMazeData.push_back(compressedMazeData[0]); //for x index of start position
+		decompressedMazeData.push_back(compressedMazeData[1]); //for y index of start position
+		decompressedMazeData.push_back(compressedMazeData[2]); //for x index of end position
+		decompressedMazeData.push_back(compressedMazeData[3]); //for y index of end position
+		decompressedMazeData.push_back(compressedMazeData[4]); //for maze size
+
+		for (int i = 5; i < compressedMazeData.size(); i=i+2)
+		{
+			for (int j = 0; j < compressedMazeData[i+1]; j++)
+			{
+				decompressedMazeData.push_back(compressedMazeData[i]);
+			}
+		}
+		return decompressedMazeData;
 	}
 };
 
