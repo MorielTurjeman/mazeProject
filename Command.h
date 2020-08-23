@@ -159,4 +159,16 @@ private:
 	Command *_command;
 };
 
+class NameLater
+{
+	void getCommand()
+	{
+		std::string  command = "";
+		while(command.compare("exit") != 0)
+		{
+
+		}
+	}
+};
+
 #endif //MAZEPROJECT_COMMAND_H
