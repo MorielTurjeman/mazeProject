@@ -21,6 +21,7 @@ public:
 		{
 			return nullptr;
 		}
+		return it->second;
 	}
 
 private:
