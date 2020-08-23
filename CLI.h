@@ -14,18 +14,9 @@ class CLI
 {
 public:
 	CLI(std::istream in, std::ostream out); //constructor must initialize in and out data members
-	void decisions() //TODO : find a better name!!!!!!!!
-	{
-		std::cout << "Please choose input source:" << std::endl;
 
-		std::cout << "Please choose output source:" << std::endl;
-	}
 	void start()
     {
-        // while (!_in.eof())
-        // {
-            
-        // }
         std::string x;
         int i=0;
 

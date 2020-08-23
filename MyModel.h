@@ -12,11 +12,11 @@ template<T>
 class MyModel
 {
 public:
-	Solution<T> checkIfSolutionIsInCacheMap(Maze2d)
+	Solution<T> checkIfSolutionIsInCacheMap(Maze2d& maze)
 	{
 		for(const std::pair<Maze2d, Solution<T>> &val : solutionCacheMap)
 		{
-			if ()
+			if (1) //todo
 			{
 
 			}
