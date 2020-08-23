@@ -9,7 +9,24 @@
 
 class MazeCompression
 {
-	void compress(std::vector<int> mazeData);
+	void compress(std::vector<int> mazeData)
+	{
+		std::vector<int> compressedMazeData;
+		compressedMazeData.resize(mazeData.size());
+
+		compressedMazeData[0] = mazeData[0]; //for x index of start position
+		compressedMazeData[1] = mazeData[1]; //for y index of start position
+		compressedMazeData[2] = mazeData[2]; //for x index of end position
+		compressedMazeData[3] = mazeData[3]; //for y index of end position
+		compressedMazeData[4] = mazeData[4]; //for maze size
+
+		int x = 0;
+		for (int i = 5; i < mazeData[4]; i++)
+		{
+			
+		}
+		
+	}
 	std::vector<int> decompress();
 };
 

@@ -71,7 +71,7 @@ public:
 	std::vector<std::vector<int>> &getMaze() { return maze; }
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
-	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
+	Position getCurrentPosition() { return this->current; } 
 	void setStartPosition(Position p) { this->start = p; }
 	void setEndPosition(Position p) { this->end = p; }
 	void setCurrentPosition(Position p) { this->current = p; }
