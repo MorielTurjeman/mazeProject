@@ -244,11 +244,23 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
 
-    MyMaze2dGenerator g;
-    auto maze = g.generate(11);
-    maze.printMaze();
-    // checkPossibleMoves(10);
-    // std::cout << maze.getMaze().size() << std::endl;
+    std::vector<int> vec;
+    vec.push_back(0);
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+    vec.push_back(4);
+    vec.push_back(5);
+    if (vec[5]!=vec[6])
+    {
+        std::cout << "true!!!!!!!!" << std::endl;
+    }
+    for (int i = 0; i < vec.size(); i++)
+    {
+        std::cout << vec[i] << std::endl;
+    }
+    
+    
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;

@@ -9,27 +9,38 @@
 
 class MazeCompression
 {
-	void compress(std::vector<int> mazeData)
+	std::vector<int> compress(std::vector<int> mazeData)
 	{
 		std::vector<int> compressedMazeData;
-		compressedMazeData.resize(mazeData.size());
 
-		compressedMazeData[0] = mazeData[0]; //for x index of start position
-		compressedMazeData[1] = mazeData[1]; //for y index of start position
-		compressedMazeData[2] = mazeData[2]; //for x index of end position
-		compressedMazeData[3] = mazeData[3]; //for y index of end position
-		compressedMazeData[4] = mazeData[4]; //for maze size
+		compressedMazeData.push_back(mazeData[0]); //for x index of start position
+		compressedMazeData.push_back(mazeData[1]); //for y index of start position
+		compressedMazeData.push_back(mazeData[2]); //for x index of end position
+		compressedMazeData.push_back(mazeData[3]); //for y index of end position
+		compressedMazeData.push_back(mazeData[4]); //for maze size
 
-		int x = 0;
-//		int currentIndexOfUncompressedVector = 5;
-//		int currentIndexOfCompressedVector = 5;
+		int numOfOccurrencesInARow = 1;
+
 		for (int i = 5; i < mazeData[4]; i++)
 		{
-			
+			if (mazeData.at(i) == mazeData.at(i+1))
+			{
+				numOfOccurrencesInARow++;
+			}
+			else
+			{
+				compressedMazeData.push_back(mazeData[i]);
+				compressedMazeData.push_back(numOfOccurrencesInARow);
+				numOfOccurrencesInARow = 1;
+			}
 		}
+		return compressedMazeData;
+	}
+	std::vector<int> decompress(std::vector<int> compressedMazeData)
+	{
+		std::vector<int> decompressedMazeData;
 		
 	}
-	std::vector<int> decompress();
 };
 
 
