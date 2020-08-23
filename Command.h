@@ -31,11 +31,16 @@ private:
 class GenerateMaze : public Command
 {
 public:
-	GenerateMaze(std::string name);
+	GenerateMaze(std::string name, int size, std::string mazeGenerationAlgorithm): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
 	void execute() override
 	{
 
 	}
+
+private:
+	std::string  _name;
+	int _size;
+	std::string _mazeGenerationAlgorithm;
 };
 
 class Display : public Command
