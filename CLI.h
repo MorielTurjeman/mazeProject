@@ -11,7 +11,7 @@
 class CLI
 {
 public:
-	CLI(std::istream in, std::ostream out);
+	CLI(std::istream in, std::ostream out); //constructor must initialize in and out data members
 	void start()
     {
         // while (!_in.eof())
