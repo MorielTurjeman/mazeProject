@@ -43,10 +43,11 @@ private:
 	std::string _mazeGenerationAlgorithm;
 };
 
-class DisplayMaze : public Command
+//display maze
+class Display : public Command
 {
 public:
-	DisplayMaze(std::string name): _name(name){}
+	Display(std::string name): _name(name){}
 	void execute() override
 	{
 
@@ -142,7 +143,7 @@ class Exit : public Command
 	Exit(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
 	void execute() override
 	{
-		
+
 	}
 };
 
