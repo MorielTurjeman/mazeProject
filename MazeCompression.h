@@ -4,7 +4,7 @@
 
 #ifndef MAZEPROJECT_MAZECOMPRESSION_H
 #define MAZEPROJECT_MAZECOMPRESSION_H
-#include "vector"
+#include <vector>
 
 
 class MazeCompression
