@@ -60,7 +60,7 @@ class BFS : public CommonSearcher<T>
 };
 
 template <class T>
-class Hueristics // interface- define how hueristics look like
+class Hueristics // interface- define how heuristics look
 {
     virtual double operator()(const State<T> &state) const = 0;
 };

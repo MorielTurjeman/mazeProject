@@ -4,13 +4,56 @@
 
 #ifndef MAZEPROJECT_MAZECOMPRESSION_H
 #define MAZEPROJECT_MAZECOMPRESSION_H
-#include "vector"
+#include <vector>
 
 
 class MazeCompression
 {
-	void compress(std::vector<int> mazeData);
-	std::vector<int> decompress();
+	std::vector<int> compress(std::vector<int> mazeData)
+	{
+		std::vector<int> compressedMazeData;
+
+		compressedMazeData.push_back(mazeData[0]); //for x index of start position
+		compressedMazeData.push_back(mazeData[1]); //for y index of start position
+		compressedMazeData.push_back(mazeData[2]); //for x index of end position
+		compressedMazeData.push_back(mazeData[3]); //for y index of end position
+		compressedMazeData.push_back(mazeData[4]); //for maze size
+
+		int numOfOccurrencesInARow = 1;
+
+		for (int i = 5; i < mazeData.size(); i++)
+		{
+			if (mazeData.at(i) == mazeData.at(i+1))
+			{
+				numOfOccurrencesInARow++;
+			}
+			else
+			{
+				compressedMazeData.push_back(mazeData[i]);
+				compressedMazeData.push_back(numOfOccurrencesInARow);
+				numOfOccurrencesInARow = 1;
+			}
+		}
+		return compressedMazeData;
+	}
+	std::vector<int> decompress(std::vector<int> compressedMazeData)
+	{
+		std::vector<int> decompressedMazeData;
+		decompressedMazeData.push_back(compressedMazeData[0]); //for x index of start position
+		decompressedMazeData.push_back(compressedMazeData[1]); //for y index of start position
+		decompressedMazeData.push_back(compressedMazeData[2]); //for x index of end position
+		decompressedMazeData.push_back(compressedMazeData[3]); //for y index of end position
+		decompressedMazeData.push_back(compressedMazeData[4]); //for maze size
+
+		for (int i = 5; i < compressedMazeData.size(); i=i+2)
+		{
+			for (int j = 0; j < compressedMazeData[i+1]; j++)
+			{
+				decompressedMazeData.push_back(compressedMazeData[i]);
+			}
+		}
+		return decompressedMazeData;
+	}
 };
 
 

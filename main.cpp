@@ -24,6 +24,7 @@ int main(int argc, char const *argv[])
     // maze.printMaze();
     // checkPossibleMoves(30);
     // std::cout << maze.getMaze().size() << std::endl;
+    std::cout << ctime(&start_time) << std::endl;    
 
 	time_t end_time = time(NULL);
     std::cout << ctime(&end_time) << std::endl;
