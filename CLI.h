@@ -55,7 +55,7 @@ public:
 
             if (command != nullptr)
             {
-               command->setArgs(words.begin() + 2, words.end());
+               command->setArgs(words.begin() + commandLen, words.end());
                command->execute(_out); 
             }
         }
