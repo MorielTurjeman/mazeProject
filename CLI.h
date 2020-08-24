@@ -19,7 +19,7 @@ public:
 	CLI(std::istream& in, std::ostream &out, Controller& c): _in(in), _out(out), controller(c)  {} //constructor must initialize in and out data members
     vector<std::string> breakToWords(std::string line)
     {
-        std::stringstream ss(line);
+        std::stringstream ss(line); 
         std::vector<std::string> words;
         do {
             std::string word;
