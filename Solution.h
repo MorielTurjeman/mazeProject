@@ -1,7 +1,8 @@
-#include "Searcher.h"
-#include <iostream>
-
 #pragma once
+
+#include <iostream>
+#include "Searcable.h"
+
 template <class T>
 class Solution
 {

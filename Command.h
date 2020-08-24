@@ -5,7 +5,6 @@
 #ifndef MAZEPROJECT_COMMAND_H
 #define MAZEPROJECT_COMMAND_H
 #include <string>
-#include "Controller.h"
 #include <fstream>
 #include <iostream>
 
@@ -187,29 +186,5 @@ private:
 
 /************************************************************************************/
 
-class NameLater //take #include "Controller.h" //todo: move to main????
-{
-	void getCommand()
-	{
-		std::string  command = "";
-		while(command.compare("exit") != 0)
-		{
-			Controller* controller = new Controller();
-			std::cout << "Please enter command: " << std::endl;
-			std::cin >> command;
-
-			Command* cmd = controller->get(command);
-
-			if (nullptr != cmd)
-			{
-				cmd->execute();
-			}
-			else
-			{
-				std::cout << "Unsupported command!" << std::endl;
-			}	
-		}
-	}
-};
 
 #endif //MAZEPROJECT_COMMAND_H

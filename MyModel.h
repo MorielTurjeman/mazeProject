@@ -2,13 +2,13 @@
 // Created by Sapir Ezra on 23/08/2020.
 //
 
-#ifndef MAZEPROJECT_MYMODEL_H
-#define MAZEPROJECT_MYMODEL_H
+#pragma once
+
 #include <unordered_map>
 #include "Maze2d.h"
 #include "Solution.h"
 
-template<T>
+template<class T>
 class MyModel
 {
 public:
@@ -29,4 +29,3 @@ private:
 };
 
 
-#endif //MAZEPROJECT_MYMODEL_H

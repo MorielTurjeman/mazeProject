@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include "Maze2d.h"
 #include "Command.h"
+#include <memory>
 
 class CLI
 {
@@ -30,7 +31,7 @@ public:
 private:
 	std::istream _in;
 	std::ostream _out;
-	std::unordered_map<std::string, Command> stringToCommandMap;
+	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
 };
 
 
