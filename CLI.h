@@ -14,7 +14,7 @@
 class CLI
 {
 public:
-	CLI(std::istream in, std::ostream out); //constructor must initialize in and out data members
+	CLI(std::istream &in, std::ostream &out): _in(in), _out(out){}//constructor must initialize in and out data members
 
 	void start()
     {
@@ -28,7 +28,7 @@ public:
          
     }
 
-private:
+protected:
 	std::istream _in;
 	std::ostream _out;
 	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
