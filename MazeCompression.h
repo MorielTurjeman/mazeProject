@@ -5,6 +5,8 @@
 #ifndef MAZEPROJECT_MAZECOMPRESSION_H
 #define MAZEPROJECT_MAZECOMPRESSION_H
 #include <vector>
+#include <iostream>
+#include "Maze2d.h"
 
 
 class MazeCompression
@@ -53,6 +55,14 @@ class MazeCompression
 			}
 		}
 		return decompressedMazeData;
+	}
+	void writeToFile(ofstream &out,Maze2d& maze2D)
+	{
+
+	}
+	Maze2d readFromFile(ifstream& in)
+	{
+		
 	}
 };
 
