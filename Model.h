@@ -30,4 +30,3 @@ private:
 	std::unordered_map<std::string, Solution<Position>> solutionCacheMap;
 };
 
-

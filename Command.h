@@ -20,9 +20,9 @@ class Command
 protected:
 	Model& model;
 public:		
-	Command(Model& myModel) : model(myModel) {}
+	explicit Command(Model& myModel) : model(myModel) {}
 	virtual void execute(std::ostream& out)=0; //pass stdout to update the view
-	virtual void setArgs(std::istream& in) = 0; //pass stdin to read input
+	virtual void setArgs(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) = 0; //pass stdin to read input
 };
 
 /************************************************************************************/
@@ -63,13 +63,15 @@ private:
 class DisplayCommand : public Command
 {
 public:
+	using Command::Command;
 	void execute(std::ostream& out) override
 	{
 		Maze2d m = model.getMaze(_name); //should return ptr and check if not null (maze not found)
 		m.printMaze(); //should be out << m; but we need to implement the operator
 	}
-	virtual void setArgs(std::istream& in) {
-		in >> _name;
+	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator  end) override {
+		if (start != end) //we only have one param, no need for loop.
+			_name = *start;
 	}
 
 private:

@@ -19,7 +19,7 @@ public:
 	{
 		for(auto it = m_observers.begin(); it != m_observers.end(); ++it)
 		{
-			(*it)->update(*this);
+			// (*it)->update(*this);
 		}
 	}
 
