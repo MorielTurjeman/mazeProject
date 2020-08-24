@@ -3,3 +3,8 @@
 //
 
 #include "View.h"
+
+void View::display(Maze2d &maze)
+{
+
+}
