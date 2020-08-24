@@ -8,7 +8,8 @@
 
 class View
 {
-
+public:
+	View(){}
 };
 
 
