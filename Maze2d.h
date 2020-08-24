@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include "Maze2d.h"
+#include<random>
 using namespace std;
 
 //class Position represents a possible position to be in during the game
@@ -34,7 +35,7 @@ private:
 class Maze2d
 {
 public:
-	Maze2d(int size, bool fillWalls = false) 
+	Maze2d(int size, bool fillWalls = false)
 	{
 
 		int defaultValue = fillWalls ? 1 : 0;
@@ -69,13 +70,12 @@ public:
 		}
 	}
 
-public:
 	std::vector<std::vector<int>> &getMaze() { return maze; }
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
 	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
-	void setStartPosition(Position p) { this->start = p; }
-	void setEndPosition(Position p) { this->end = p; }
+	void setStartPosition(Position p) { this->start = p; maze[p.getYPosition()][p.getXPosition()] = 0; }
+	void setEndPosition(Position p) { this->end = p;  maze[p.getYPosition()][p.getXPosition()] = 0;}
 	void setCurrentPosition(Position p) { this->current = p; }
 	void setCurrentPosition(int x, int y)
 	{
@@ -137,47 +137,45 @@ public:
 
 		return pMoves;
 	}
-	
+
 	virtual const std::vector<Position> getPossibleMoves(Position &p)
 	{
-		// std::vector<Position> pMoves;
-		// int row = p.getYPosition();
-		// int col = p.getXPosition();
+		std::vector<Position> pMoves;
+		int row = p.getYPosition();
+		int col = p.getXPosition();
 
-		// if (row - 1 >= 0 && maze[row - 1][col] != 1)
-		// {
-		// 	Position up(col, row - 1);
-		// 	pMoves.push_back(up);
-		// }
+		if (row - 1 >= 0 && maze[row - 1][col] != 1)
+		{
+			Position up(col, row - 1);
+			pMoves.push_back(up);
+		}
 
-		// if (row + 1 <= maze.size() - 1 && maze[row + 1][col] != 1)
-		// {
+		if (row + 1 <= maze.size() - 1 && maze[row + 1][col] != 1)
+		{
 
-		// 	Position down(col, row + 1);
-		// 	pMoves.push_back(down);
-		// }
+			Position down(col, row + 1);
+			pMoves.push_back(down);
+		}
 
-		// if (col - 1 >= 0 && maze[row][col - 1] != 1)
-		// {
-		// 	Position left(col - 1, row);
-		// 	pMoves.push_back(left);
-		// }
+		if (col - 1 >= 0 && maze[row][col - 1] != 1)
+		{
+			Position left(col - 1, row);
+			pMoves.push_back(left);
+		}
 
-		// if (col + 1 <= maze.size() - 1 && maze[row][col + 1] != 1)
-		// {
-		// 	Position right(col + 1, row);
-		// 	pMoves.push_back(right);
-		// }
+		if (col + 1 <= maze.size() - 1 && maze[row][col + 1] != 1)
+		{
+			Position right(col + 1, row);
+			pMoves.push_back(right);
+		}
 
-		auto neighbors = getNeighbours(p);
-		vector<Position> pMoves;
-		for (auto p : neighbors)
-			if (maze[p.getYPosition()][p.getXPosition()] == 0)
-				pMoves.push_back(p);
+		// auto neighbors = getNeighbours(p);
+		// vector<Position> pMoves;
+		// for (auto p : neighbors)
+		// 	if (maze[p.getYPosition()][p.getXPosition()] == 0)
+		// 		pMoves.push_back(p);
 		return pMoves;
 	}
-
-
 
 	void printMaze()
 	{
@@ -185,7 +183,13 @@ public:
 		{
 			for (int j = 0; j < maze.size(); j++)
 			{
-				std::cout << maze[i][j] << " ";
+				if (maze[i][j] == 1)
+					std::cout << "\u2593";
+
+				else
+				{
+					std::cout << " ";
+				}
 			}
 			std::cout << "\n";
 		}
@@ -225,15 +229,15 @@ public:
 		}
 	}
 
-	void removeWall(Position &first, Position& second)
+	void removeWall(Position &first, Position &second)
 	{
 		maze[first.getYPosition()][first.getXPosition()] = 5;
 		maze[second.getYPosition()][second.getXPosition()] = 5;
-		if(first.getXPosition() == second.getXPosition())
-			maze[std::min(first.getYPosition(), second.getYPosition())+1][first.getXPosition()] = 5;
+		if (first.getXPosition() == second.getXPosition())
+			maze[std::min(first.getYPosition(), second.getYPosition()) + 1][first.getXPosition()] = 5;
 		else
-			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition())+1] = 5;
-		
+			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition()) + 1] = 5;
+
 		// int col = p.getXPosition();
 		// int row = p.getYPosition();
 
@@ -252,13 +256,31 @@ public:
 		return;
 	}
 
+	Position randomWallPosition()
+	{
+		std::vector<Position> wallPosition;
+		for (int i = 1; i < maze.size() - 1; i+=2)
+		{
+			wallPosition.push_back({0, i});
+			wallPosition.push_back({i, 0});
+			wallPosition.push_back({i, (int)maze.size()-1});
+			wallPosition.push_back({(int)maze.size()-1, i});
+
+		}
+
+		std::random_device rd;
+        std::mt19937 generator(rd());
+        std::uniform_int_distribution<int> distribution(0, wallPosition.size()-1);
+		int idx=distribution(generator);
+
+		return wallPosition[idx];
+	}
 
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
 	// int _width; if decided to be rectangle then should be width and height
 	//int height;
-	
 };
 
 #endif //MAZEPROJECT_MAZE2D_H

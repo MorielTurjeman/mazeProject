@@ -22,9 +22,11 @@ public:
         if (row % 2 == 0)
             row += 1;
         int col = distribution(generator); //x
-        if (row % 2 == 0)
+        if (col % 2 == 0)
             col -= 1;
-        //r[row][col]=>is actually (y,x)
+
+   
+
 
         Position start{col, row};
         std::stack<Position> stack;
@@ -33,11 +35,16 @@ public:
 
         visited.push_back(start);
         stack.push(start);
-        maze.getMaze()[row][col] = 0;
-        // maze.removeWall(start);
+        maze.getMaze()[row][col] = 0; // bad line, fix later so we cant edit the data directly!!!!!!!!!!!!!!!!!!
+        
+        Position enter= maze.randomWallPosition();
+        Position exit=maze.randomWallPosition();
+        maze.setStartPosition(enter);
+        maze.setEndPosition(exit);
 
         while (!stack.empty())
         {
+            
             Position current = stack.top(); // p is the parent
             stack.pop();
             auto pMoves = maze.getNeighbours(current); // the parents possible moves

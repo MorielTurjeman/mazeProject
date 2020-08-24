@@ -42,6 +42,9 @@ class Maze2dGeneratorAbs : public Maze2dGenerator
         return timeMeasured;
     }
 
+
+   
+
     ~Maze2dGeneratorAbs(){}
 
 
