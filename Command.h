@@ -187,7 +187,7 @@ private:
 
 /************************************************************************************/
 
-class NameLater //take #include "Controller.h"
+class NameLater //take #include "Controller.h" //todo: move to main????
 {
 	void getCommand()
 	{
