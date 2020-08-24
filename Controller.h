@@ -23,11 +23,11 @@ public:
 	}
 	Controller()
 	{
-		commandMap["exit"] = new ExitCommand();
+		commandMap["exit"] = std::make_shared<ExitCommand>();
 	}
 	Controller(FILE * pFile)
 	{
-		commandMap["dir"] = new DirCommand(pFile);
+		commandMap["dir"] = std::make_shared<DirCommand>(pFile);
 	}
 	~Controller(){}
 	shared_ptr<Command> get(const std::string &command)
