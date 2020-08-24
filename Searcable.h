@@ -15,7 +15,7 @@ public:
     std::shared_ptr<State<T>> parent;
 	bool operator==(const State &other) const
 	{
-		return (this->data == other->data);
+		return (this->data == other.data);
 	}
 };
 

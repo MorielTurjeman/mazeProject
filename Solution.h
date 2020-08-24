@@ -7,10 +7,10 @@ template <class T>
 class Solution
 {
 public:
-    Solution(std::shared_ptr<State<T>> state) { buildSolution(); };
-    //maybe implement getter to path if needed later
+    Solution(std::shared_ptr<State<T>> state) { buildSolution(state); };
+    auto getPath() { return this->path; }
 private:
-    std::vector<std::shared_ptr<State<T>>> path; 
+    std::vector<std::shared_ptr<State<T>>> path;
     void buildSolution(std::shared_ptr<State<T>> state)
     {
         if (state == nullptr)

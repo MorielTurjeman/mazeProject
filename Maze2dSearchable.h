@@ -25,10 +25,10 @@ private:
 class ManhattanDistance : public Hueristics<Position>
 {
 private:
-    State<Position> _state;
+    const State<Position> _state;
 
 public:
-    ManhattanDistance(State<Position> &state) : _state(state) {}
+    ManhattanDistance(const State<Position> &state) : _state(state) {}
     virtual double operator()(const State<Position> &state) const
     {
         return std::abs(state.data.getXPosition() - state.data.getXPosition()) + (state.data.getYPosition() - state.data.getYPosition());
@@ -38,10 +38,10 @@ public:
 class AerialDistance : public Hueristics<Position>
 {
 private:
-    State<Position> _state;
+    const State<Position> _state;
 
 public:
-    AerialDistance(State<Position> &state) : _state(state) {}
+    AerialDistance(const State<Position> &state) : _state(state) {}
 
     virtual double operator()(const State<Position> &state) const
     {

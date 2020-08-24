@@ -7,16 +7,18 @@
 #include <vector>
 //class Searcher represents algorithms that solve problems by searching
 template <class T>
+
 class Searcher
 {
-    virtual void search(Searchable<T> &searchable) = 0; //check what the function needs to return
+    public:
+    virtual Solution<T> search(Searchable<T> &searchable) = 0; //check what the function needs to return
     //how do we keep the path to the goal
 };
 
 //commonly, search algorithms have a priority queue for evaluating the next best option to go to
 template <class T>
 class CommonSearcher : public Searcher<T>
-{
+{   public:
     virtual bool priorityFunction(const State<T> &a, const State<T> &b) = 0;
     virtual Solution<T> search(Searchable<T> &searchable)
     {
@@ -48,6 +50,7 @@ class CommonSearcher : public Searcher<T>
                 }
             }
         }
+        
     }
 };
 template <class T>
@@ -61,7 +64,7 @@ class BFS : public CommonSearcher<T>
 
 template <class T>
 class Hueristics // interface- define how heuristics look
-{
+{   public:
     virtual double operator()(const State<T> &state) const = 0;
 };
 
@@ -70,10 +73,11 @@ class AStar : public CommonSearcher<T>
 {
 private:
     Hueristics<T> &_h;
+    public:
     AStar(Hueristics<T> &h) : _h(h) {}
 
     virtual bool priorityFunction(const State<T> &a, const State<T> &b)
     {
-        return (a.cost + h(a) > b.cost + h(b));
+        return (a.cost + _h(a) > b.cost + _h(b));
     }
 };
