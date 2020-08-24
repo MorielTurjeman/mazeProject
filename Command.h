@@ -81,7 +81,6 @@ private:
 class SaveMazeCommand : public Command
 {
 public:
-	// SaveMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute(std::ostream& out) override
 	{
 
@@ -97,7 +96,6 @@ private:
 class LoadMazeCommand : public Command
 {
 public:
-	// LoadMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
 	void execute(std::ostream& out) override
 	{
 
@@ -113,7 +111,6 @@ private:
 class MazeSizeCommand : public Command
 {
 public:
-	// MazeSizeCommand(std::string name): _name(name){}
 	void execute(std::ostream& out) override
 	{
 
@@ -128,7 +125,6 @@ private:
 class FileSizeCommand : public Command
 {
 public:
-	// FileSizeCommand(std::string name): _name(name){}
 	void execute(std::ostream& out) override
 	{
 
@@ -143,7 +139,6 @@ private:
 class SolveCommand : public Command
 {
 public:
-	// SolveCommand(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
 	void execute(std::ostream& out) override
 	{
 
@@ -159,7 +154,6 @@ private:
 class DisplaySolutionCommand : public Command
 {
 public:
-	// DisplaySolutionCommand(std::string name): _name(name){}
 	void execute(std::ostream& out) override
 	{
 
@@ -174,7 +168,6 @@ private:
 class ExitCommand : public Command
 {
 public:
-	// ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
 	void execute(std::ostream& out) override
 	{
 
