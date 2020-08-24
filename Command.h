@@ -196,7 +196,7 @@ class NameLater //take #include "Controller.h"
 		{
 			Controller* controller = new Controller();
 			std::cout << "Please enter command: " << std::endl;
-			std::in >> command;
+			std::cin >> command;
 
 			Command* cmd = controller->get(command);
 
