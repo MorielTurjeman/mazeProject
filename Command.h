@@ -7,14 +7,22 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include "Model.h"
 
 
 //here we are using the Command design pattern
 //the goal is to separate the Invoker of a Command from the Receiver of that Command
-class Command
+
+
+class Command 
 {
-public:
+protected:
+	Model& model;
+public:		
+	Command(Model& myModel) : model(myModel) {}
 	virtual void execute()=0;
+	virtual void setArgs(std::istream& in) = 0; 
 };
 
 /************************************************************************************/
@@ -22,7 +30,7 @@ public:
 class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
-	DirCommand(FILE * pFile): _file(pFile){}
+	// DirCommand(FILE * pFile): _file(pFile){}
 	void execute() override
 	{
 
@@ -37,7 +45,7 @@ private:
 class GenerateMazeCommand : public Command
 {
 public:
-	GenerateMazeCommand(std::istream& in): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
+	// GenerateMazeCommand(std::istream& in): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
 	void execute() override
 	{
 
@@ -55,10 +63,12 @@ private:
 class DisplayCommand : public Command
 {
 public:
-	DisplayCommand(std::string name): _name(name){}
 	void execute() override
 	{
-
+		Maze2d m = model.getMaze(_name);
+	}
+	virtual void setArgs(std::istream& in) {
+		in >> _name;
 	}
 
 private:
