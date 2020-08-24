@@ -282,6 +282,7 @@ public:
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
+	std::string _mazeName;
 	// int _width; if decided to be rectangle then should be width and height
 	//int height;
 };
