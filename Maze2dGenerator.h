@@ -26,29 +26,21 @@ public:
 
 class Maze2dGeneratorAbs : public Maze2dGenerator
 {
-    public:
+public:
+    ~Maze2dGeneratorAbs(){}
+
+public:
     virtual Maze2d generate(int size)=0;
     virtual std::string measureAlgorithmTime(int size)
     {
-        time_t start_time = time(NULL); 
-        ctime(&start_time);
+        auto start = std::chrono::system_clock::now();
         this->generate(size);
-        time_t end_time = time(NULL); 
-        ctime(&end_time);
-        std::string timeMeasured;
-
-        //implement substraction
-
-        return timeMeasured;
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double> elapsed_seconds = end - start;
+	    return std::to_string(elapsed_seconds.count());
     }
-
-
-   
-
-    ~Maze2dGeneratorAbs(){}
-
-
 };
+
 
 
 
