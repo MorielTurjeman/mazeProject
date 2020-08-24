@@ -10,7 +10,10 @@
 class MyController : public Controller
 {
 public:
-	MyController(Model& myModel){}
+	MyController(Model& model, View& view ) : model(model), view(view) {
+		this->commandMap["generate maze"] = std::make_shared<GenerateMazeCommand>(model, view);//add generate maze command
+
+	}
 	shared_ptr<Command> get(const std::string &command)
 	{
 		auto it = Controller::commandMap.find(command);
@@ -22,8 +25,8 @@ public:
 	}
 
 private:
-	unique_ptr<Model> model;
-	unique_ptr<View> view;
+	Model& model;
+	View& view;
 };
 
 

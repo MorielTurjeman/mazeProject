@@ -8,7 +8,8 @@
 
 class MyView : public View
 {
-
+    virtual void display(Maze2d &maze); //need to implement
+	virtual void showMsg(std::string s); //cout msg to the screen
 };
 
 

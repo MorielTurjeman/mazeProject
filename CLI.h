@@ -36,6 +36,13 @@ public:
 
         while (_in >> x)
         {
+            // 1. the cli reads a line from the user
+            // 2. it passes it to the controller
+            // 3. the controller determines which command to run
+            // 4. the controller returns the command
+            // 5. the cli will pass the arguments to the command
+            // 6. the cli will execute the command
+
             i++;
             std::string line;
             std::getline(_in, line);

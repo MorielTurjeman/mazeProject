@@ -13,6 +13,7 @@
 class Model
 {
 public:
+	virtual void saveMazeToCache(Maze2d& m)=0;
 	virtual Solution<Position> checkIfSolutionIsInCacheMap(std::string name) = 0;
 	virtual Maze2d getMaze(std::string name) = 0;
 	// {

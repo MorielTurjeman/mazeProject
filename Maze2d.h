@@ -24,13 +24,10 @@ public:
 	// void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; } should be friend
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
-	void setMazeName(std::string mazeName) {_mazeName = mazeName;}
-	std::string getMazeName(){return _mazeName;}
 
 private:
 	int _x;
 	int _y;
-	std::string _mazeName;
 };
 
 /**************************************************************************************/
@@ -80,6 +77,9 @@ public:
 	void setStartPosition(Position p) { this->start = p; maze[p.getYPosition()][p.getXPosition()] = 0; }
 	void setEndPosition(Position p) { this->end = p;  maze[p.getYPosition()][p.getXPosition()] = 0;}
 	void setCurrentPosition(Position p) { this->current = p; }
+	void setMazeName(std::string mazeName) {_mazeName = mazeName;}
+	std::string getMazeName(){return _mazeName;}
+
 	void setCurrentPosition(int x, int y)
 	{
 		Position p(x, y);

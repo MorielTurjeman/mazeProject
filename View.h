@@ -13,7 +13,8 @@ class View
 {
 public:
 	View(){}
-	void display(Maze2d &maze);
+	virtual void display(Maze2d &maze)=0;
+	virtual void showMsg(std::string s)=0;
 
 };
 

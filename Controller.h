@@ -14,7 +14,6 @@
 class Controller
 {
 public:
-	~Controller(){}
 	virtual shared_ptr<Command> get(const std::string &command) = 0;
 
 protected:
