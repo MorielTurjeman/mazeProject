@@ -24,10 +24,13 @@ public:
 	// void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; } should be friend
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
+	void setMazeName(std::string mazeName) {_mazeName = mazeName;}
+	std::string getMazeName(){return _mazeName;}
 
 private:
 	int _x;
 	int _y;
+	std::string _mazeName;
 };
 
 /**************************************************************************************/
@@ -285,6 +288,7 @@ public:
 private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
+	std::string _mazeName;
 	// int _width; if decided to be rectangle then should be width and height
 	//int height;
 };
