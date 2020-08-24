@@ -5,7 +5,7 @@
 #ifndef MAZEPROJECT_VIEW_H
 #define MAZEPROJECT_VIEW_H
 #include "Maze2d.h"
-#include "MyModel.h"
+#include "Model.h"
 #include <string>
 
 //Class View is responsible for the input from the user, and for displaying the interface
