@@ -158,7 +158,13 @@ class DisplaySolutionCommand : public Command
 public:
 	void execute(std::ostream& out) override
 	{
-
+		for(auto i : Model::solutionCacheMap)
+		{
+			if (i)
+			{
+				
+			}
+		}
 	}
 
 private:
@@ -172,7 +178,7 @@ class ExitCommand : public Command
 public:
 	void execute(std::ostream& out) override
 	{
-
+		exit(0); //todo: check if this function cleans up after the program
 	}
 };
 
