@@ -37,7 +37,7 @@ private:
 class GenerateMazeCommand : public Command
 {
 public:
-	GenerateMazeCommand(std::string name, int size, std::string mazeGenerationAlgorithm): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
+	GenerateMazeCommand(std::istream& in): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
 	void execute() override
 	{
 

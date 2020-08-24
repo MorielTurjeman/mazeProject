@@ -8,8 +8,7 @@
 #include "Maze2d.h"
 #include "Solution.h"
 
-template<class T>
-class MyModel
+class Model
 {
 public:
 	Solution<T> checkIfSolutionIsInCacheMap(std::string name)
@@ -23,7 +22,7 @@ public:
 		}
 		return NULL;
 	}
-	
+
 private:
 	std::unordered_map<std::string, Solution<T>> solutionCacheMap;
 };
