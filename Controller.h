@@ -29,6 +29,10 @@ public:
 	{
 		commandMap["exit"] = new ExitCommand();
 	}
+	Controller(FILE * pFile)
+	{
+		commandMap["dir"] = new DirCommand(pFile);
+	}
 	~Controller(){}
 	Command* get(const std::string &command)
 	{

@@ -6,6 +6,8 @@
 #define MAZEPROJECT_COMMAND_H
 #include <string>
 #include "Controller.h"
+#include <fstream>
+#include <iostream>
 
 
 //here we are using the Command design pattern
@@ -21,14 +23,14 @@ public:
 class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
-	DirCommand(File* pFile): _file(pFile){}
+	DirCommand(FILE * pFile): _file(pFile){}
 	void execute() override
 	{
 
 	}
 
 private:
-	File* _file;
+	FILE* _file;
 };
 
 /************************************************************************************/
