@@ -23,8 +23,7 @@ public:
 		}
 		return NULL;
 	}
-
-
+	
 private:
 	std::unordered_map<std::string, Solution<T>> solutionCacheMap;
 };
