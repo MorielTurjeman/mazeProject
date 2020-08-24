@@ -28,7 +28,7 @@ public:
          
     }
 
-protected:
+private:
 	std::istream _in;
 	std::ostream _out;
 	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
