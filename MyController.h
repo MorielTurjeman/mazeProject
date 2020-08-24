@@ -20,6 +20,10 @@ public:
 		}
 		return it->second;
 	}
+
+private:
+	unique_ptr<Model> model;
+	unique_ptr<View> view;
 };
 
 

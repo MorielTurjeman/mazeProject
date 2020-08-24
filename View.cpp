@@ -7,8 +7,6 @@
 
 void View::display(Maze2d &maze)
 {
-//	for(i : )
-
 	for (int i = 0; i < maze.getMaze().size(); i++)
 	{
 		for (int j = 0; j < maze.getMaze().size(); j++)

@@ -9,6 +9,7 @@
 #include "Command.h"
 #include "Maze2d.h"
 #include "Model.h"
+#include "View.h"
 
 class Controller
 {
@@ -18,6 +19,7 @@ public:
 
 protected:
 	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
+
 };
 
 
