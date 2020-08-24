@@ -40,7 +40,7 @@ public:
 	GenerateMazeCommand(std::string name, int size, std::string mazeGenerationAlgorithm): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
 	void execute() override
 	{
-		
+
 	}
 
 private:

@@ -25,16 +25,12 @@ public:
         {
             i++;
         }
-         
     }
 
 private:
 	std::istream& _in;
 	std::ostream& _out;
-	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
+//	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
 };
-
-
-
 
 #endif //MAZEPROJECT_CLI_H

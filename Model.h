@@ -25,7 +25,7 @@ public:
 
 
 private:
-	std::unordered_map<Maze2d, Solution<T>> solutionCacheMap;
+	std::unordered_map<std::string, Solution<T>> solutionCacheMap;
 };
 
 

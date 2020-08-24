@@ -15,10 +15,11 @@ class Controller
 public:
 	Controller(std::string name)
 	{
-		commandMap["display"] = new DisplayCommand(name);
-		commandMap["maze size"] = new MazeSizeCommand(name);
-		commandMap["file size"] = new FileSizeCommand(name);
-		commandMap["display solution"] = new DisplaySolutionCommand(name);
+		commandMap["display"] = std::make_shared<DisplayCommand>(name)
+
+		commandMap["maze size"] = std::make_shared<MazeSizeCommand>(name);
+		commandMap["file size"] = std::make_shared<FileSizeCommand>(name);
+		commandMap["display solution"] = std::make_shared<DisplaySolutionCommand>(name);
 	}
 	Controller()
 	{
@@ -29,7 +30,7 @@ public:
 		commandMap["dir"] = new DirCommand(pFile);
 	}
 	~Controller(){}
-	Command* get(const std::string &command)
+	shared_ptr<Command> get(const std::string &command)
 	{
 		auto it = commandMap.find(command);
 		if (it == commandMap.end())
@@ -40,7 +41,7 @@ public:
 	}
 
 private:
-	std::unordered_map<std::string, Command*> commandMap;
+	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
 };
 
 

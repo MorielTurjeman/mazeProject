@@ -7,6 +7,7 @@
 #include "Observer.h"
 #include <vector>
 
+class Observer;
 class Observable
 {
 public:
