@@ -4,9 +4,10 @@
 
 #ifndef MAZEPROJECT_MYCONTROLLER_H
 #define MAZEPROJECT_MYCONTROLLER_H
+#include "Controller.h"
 
 
-class MyController
+class MyController : public Controller
 {
 
 };

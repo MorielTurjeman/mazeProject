@@ -4,9 +4,9 @@
 
 #ifndef MAZEPROJECT_MYMODEL_H
 #define MAZEPROJECT_MYMODEL_H
+#include "Model.h"
 
-
-class MyModel
+class MyModel : public Model
 {
 
 };

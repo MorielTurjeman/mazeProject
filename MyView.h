@@ -4,9 +4,9 @@
 
 #ifndef MAZEPROJECT_MYVIEW_H
 #define MAZEPROJECT_MYVIEW_H
+#include "View.h"
 
-
-class MyView
+class MyView : public View
 {
 
 };
