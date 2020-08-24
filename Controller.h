@@ -13,16 +13,7 @@
 class Controller
 {
 public:
-	Controller(Model& myModel)
-	{
-		commandMap["display"] = std::make_shared<DisplayCommand>(myModel);
-		// commandMap["maze size"] = std::make_shared<MazeSizeCommand>(name);
-		// commandMap["file size"] = std::make_shared<FileSizeCommand>(name);
-		// commandMap["display solution"] = std::make_shared<DisplaySolutionCommand>(name);
-	}
-
 	~Controller(){}
-
 	virtual shared_ptr<Command> get(const std::string &command) = 0;
 
 protected:

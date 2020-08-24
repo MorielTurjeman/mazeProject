@@ -9,6 +9,8 @@
 
 class MyController : public Controller
 {
+public:
+	MyController(Model& myModel){}
 	shared_ptr<Command> get(const std::string &command)
 	{
 		auto it = Controller::commandMap.find(command);
