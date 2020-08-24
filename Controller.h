@@ -13,11 +13,6 @@
 class Controller
 {
 public:
-//	Controller(Maze2d& maze)
-//	{
-//		commandMap["dir"] = new DirCommand();
-//	}
-
 	Controller(std::string name)
 	{
 		commandMap["display"] = new DisplayCommand(name);
