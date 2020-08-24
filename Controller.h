@@ -13,33 +13,10 @@
 class Controller
 {
 public:
-	Controller(Model& myModel)
-	{
-		commandMap["display"] = std::make_shared<DisplayCommand>(myModel);
-		// commandMap["maze size"] = std::make_shared<MazeSizeCommand>(name);
-		// commandMap["file size"] = std::make_shared<FileSizeCommand>(name);
-		// commandMap["display solution"] = std::make_shared<DisplaySolutionCommand>(name);
-	}
-	// Controller()
-	// {
-	// 	commandMap["exit"] = new ExitCommand();
-	// }
-	// Controller(FILE * pFile)
-	// {
-	// 	commandMap["dir"] = new DirCommand(pFile);
-	// }
 	~Controller(){}
-	shared_ptr<Command> get(const std::string &command)
-	{
-		auto it = commandMap.find(command);
-		if (it == commandMap.end())
-		{
-			return nullptr;
-		}
-		return it->second;
-	}
+	virtual shared_ptr<Command> get(const std::string &command) = 0;
 
-private:
+protected:
 	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
 };
 
