@@ -21,14 +21,14 @@ public:
 class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
-	DirCommand(std::string path): _path(path){}
+	DirCommand(File* pFile): _file(pFile){}
 	void execute() override
 	{
 
 	}
 
 private:
-	std::string  _path;
+	File* _file;
 };
 
 /************************************************************************************/
