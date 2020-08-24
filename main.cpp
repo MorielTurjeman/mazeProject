@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
     time_t start_time = time(NULL); 
     std::cout << ctime(&start_time) << std::endl;
     SimpleMaze2dGenerator G;
-    auto maze =G.generate(11);
+    auto maze =G.generate(40);
     maze.printMaze();
     // MyMaze2dGenerator g;
 
