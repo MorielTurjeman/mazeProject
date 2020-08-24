@@ -47,10 +47,13 @@ int main(int argc, char const *argv[])
 
     auto maze = g.generate(11);
     maze.printMaze();
+
     Maze2dSearchable s(maze);
-    AerialDistance adp(s.getGoalState());
-    AStar <Position> astar(adp);
-    Solution<Position> sol= astar.search(s);
+      // AerialDistance adp(s.getGoalState());
+    // AStar <Position> astar(adp);
+    // Solution<Position> sol= astar.search(s);
+    BFS <Position> b;
+    auto sol= b.search(s);
     
     for( auto p: sol.getPath())
     {
