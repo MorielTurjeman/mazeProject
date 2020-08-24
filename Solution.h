@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 #include "Searcable.h"
 
 template <class T>
@@ -17,5 +18,7 @@ private:
             return;
         buildSolution(state->parent);
         path.push_back(state);
+        
+        
     }
 };

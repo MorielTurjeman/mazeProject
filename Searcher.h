@@ -10,7 +10,7 @@ template <class T>
 
 class Searcher
 {
-    public:
+public:
     virtual Solution<T> search(Searchable<T> &searchable) = 0; //check what the function needs to return
     //how do we keep the path to the goal
 };
@@ -18,7 +18,11 @@ class Searcher
 //commonly, search algorithms have a priority queue for evaluating the next best option to go to
 template <class T>
 class CommonSearcher : public Searcher<T>
-{   public:
+{
+public:
+    CommonSearcher() : counter(0){};
+    const int getCounter() { return counter; }
+
     virtual bool priorityFunction(const State<T> &a, const State<T> &b) = 0;
     virtual Solution<T> search(Searchable<T> &searchable)
     {
@@ -30,18 +34,19 @@ class CommonSearcher : public Searcher<T>
         {
             auto state = pq.top();
             pq.pop();
+            counter++;
 
             if (searchable.getGoalState() == state)
             {
                 auto sol = Solution(std::make_shared<State<T>>(state));
                 return sol;
-                //return Class solution (maybe new file) that will return vector with all the path to the solution.
             }
 
             else
             {
                 for (auto getPS : searchable.getPossibleStates(state))
                 {
+
                     if (std::find(visited.begin(), visited.end(), getPS) == visited.end()) //if the state was not found
                     {
                         visited.push_back(getPS);
@@ -50,8 +55,10 @@ class CommonSearcher : public Searcher<T>
                 }
             }
         }
-        
     }
+
+private:
+    int counter;
 };
 template <class T>
 class BFS : public CommonSearcher<T>
@@ -64,7 +71,8 @@ class BFS : public CommonSearcher<T>
 
 template <class T>
 class Hueristics // interface- define how heuristics look
-{   public:
+{
+public:
     virtual double operator()(const State<T> &state) const = 0;
 };
 
@@ -73,7 +81,8 @@ class AStar : public CommonSearcher<T>
 {
 private:
     Hueristics<T> &_h;
-    public:
+
+public:
     AStar(Hueristics<T> &h) : _h(h) {}
 
     virtual bool priorityFunction(const State<T> &a, const State<T> &b)

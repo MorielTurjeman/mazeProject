@@ -9,6 +9,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <time.h> //for measureAlgorithmTime
+#include<chrono>
 
 
 class Maze2dGenerator

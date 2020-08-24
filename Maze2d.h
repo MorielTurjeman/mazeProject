@@ -185,7 +185,10 @@ public:
 			{
 				if (maze[i][j] == 1)
 					std::cout << "\u2593";
-
+				else if (i == start.getYPosition() && j == start.getXPosition())
+				{
+					std::cout << "*";
+				}
 				else
 				{
 					std::cout << " ";
@@ -193,6 +196,9 @@ public:
 			}
 			std::cout << "\n";
 		}
+		std::cout << "Start Position Row: " << start.getYPosition() << ", Column: " << start.getXPosition() << std::endl;
+		std::cout << "End Position Row: " << end.getYPosition() << ", Column: " << end.getXPosition() << std::endl;
+
 	}
 
 	void alternativePrintMaze()

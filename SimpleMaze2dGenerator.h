@@ -40,12 +40,22 @@ public:
             visited.push_back(p);
 
             std::vector<Position> pMoves = maze.getPossibleMoves(p);
-
+            
+            
             for (int i = pMoves.size() - 1; i >= 0; i--)
             {
                 if (std::find(visited.begin(), visited.end(), pMoves[i]) != visited.end())
                     pMoves.erase(pMoves.begin() + i);
             }
+
+            if (pMoves.size() == 0)
+            {
+                count = 0;
+                visited.resize(0);
+                p = start;
+                continue;
+            }
+            
 
             int idx = distribution(generator) % pMoves.size();
             p = pMoves[idx];

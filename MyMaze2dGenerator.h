@@ -15,6 +15,8 @@ public:
     ~MyMaze2dGenerator() {}
     virtual Maze2d generate(int size)
     {
+        if (size % 2 == 0)
+            size++; //DFS algorithm requries an odd size square
         std::random_device rd;
         std::mt19937 generator(rd());
         std::uniform_int_distribution<int> distribution(1, size - 2);

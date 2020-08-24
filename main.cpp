@@ -1,14 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Maze2d.h"
-#include "Maze2dGenerator.h"
-#include "SimpleMaze2dGenerator.h"
-#include "MyMaze2dGenerator.h"
 #include "Controller.h"
 #include <random>
-#include "Maze2dSearchable.h"
-#include "Solution.h"
+#include"Demo.h"
 class NameLater //take #include "Controller.h" //todo: move to main????
 {
     void getCommand()
@@ -34,40 +29,45 @@ class NameLater //take #include "Controller.h" //todo: move to main????
     }
 };
 
+#include "SimpleMaze2dGenerator.h"
+
 int main(int argc, char const *argv[])
 {
-    std::cout << "hello world" << std::endl;
+    Demo demo;
+    demo.run();
 
-    time_t start_time = time(NULL);
-    std::cout << ctime(&start_time) << std::endl;
+    // std::cout << "hello world" << std::endl;
+
+    // time_t start_time = time(NULL);
+    // std::cout << ctime(&start_time) << std::endl;
     // SimpleMaze2dGenerator G;
-    // auto maze =G.generate(40);
+    // auto maze =G.generate(11);
     // maze.printMaze();
-    MyMaze2dGenerator g;
+    // MyMaze2dGenerator g;
 
-    auto maze = g.generate(11);
-    maze.printMaze();
+    // auto maze = g.generate(31);
+    // maze.printMaze();
 
-    Maze2dSearchable s(maze);
-      // AerialDistance adp(s.getGoalState());
-    // AStar <Position> astar(adp);
-    // Solution<Position> sol= astar.search(s);
-    BFS <Position> b;
-    auto sol= b.search(s);
+    // Maze2dSearchable s(maze);
+    //   // AerialDistance adp(s.getGoalState());
+    // // AStar <Position> astar(adp);
+    // // Solution<Position> sol= astar.search(s);
+    // BFS <Position> b;
+    // auto sol= b.search(s);
     
-    for( auto p: sol.getPath())
-    {
-        std::cout<<p->data.getYPosition()<<" , "<<p->data.getXPosition()<<endl;
-    }
+    // for( auto p: sol.getPath())
+    // {
+    //     std::cout<<p->data.getYPosition()<<" , "<<p->data.getXPosition()<<endl;
+    // }
     
 
 
 
 
-    std::cout << ctime(&start_time) << std::endl;
+    // std::cout << ctime(&start_time) << std::endl;
 
-    time_t end_time = time(NULL);
-    std::cout << ctime(&end_time) << std::endl;
+    // time_t end_time = time(NULL);
+    // std::cout << ctime(&end_time) << std::endl;
 
     return 0;
 }

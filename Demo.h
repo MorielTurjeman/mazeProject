@@ -1,37 +1,41 @@
-//
-// Created by Sapir Ezra on 24/08/2020.
-//
-
-#ifndef MAZEPROJECT_DEMO_H
-#define MAZEPROJECT_DEMO_H
+#pragma once
 #include "MyMaze2dGenerator.h"
 #include "Searcher.h"
-#include "Searcable.h"
 #include "Maze2dSearchable.h"
-
+#include <memory>
 
 class Demo
 {
 public:
-	Demo(){}
-	~Demo(){}
-	void run(int size)
+	Demo() {}
+	void run()
 	{
-		Maze2dGeneratorAbs* _mazeGen = new MyMaze2dGenerator;
-		Maze2d myMaze = _mazeGen->generate(size);
-		myMaze.printMaze();
+		std::shared_ptr<Maze2dGenerator> mazeGen = std::make_shared<MyMaze2dGenerator>();
 
+		Maze2d myMaze = mazeGen->generate(31);
+		myMaze.printMaze();
+		
 		Maze2dSearchable s(myMaze);
 		BFS<Position> bfs;
-		auto sol = bfs.search(s);
-		for(auto p : sol.getPath())
+		auto solBfs = bfs.search(s);
+
+		std::cout << "BFS total state developed: " << bfs.getCounter() << endl;
+
+		AerialDistance ad(s.getGoalState());
+		AStar<Position> Arialdis(ad);
+		auto solAerial = Arialdis.search(s);
+	
+		std::cout << "AStar aerial distance total state developed: " << Arialdis.getCounter() << endl;
+
+		ManhattanDistance amd(s.getGoalState());
+		AStar<Position> manhattendis(amd);
+		auto solManhattan = manhattendis.search(s);
+		std::cout << "AStar Manhatten distance  total state developed: " << manhattendis.getCounter() << endl;
+
+		std::cout<<endl<<"The Solution: "<<endl;
+		for (auto p : solManhattan.getPath())
 		{
-			std::cout << p->data.getYPosition() << " ," << p->data.getYPosition() << std::endl;
+			std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
 		}
-
-
 	}
 };
-
-
-#endif //MAZEPROJECT_DEMO_H

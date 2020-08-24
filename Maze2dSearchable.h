@@ -31,7 +31,9 @@ public:
     ManhattanDistance(const State<Position> &state) : _state(state) {}
     virtual double operator()(const State<Position> &state) const
     {
-        return std::abs(state.data.getXPosition() - state.data.getXPosition()) + (state.data.getYPosition() - state.data.getYPosition());
+        double h = std::abs(_state.data.getXPosition() - state.data.getXPosition()) + (_state.data.getYPosition() - state.data.getYPosition());
+        // std::cout << "md " << h << std::endl;
+        return h;
     }
 };
 
@@ -45,6 +47,8 @@ public:
 
     virtual double operator()(const State<Position> &state) const
     {
-        return std::sqrt(std::pow((state.data.getXPosition() - state.data.getXPosition()), 2) + (std::pow((state.data.getYPosition() - state.data.getYPosition()), 2)));
+        double h = std::sqrt(std::pow((_state.data.getXPosition() - state.data.getXPosition()), 2) + (std::pow((_state.data.getYPosition() - state.data.getYPosition()), 2)));
+        // std::cout << "ad " << h << std::endl;
+        return h;
     }
 };
