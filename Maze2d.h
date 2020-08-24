@@ -24,10 +24,13 @@ public:
 	// void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; } should be friend
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
+	void setMazeName(std::string mazeName) {_mazeName = mazeName;}
+	std::string getMazeName(){return _mazeName;}
 
 private:
 	int _x;
 	int _y;
+	std::string _mazeName;
 };
 
 /**************************************************************************************/
