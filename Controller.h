@@ -20,26 +20,12 @@ public:
 		// commandMap["file size"] = std::make_shared<FileSizeCommand>(name);
 		// commandMap["display solution"] = std::make_shared<DisplaySolutionCommand>(name);
 	}
-	// Controller()
-	// {
-	// 	commandMap["exit"] = new ExitCommand();
-	// }
-	// Controller(FILE * pFile)
-	// {
-	// 	commandMap["dir"] = new DirCommand(pFile);
-	// }
-	~Controller(){}
-	shared_ptr<Command> get(const std::string &command)
-	{
-		auto it = commandMap.find(command);
-		if (it == commandMap.end())
-		{
-			return nullptr;
-		}
-		return it->second;
-	}
 
-private:
+	~Controller(){}
+
+	virtual shared_ptr<Command> get(const std::string &command) = 0;
+
+protected:
 	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
 };
 
