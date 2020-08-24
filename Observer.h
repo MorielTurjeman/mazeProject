@@ -4,14 +4,14 @@
 
 #ifndef MAZEPROJECT_OBSERVER_H
 #define MAZEPROJECT_OBSERVER_H
-
-
 #include "Observable.h"
 
+
+class Observable;
 class Observer
 {
 public:
-	void update(Observable observable);
+	virtual void update(Observable &observable) = 0;
 };
 
 
