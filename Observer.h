@@ -6,9 +6,12 @@
 #define MAZEPROJECT_OBSERVER_H
 
 
+#include "Observable.h"
+
 class Observer
 {
-
+public:
+	void update(Observable observable);
 };
 
 
