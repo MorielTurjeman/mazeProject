@@ -94,7 +94,7 @@ private:
 };
 
 /************************************************************************************/
-
+//here //
 class LoadMazeCommand : public Command
 {
 public:
