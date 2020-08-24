@@ -7,12 +7,24 @@
 #include <unordered_map>
 #include <string>
 #include "Command.h"
+#include "Maze2d.h"
 
 
 class Controller
 {
 public:
-	Controller(){}
+//	Controller(Maze2d& maze)
+//	{
+//		commandMap["dir"] = new DirCommand();
+//	}
+
+	Controller(std::string name)
+	{
+		commandMap["display"] = new DisplayCommand(name);
+		commandMap["maze size"] = new MazeSizeCommand(name);
+		commandMap["file size"] = new FileSizeCommand(name);
+		commandMap["display solution"] = new DisplaySolutionCommand(name);
+	}
 	~Controller(){}
 	Command* get(const std::string &command)
 	{

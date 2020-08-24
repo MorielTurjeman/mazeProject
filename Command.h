@@ -5,17 +5,20 @@
 #ifndef MAZEPROJECT_COMMAND_H
 #define MAZEPROJECT_COMMAND_H
 #include <string>
+#include "Controller.h"
 
 
 //here we are using the Command design pattern
-//the goal is to separate the Invoker of a Command from the Receiver
+//the goal is to separate the Invoker of a Command from the Receiver of that Command
 class Command
 {
 public:
 	virtual void execute()=0;
 };
 
-class DirCommand : public Command
+/************************************************************************************/
+
+class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
 	DirCommand(std::string path): _path(path){}
@@ -27,6 +30,8 @@ public:
 private:
 	std::string  _path;
 };
+
+/************************************************************************************/
 
 class GenerateMazeCommand : public Command
 {
@@ -43,6 +48,8 @@ private:
 	std::string _mazeGenerationAlgorithm;
 };
 
+/************************************************************************************/
+
 //display maze
 class DisplayCommand : public Command
 {
@@ -56,6 +63,8 @@ public:
 private:
 	std::string _name;
 };
+
+/************************************************************************************/
 
 class SaveMazeCommand : public Command
 {
@@ -71,6 +80,8 @@ private:
 	std::string  _fileName;
 };
 
+/************************************************************************************/
+
 class LoadMazeCommand : public Command
 {
 public:
@@ -85,6 +96,8 @@ private:
 	std::string  _fileName;
 };
 
+/************************************************************************************/
+
 class MazeSizeCommand : public Command
 {
 public:
@@ -98,6 +111,8 @@ private:
 	std::string  _name;
 };
 
+/************************************************************************************/
+
 class FileSizeCommand : public Command
 {
 public:
@@ -110,6 +125,8 @@ public:
 private:
 	std::string  _name;
 };
+
+/************************************************************************************/
 
 class SolveCommand : public Command
 {
@@ -125,6 +142,8 @@ private:
 	std::string  _algorithm;
 };
 
+/************************************************************************************/
+
 class DisplaySolutionCommand : public Command
 {
 public:
@@ -138,6 +157,8 @@ private:
 	std::string  _name;
 };
 
+/************************************************************************************/
+
 class ExitCommand : public Command
 {
 	ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
@@ -146,6 +167,8 @@ class ExitCommand : public Command
 
 	}
 };
+
+/************************************************************************************/
 
 class Invoker //todo: rename later!!!!!!!!!!!!!!!!!!!!!!!!!!! and move
 {
@@ -159,14 +182,27 @@ private:
 	Command *_command;
 };
 
-class NameLater
+class NameLater //take #include "Controller.h"
 {
 	void getCommand()
 	{
 		std::string  command = "";
 		while(command.compare("exit") != 0)
 		{
+			Controller* controller = new Controller();
+			std::cout << "Please enter command: " << std::endl;
+			std::in >> command;
 
+			Command* cmd = controller->get(command);
+
+			if (nullptr != cmd)
+			{
+				cmd->execute();
+			}
+			else
+			{
+				std::cout << "Unsupported command!" << std::endl;
+			}	
 		}
 	}
 };
