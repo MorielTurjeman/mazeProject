@@ -11,9 +11,9 @@
 class Model
 {
 public:
-	Solution<T> checkIfSolutionIsInCacheMap(std::string name)
+	Solution<Position> checkIfSolutionIsInCacheMap(std::string name)
 	{
-		for(const std::pair<std::string, Solution<T>> &val : solutionCacheMap)
+		for(const std::pair<std::string, Solution<Position>> &val : solutionCacheMap)
 		{
 			if (val.first == name)
 			{
