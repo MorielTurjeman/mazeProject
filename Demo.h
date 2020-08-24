@@ -28,7 +28,7 @@ public:
 		{
 			std::cout << p->data.getYPosition() << " ," << p->data.getYPosition() << std::endl;
 		}
-		
+
 
 	}
 };
