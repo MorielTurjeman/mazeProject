@@ -25,6 +25,10 @@ public:
 		commandMap["file size"] = new FileSizeCommand(name);
 		commandMap["display solution"] = new DisplaySolutionCommand(name);
 	}
+	Controller()
+	{
+		commandMap["exit"] = new ExitCommand();
+	}
 	~Controller(){}
 	Command* get(const std::string &command)
 	{

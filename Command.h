@@ -161,6 +161,7 @@ private:
 
 class ExitCommand : public Command
 {
+public:
 	ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
 	void execute() override
 	{
@@ -181,6 +182,8 @@ public:
 private:
 	Command *_command;
 };
+
+/************************************************************************************/
 
 class NameLater //take #include "Controller.h"
 {
