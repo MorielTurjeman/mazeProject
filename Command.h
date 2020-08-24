@@ -21,8 +21,8 @@ protected:
 	Model& model;
 public:		
 	Command(Model& myModel) : model(myModel) {}
-	virtual void execute()=0;
-	virtual void setArgs(std::istream& in) = 0; 
+	virtual void execute(std::ostream& out)=0; //pass stdout to update the view
+	virtual void setArgs(std::istream& in) = 0; //pass stdin to read input
 };
 
 /************************************************************************************/
@@ -31,7 +31,7 @@ class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
 	// DirCommand(FILE * pFile): _file(pFile){}
-	void execute() override
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -46,7 +46,7 @@ class GenerateMazeCommand : public Command
 {
 public:
 	// GenerateMazeCommand(std::istream& in): _name(name), _size(size), _mazeGenerationAlgorithm(mazeGenerationAlgorithm){}
-	void execute() override
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -63,9 +63,10 @@ private:
 class DisplayCommand : public Command
 {
 public:
-	void execute() override
+	void execute(std::ostream& out) override
 	{
-		Maze2d m = model.getMaze(_name);
+		Maze2d m = model.getMaze(_name); //should return ptr and check if not null (maze not found)
+		m.printMaze(); //should be out << m; but we need to implement the operator
 	}
 	virtual void setArgs(std::istream& in) {
 		in >> _name;
@@ -80,8 +81,8 @@ private:
 class SaveMazeCommand : public Command
 {
 public:
-	SaveMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
-	void execute() override
+	// SaveMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -96,8 +97,8 @@ private:
 class LoadMazeCommand : public Command
 {
 public:
-	LoadMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
-	void execute() override
+	// LoadMazeCommand(std::string name, std::string fileName): _name(name), _fileName(fileName){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -112,8 +113,8 @@ private:
 class MazeSizeCommand : public Command
 {
 public:
-	MazeSizeCommand(std::string name): _name(name){}
-	void execute() override
+	// MazeSizeCommand(std::string name): _name(name){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -127,8 +128,8 @@ private:
 class FileSizeCommand : public Command
 {
 public:
-	FileSizeCommand(std::string name): _name(name){}
-	void execute() override
+	// FileSizeCommand(std::string name): _name(name){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -142,8 +143,8 @@ private:
 class SolveCommand : public Command
 {
 public:
-	SolveCommand(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
-	void execute() override
+	// SolveCommand(std::string name, std::string algorithm): _name(name), _algorithm(algorithm){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -158,8 +159,8 @@ private:
 class DisplaySolutionCommand : public Command
 {
 public:
-	DisplaySolutionCommand(std::string name): _name(name){}
-	void execute() override
+	// DisplaySolutionCommand(std::string name): _name(name){}
+	void execute(std::ostream& out) override
 	{
 
 	}
@@ -173,8 +174,8 @@ private:
 class ExitCommand : public Command
 {
 public:
-	ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
-	void execute() override
+	// ExitCommand(); //todo: check if necessary!!!!!!!!!!!!!!!!!!
+	void execute(std::ostream& out) override
 	{
 
 	}

@@ -15,7 +15,7 @@
 class CLI
 {
 public:
-	CLI(std::istream& in, std::ostream &out, Controller& c): _in(in), _out(out), c(c)  {} //constructor must initialize in and out data members
+	CLI(std::istream& in, std::ostream &out, Controller& c): _in(in), _out(out), controller(c)  {} //constructor must initialize in and out data members
 
 	void start()
     {
@@ -25,11 +25,11 @@ public:
         while (_in >> x)
         {
             i++;
-            auto command = c.get(x);
+            auto command = controller.get(x);
             if (command != nullptr)
             {
                command->setArgs(_in);
-               command->execute(); 
+               command->execute(_out); 
             }
         }
     }
@@ -37,7 +37,7 @@ public:
 private:
 	std::istream& _in;
 	std::ostream& _out;
-    Controller& c;
+    Controller& controller;
 //	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
 };
 
