@@ -15,7 +15,7 @@ class Controller
 public:
 	Controller(std::string name)
 	{
-		commandMap["display"] = std::make_shared<DisplayCommand>(name)
+		commandMap["display"] = std::make_shared<DisplayCommand>(name);
 
 		commandMap["maze size"] = std::make_shared<MazeSizeCommand>(name);
 		commandMap["file size"] = std::make_shared<FileSizeCommand>(name);
