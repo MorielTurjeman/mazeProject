@@ -1,9 +1,8 @@
 //
 // Created by Sapir Ezra on 24/08/2020.
 //
+#pragma once
 
-#ifndef MAZEPROJECT_MYMODEL_H
-#define MAZEPROJECT_MYMODEL_H
 #include "Model.h"
 
 class MyModel : public Model
@@ -28,4 +27,3 @@ protected:
 	std::unordered_map<std::string, shared_ptr<Maze2d>> mazeNameCacheMap;
 };
 
-#endif //MAZEPROJECT_MYMODEL_H
