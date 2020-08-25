@@ -302,7 +302,7 @@ public:
 			view.showMsg("Solution for " + _name + "is ready");
 			for (auto p : solManhattan.getPath())
 			{
-				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+				view.showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
 			}
 		}
 	}
@@ -336,7 +336,7 @@ public:
 		}
 		for (auto p : sol->getPath())
 		{
-			std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+			view.showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
 		}
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
