@@ -15,6 +15,8 @@
 #include "View.h"
 #include <filesystem>
 namespace fs = std::filesystem;
+#include "Searcher.h"
+#include "Maze2dSearchable.h"
 
 //here we are using the Command design pattern
 //the goal is to separate the Invoker of a Command from the Receiver of that Command
@@ -254,19 +256,43 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		
+
+
+		Maze2dSearchable s(_myMaze);
+		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
+		{
+			sol = std::make_shared<BFS<Position>>();
+		}
+		else if(this->_mazeSolutionAlgorithm == "AStar" || this->_mazeSolutionAlgorithm == "A*")
+		{
+			sol = std::make_shared<AStar<Position>>()
+		}
+		/*************/
+		std::shared_ptr<Maze2dGenerator> generator;
+		if (_mazeSolutionAlgorithm == "DFS")				   //
+			generator = std::make_shared<MyMaze2dGenerator>(); //MyMaze2dGenerator maze;
+		else if (this->_mazeGenerationAlgorithm == "SimpleMaze")
+			generator = std::make_shared<SimpleMaze2dGenerator>();
+
+		auto m = generator->generate(_size);
+		m.setMazeName(_name);
+		model.saveMazeToCache(m);
+
+		view.showMsg("Maze " + _name + "is ready");
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
 		if (start != end)
 		{
-			_name = start->at(1);
-			_algorithm = start->at(2);
+			_name = *start;
+			_mazeSolutionAlgorithm = *(start + 1);
 		}
 	}
 
 private:
 	std::string _name;
-	std::string _algorithm;
+	std::string _mazeSolutionAlgorithm;
 };
 
 /************************************************************************************/
