@@ -263,26 +263,34 @@ public:
 		{
 			BFS<Position> bfs;
 			auto solBFS = bfs.search(s);
+			view.showMsg("Solution for " + _name + "is ready");
+			for (auto p : solBFS.getPath())
+			{
+				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+			}
 		}
-		else if(this->_mazeSolutionAlgorithm == "AStar" || this->_mazeSolutionAlgorithm == "A*")
+		if(this->_mazeSolutionAlgorithm == "AStar arial" || this->_mazeSolutionAlgorithm == "A* arial")
 		{
 			AerialDistance ad(s.getGoalState());
 			AStar<Position> Arialdis(ad);
 			auto solAerial = Arialdis.search(s);
+			view.showMsg("Solution for " + _name + "is ready");
+			for (auto p : solAerial.getPath())
+			{
+				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+			}
 		}
-		view.showMsg("Solution for " + _name + "is ready");
-		/*************/
-		std::shared_ptr<Maze2dGenerator> generator;
-		if (_mazeSolutionAlgorithm == "DFS")				   //
-			generator = std::make_shared<MyMaze2dGenerator>(); //MyMaze2dGenerator maze;
-		else if (this->_mazeGenerationAlgorithm == "SimpleMaze")
-			generator = std::make_shared<SimpleMaze2dGenerator>();
-
-		auto m = generator->generate(_size);
-		m.setMazeName(_name);
-		model.saveMazeToCache(m);
-
-		view.showMsg("Maze " + _name + "is ready");
+		if(this->_mazeSolutionAlgorithm == "AStar Manhattan" || this->_mazeSolutionAlgorithm == "A* Manhattan")
+		{
+			ManhattanDistance amd(s.getGoalState());
+			AStar<Position> manhattendis(amd);
+			auto solManhattan = manhattendis.search(s);
+			view.showMsg("Solution for " + _name + "is ready");
+			for (auto p : solManhattan.getPath())
+			{
+				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+			}
+		}
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
