@@ -5,11 +5,25 @@
 #ifndef MAZEPROJECT_MYVIEW_H
 #define MAZEPROJECT_MYVIEW_H
 #include "View.h"
+#include "CLI.h"
 
 class MyView : public View
 {
-    virtual void display(Maze2d &maze); //todo: need to implement
-	virtual void showMsg(std::string s); //todo: cout msg to the screen
+    MyView (CLI& cli): cli(cli){};
+
+    virtual void display(Maze2d &maze)//todo: need to implement
+    {
+
+    }
+
+	virtual void showMsg(std::string s) //todo: cout msg to the screen
+    {
+        cli.getout()<<s<<std::endl;
+    }
+
+
+    private:
+    CLI cli;
 };
 
 

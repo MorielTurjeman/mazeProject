@@ -4,8 +4,8 @@
 
 #ifndef MAZEPROJECT_CLI_H
 #define MAZEPROJECT_CLI_H
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 #include <unordered_map>
 #include "Maze2d.h"
 #include "Command.h"
@@ -16,12 +16,13 @@
 class CLI
 {
 public:
-	CLI(std::istream& in, std::ostream &out, Controller& c): _in(in), _out(out), controller(c)  {} //constructor must initialize in and out data members
+    CLI(std::istream &in, std::ostream &out, Controller &c) : _in(in), _out(out), controller(c) {} //constructor must initialize in and out data members
     vector<std::string> breakToWords(std::string line)
     {
-        std::stringstream ss(line); 
+        std::stringstream ss(line);
         std::vector<std::string> words;
-        do {
+        do
+        {
             std::string word;
             ss >> word;
             words.push_back(word);
@@ -29,10 +30,10 @@ public:
 
         return words;
     }
-	void start()
+    void start()
     {
         std::string x;
-        int i=0;
+        int i = 0;
 
         while (_in >> x)
         {
@@ -58,21 +59,23 @@ public:
                 command = controller.get(words[0]);
                 commandLen = 1;
             }
-            
 
             if (command != nullptr)
             {
-               command->setArgs(words.begin() + commandLen, words.end());
-               command->execute(_out); 
+                command->setArgs(words.begin() + commandLen, words.end());
+                command->execute(_out);
             }
         }
     }
 
+    std::istream &getIn() { return _in; }
+    std::ostream &getout() { return _out; }
+
 private:
-	std::istream& _in;
-	std::ostream& _out;
-    Controller& controller;
-//	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
+    std::istream &_in;
+    std::ostream &_out;
+    Controller &controller;
+    //	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
 };
 
 #endif //MAZEPROJECT_CLI_H
