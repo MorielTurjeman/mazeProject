@@ -51,15 +51,14 @@ public:
 		if (start != end)
 		{
 			_name = *start;
-			_size = stoi(*(start + 1));
-			_mazeGenerationAlgorithm = (*(start + 2));
+
 		}
 		else
 			view.showMsg("Invalid Parameters");
 	}
 
 private:
-	FILE *_file;
+	
 	std::string _name;
 };
 
@@ -177,11 +176,10 @@ private:
 };
 
 /************************************************************************************/
-//here //
 class LoadMazeCommand : public Command
 {
 public:
-	using Command::Command;
+	// using Command::Command;
 	void execute(std::ostream &out) override
 	{
 		auto m = model.getMaze(_name);
@@ -193,8 +191,10 @@ public:
 		MazeCompression mc;
 		std::ifstream file(_fileName);
 		if (mc.readFromFile(file) ! = nullptr)
-		{
+		{	
+			model.saveMazeToCache(m);
 			view.showMsg("Maze read from: " + _fileName + " Successfully");
+
 		}
 
 		else

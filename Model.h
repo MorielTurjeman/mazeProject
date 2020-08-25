@@ -14,7 +14,7 @@
 class Model
 {
 public:
-	virtual void saveMazeToCache(Maze2d& m)=0;
+	virtual void saveMazeToCache(std::shared_ptr<Maze2d> maze)=0;
 	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name)=0;
 	virtual std::shared_ptr<Maze2d> getMaze(std::string name) = 0;
 	// {
