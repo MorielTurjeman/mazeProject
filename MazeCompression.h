@@ -60,7 +60,7 @@ class MazeCompression
 	{
 		//call to compress	
 	}
-	Maze2d readFromFile(ifstream& in) //todo
+	Maze2d readFromFile(ifstream& in) //todo: after implementation change return val to auto instead writing the long shared_ptr
 	{
 		//call to decompress
 	}
