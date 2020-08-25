@@ -25,7 +25,6 @@ public:
 		solutionCacheMap[name] = sol;
 	}
 
-	
 
 
 protected:

@@ -285,6 +285,12 @@ namespace fs = std::filesystem;
 			return;
 		}
 		Maze2dSearchable s(*_maze);
+		auto cachedSolution = model->checkIfSolutionIsInCacheMap(_name);
+		if (cachedSolution != nullptr)
+		{
+				view->showMsg("Solultion for " + _name + " is ready");
+				return;
+		}
 		std::shared_ptr<CommonSearcher<Position>> alg= nullptr;
 		if(this->_mazeSolutionAlgorithm == "BFS")
 		{
