@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include <ifstream>
+#include <fstream>
 #include "Model.h"
 #include "Maze2dGenerator.h"
 #include "MyMaze2dGenerator.h"
@@ -81,7 +81,7 @@ public:
 
 		auto m = generator->generate(_size);
 		m.setMazeName(_name);
-		model.saveMazeToCache(m);
+		model.saveMazeToCache(std::make_shared<Maze2d>(m));
 
 		view.showMsg("Maze " + _name + "is ready");
 		//todo: add error msg
@@ -192,14 +192,14 @@ public:
 
 		MazeCompression mc;
 		std::ifstream file(_fileName);
-		if (mc.readFromFile(file) ! = nullptr)
-		{	
-			model.saveMazeToCache(m);
-			view.showMsg("Maze read from: " + _fileName + " Successfully");
+		// if (mc.readFromFile(file) ! = nullptr)
+		// {	
+		// 	model.saveMazeToCache(m);
+		// 	view.showMsg("Maze read from: " + _fileName + " Successfully");
 
-		}
+		// }
 
-		else
+		// else
 		{
 			view.showMsg("Could not load maze");
 		}

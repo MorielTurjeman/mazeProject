@@ -1,9 +1,8 @@
 //
 // Created by Sapir Ezra on 11/08/2020.
 //
+#pragma once
 
-#ifndef MAZEPROJECT_MAZE2DGENERATOR_H
-#define MAZEPROJECT_MAZE2DGENERATOR_H
 #include "Maze2d.h"
 #include <string>
 #include <stdio.h> 
@@ -45,4 +44,3 @@ public:
 
 
 
-#endif //MAZEPROJECT_MAZE2DGENERATOR_H

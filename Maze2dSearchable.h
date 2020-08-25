@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Maze2d.h"
 #include "Searcable.h"
 #include "Searcher.h"
