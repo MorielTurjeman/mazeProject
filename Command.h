@@ -40,7 +40,7 @@ public:
 class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
-	// using Command::Command; // allows us to use the parent c`tor
+	using Command::Command; // allows us to use the parent c`tor
 	void execute(std::ostream &out) override
 	{
 		std::string path = "/path/to/directory";
@@ -139,7 +139,7 @@ private:
 class SaveMazeCommand : public Command
 {
 public:
-	// using Command::Command;
+	using Command::Command;
 	void execute(std::ostream &out) override
 	{
 		auto m = model.getMaze(_name);
@@ -181,7 +181,7 @@ private:
 class LoadMazeCommand : public Command
 {
 public:
-	// using Command::Command;
+	using Command::Command;
 	void execute(std::ostream &out) override
 	{
 		auto m = model.getMaze(_name);
@@ -228,10 +228,13 @@ class MazeSizeCommand : public Command
 {
 public:
 	using Command::Command;
+	
 	void execute(std::ostream &out) override
 	{
 
 	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{}
 
 private:
 	std::string _name;
@@ -270,7 +273,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		shared_ptr<Maze2d> _maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		shared_ptr<Maze2d> _maze = Command::model.getMaze(_name);
 		Maze2dSearchable s(*_maze);
 
 		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
@@ -361,6 +364,8 @@ public:
 	{
 		exit(0);
 	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{}
 };
 
 /************************************************************************************/

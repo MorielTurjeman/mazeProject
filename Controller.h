@@ -17,7 +17,7 @@ public:
 	virtual shared_ptr<Command> get(const std::string &command) = 0;
 
 protected:
-	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
+	
 
 };
 
