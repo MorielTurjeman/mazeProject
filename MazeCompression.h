@@ -2,8 +2,7 @@
 // Created by Sapir Ezra on 21/08/2020.
 //
 
-#ifndef MAZEPROJECT_MAZECOMPRESSION_H
-#define MAZEPROJECT_MAZECOMPRESSION_H
+#pragma once
 #include <vector>
 #include <iostream>
 #include "Maze2d.h"
@@ -68,4 +67,3 @@ public:
 };
 
 
-#endif //MAZEPROJECT_MAZECOMPRESSION_H

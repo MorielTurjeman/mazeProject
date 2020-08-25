@@ -1,9 +1,5 @@
-//
-// Created by Sapir Ezra on 21/08/2020.
-//
+#pragma once
 
-#ifndef MAZEPROJECT_CLI_H
-#define MAZEPROJECT_CLI_H
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -78,4 +74,3 @@ private:
     //	std::unordered_map<std::string, std::shared_ptr<Command>> stringToCommandMap;
 };
 
-#endif //MAZEPROJECT_CLI_H

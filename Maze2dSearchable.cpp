@@ -1,8 +1,3 @@
-
-//
-// Created by Sapir Ezra on 11/08/2020.
-//
-
 #include "Maze2d.h"
 #include "Maze2dSearchable.h"
 

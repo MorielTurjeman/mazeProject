@@ -1,6 +1,4 @@
-
-#ifndef MAZEPROJECT_MAZE2D_H
-#define MAZEPROJECT_MAZE2D_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -20,8 +18,6 @@ public:
 public:
 	bool operator==(const Position &position) const { return (_x == position._x) && (_y == position._y); }
 	bool operator!=(const Position &position) const { return !this->operator==(position); }
-	//implement << operator
-	// void operator<<(Position p) const { std::cout << "(" << p.getXPosition() << "," << p.getYPosition() << ")" << std::endl; } should be friend
 	int getXPosition() const { return _x; };
 	int getYPosition() const { return _y; };
 
@@ -32,10 +28,14 @@ private:
 
 /**************************************************************************************/
 
+
 class Maze2d
 {
 public:
-	friend ostream &operator<<(ostream &os, const Maze2d &m);
+	friend ostream &operator<<(ostream &os, const Maze2d &m)
+	{
+			m.printMaze(os);
+	}
 	Maze2d(int size, bool fillWalls = false)
 	{
 
@@ -297,9 +297,3 @@ private:
 	Position start, end, current;
 	std::string _mazeName;
 };
-
-ostream &operator<<(ostream &os, const Maze2d &m)
-{
-	m.printMaze(os);
-}
-#endif //MAZEPROJECT_MAZE2D_H
