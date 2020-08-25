@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <ifstream>
 #include "Model.h"
 #include "Maze2dGenerator.h"
 #include "MyMaze2dGenerator.h"
@@ -229,6 +230,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+
 	}
 
 private:
@@ -243,9 +245,19 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		std::ifstream _infile;
+		_infile.open(_name, std::ios::in | std::ios::binary);
+		_infile.seekg(0, std::ios::end);
+		view.showMsg("Size of " + _name + "in file is: " + std::to_string(_infile.tellg()) + "bytes of memory.");
+	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end) //we only have one param, no need for loop.
+		{
+			_name = *start;
+		}
 
 	}
-
 private:
 	std::string _name;
 };
