@@ -6,27 +6,27 @@
 #include"Demo.h"
 // class NameLater //take #include "Controller.h" //todo: move to main????
 // {
-//     void getCommand()
-//     {
-//         std::string command = "";
-//         while (command.compare("exit") != 0)
-//         {
-//             Controller *controller = new Controller();
-//             std::cout << "Please enter command: " << std::endl;
-//             std::cin >> command;
+    // void getCommand()
+    // {
+    //     std::string command = "";
+    //     while (command.compare("exit") != 0)
+    //     {
+    //         Controller *controller = new Controller();
+    //         std::cout << "Please enter command: " << std::endl;
+    //         std::cin >> command;
 
-//             Command *cmd = controller->get(command);
+    //         Command *cmd = controller->get(command);
 
-//             if (nullptr != cmd)
-//             {
-//                 cmd->execute();
-//             }
-//             else
-//             {
-//                 std::cout << "Unsupported command!" << std::endl;
-//             }
-//         }
-//     }
+    //         if (nullptr != cmd)
+    //         {
+    //             cmd->execute();
+    //         }
+    //         else
+    //         {
+    //             std::cout << "Unsupported command!" << std::endl;
+    //         }
+    //     }
+    // }
 // };
 
 #include "SimpleMaze2dGenerator.h"
