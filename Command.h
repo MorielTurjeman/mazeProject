@@ -230,9 +230,27 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		
+		auto maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		if (maze == NULL)
+		{
+			view.showMsg("Maze not found. \n");
+			return;
+		}
+		//size of data members:
+		auto _sizeOfMazeVector = sizeof(int)*(maze->getMaze().size()* maze->getMaze().size());
+		auto _sizeOfStartEndCurrentPosition = sizeof(Position)*3;
+		auto _sizeOfMazeName = maze->getMazeName().size();
+		auto _sumOfMazeSize = _sizeOfMazeVector + _sizeOfStartEndCurrentPosition + _sizeOfMazeName;
+		view.showMsg("Size of " + _name + "in memory is: " + std::to_string(_sumOfMazeSize) + "bytes of memory.");
 	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end) //we only have one param, no need for loop.
+		{
+			_name = *start;
+		}
 
+	}
 private:
 	std::string _name;
 };
@@ -271,6 +289,11 @@ public:
 	void execute(std::ostream &out) override
 	{
 		shared_ptr<Maze2d> _maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		if (_maze == NULL)
+		{
+			view.showMsg("Maze not found. \n");
+			return;
+		}
 		Maze2dSearchable s(*_maze);
 
 		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
@@ -331,7 +354,7 @@ public:
 		auto sol = Command::model.checkIfSolutionIsInCacheMap(_name);
 		if (sol == NULL)
 		{
-			view.showMsg("Solution for " + _name + "not found");
+			view.showMsg("Solution for " + _name + "not found. \n");
 			return;
 		}
 		for (auto p : sol->getPath())
