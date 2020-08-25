@@ -127,6 +127,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+
 	}
 
 private:
@@ -171,19 +172,35 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		std::shared_ptr<Solution<Position>> sol;
+		if(_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
+		{
+			
+		}
+		/*************/
+		std::shared_ptr<Maze2dGenerator> generator;
+		if (_mazeSolutionAlgorithm == "DFS")				   //
+			generator = std::make_shared<MyMaze2dGenerator>(); //MyMaze2dGenerator maze;
+		else if (this->_mazeGenerationAlgorithm == "SimpleMaze")
+			generator = std::make_shared<SimpleMaze2dGenerator>();
 
+		auto m = generator->generate(_size);
+		m.setMazeName(_name);
+		model.saveMazeToCache(m);
+
+		view.showMsg("Maze " + _name + "is ready");
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
 		if (start != end)
 		{
-			_name = start->at(1);
-			_algorithm = start->at(2);
+			_name = *start;
+			_mazeSolutionAlgorithm = *(start + 1);
 		}
 	}
 private:
 	std::string _name;
-	std::string _algorithm;
+	std::string _mazeSolutionAlgorithm;
 };
 
 /************************************************************************************/
