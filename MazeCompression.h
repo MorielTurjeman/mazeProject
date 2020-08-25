@@ -56,13 +56,13 @@ class MazeCompression
 		}
 		return decompressedMazeData;
 	}
-	void writeToFile(ofstream &out,Maze2d& maze2D) //todo
+	bool writeToFile(ofstream &out,Maze2d& maze2D) //todo
 	{
-
+		//call to compress	
 	}
 	Maze2d readFromFile(ifstream& in) //todo
 	{
-		
+		//call to decompress
 	}
 };
 
