@@ -14,7 +14,7 @@ public:
 
     virtual void display(Maze2d &maze)//todo: need to implement
     {
-
+        cli.getout()<<maze<<std::endl;
     }
 
 	virtual void showMsg(std::string s) //todo: cout msg to the screen
@@ -22,9 +22,9 @@ public:
         cli.getout()<<s<<std::endl;
     }
 
-    void displaySolution(Maze2d& maze, Solution& solution)
+    virtual void displaySolution(Maze2d& maze, Solution<Position>& solution)
     {
-
+         
     }
 private:
     CLI cli;
