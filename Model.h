@@ -27,7 +27,7 @@ public:
 	// 	}
 	// 	return NULL;
 	// }
-
+	virtual void saveSolutionCacheMapToFile() = 0;
 
 
 };
