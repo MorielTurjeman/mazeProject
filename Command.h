@@ -13,6 +13,8 @@
 #include "SimpleMaze2dGenerator.h"
 #include "Maze2d.h"
 #include "View.h"
+#include <filesystem>
+namespace fs = std::filesystem;
 #include "Searcher.h"
 #include "Maze2dSearchable.h"
 
@@ -36,13 +38,28 @@ public:
 class DirCommand : public Command //todo: change to File class!!!!!!!
 {
 public:
-	using Command::Command; // allows us to use the parent c`tor
+	// using Command::Command; // allows us to use the parent c`tor
 	void execute(std::ostream &out) override
 	{
+		std::string path = "/path/to/directory";
+		for (const auto &entry : fs::directory_iterator(path))
+			view.showMsg(entry.path().filename().string());
+	}
+
+	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end)
+		{
+			_name = *start;
+
+		}
+		else
+			view.showMsg("Invalid Parameters");
 	}
 
 private:
-	FILE *_file;
+	
+	std::string _name;
 };
 
 /************************************************************************************/
@@ -123,26 +140,23 @@ public:
 	// using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		auto m= model.getMaze(_name);
-		if(m==nullptr)
+		auto m = model.getMaze(_name);
+		if (m == nullptr)
 		{
 			view.showMsg("Maze named " + _name + " not found");
 		}
 
 		MazeCompression mc;
 		std::ofstream file(_fileName);
-		if(mc.writeToFile(file, *m)== true)
+		if (mc.writeToFile(file, *m) == true)
 		{
 			view.showMsg("Maze compressed into: " + _fileName + " Successfully");
 		}
-	
+
 		else
 		{
 			view.showMsg("Could not save maze");
 		}
-		
-		
-
 	}
 
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
@@ -159,18 +173,46 @@ public:
 private:
 	std::string _name;
 	std::string _fileName;
-	
 };
 
 /************************************************************************************/
-//here //
 class LoadMazeCommand : public Command
 {
 public:
-	using Command::Command;
+	// using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		auto m = model.getMaze(_name);
+		if (m == nullptr)
+		{
+			view.showMsg("Maze named " + _name + " not found");
+		}
 
+		MazeCompression mc;
+		std::ifstream file(_fileName);
+		if (mc.readFromFile(file) ! = nullptr)
+		{	
+			model.saveMazeToCache(m);
+			view.showMsg("Maze read from: " + _fileName + " Successfully");
+
+		}
+
+		else
+		{
+			view.showMsg("Could not load maze");
+		}
+	}
+
+	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+
+		if (start != end)
+		{
+			_name = *start;
+			_fileName = (*(start + 1));
+		}
+		else
+			view.showMsg("Invalid Parameters");
 	}
 
 private:
@@ -237,7 +279,6 @@ public:
 		model.saveMazeToCache(m);
 
 		view.showMsg("Maze " + _name + "is ready");
-
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
