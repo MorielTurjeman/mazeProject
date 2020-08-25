@@ -68,12 +68,14 @@ public:
 
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
-		if (start != end) //we only have one param, no need for loop.
+		if (start != end)
 		{
 			_name = *start;
 			_size = stoi(*(start + 1));
 			_mazeGenerationAlgorithm = (*(start + 2));
 		}
+		else
+			view.showMsg("Invalid Parameters");
 	}
 
 private:
@@ -88,20 +90,23 @@ private:
 class DisplayCommand : public Command
 {
 public:
-	// using Command::Command;
+	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		auto m = model.getMaze(_name); 
+		auto m = model.getMaze(_name);
 		if (m == nullptr)
 		{
 			view.showMsg("Maze named " + _name + " not found");
 		}
-		view.display(*m); 
+		view.display(*m);
 	}
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
 		if (start != end) //we only have one param, no need for loop.
 			_name = *start;
+
+		else
+			view.showMsg("Invalid Parameters");
 	}
 
 private:
@@ -113,14 +118,46 @@ private:
 class SaveMazeCommand : public Command
 {
 public:
-	using Command::Command;
+	// using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		auto m= model.getMaze(_name);
+		if(m==nullptr)
+		{
+			view.showMsg("Maze named " + _name + " not found");
+		}
+
+		MazeCompression mc;
+		std::ofstream file(_fileName);
+		if(mc.writeToFile(file, *m)== true)
+		{
+			view.showMsg("Maze compressed into: " + _fileName + " Successfully");
+		}
+	
+		else
+		{
+			view.showMsg("Could not save maze");
+		}
+		
+		
+
+	}
+
+	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end)
+		{
+			_name = *start;
+			_fileName = (*(start + 1));
+		}
+		else
+			view.showMsg("Invalid Parameters");
 	}
 
 private:
 	std::string _name;
 	std::string _fileName;
+	
 };
 
 /************************************************************************************/
@@ -131,6 +168,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+		
 	}
 
 private:
@@ -174,7 +212,6 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
@@ -184,6 +221,7 @@ public:
 			_algorithm = start->at(2);
 		}
 	}
+
 private:
 	std::string _name;
 	std::string _algorithm;
