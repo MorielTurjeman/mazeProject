@@ -9,7 +9,7 @@
 // 	auto it = solutionCacheMap.find(name);
 // 	if (it == solutionCacheMap.end())
 // 	{
-// 		return NULL;
+// 		return nullptr;
 // 	}
 // 	return it->second;
 // }
@@ -19,8 +19,12 @@
 // 	auto it = mazeNameCacheMap.find(name);
 // 	if (it == mazeNameCacheMap.end())
 // 	{
-// 		return NULL;
+// 		return nullptr;
 // 	}
 // 	return it->second;
 	
 // }
+void MyModel::saveSolutionCacheMapToFile()
+{
+	
+}

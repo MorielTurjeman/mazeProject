@@ -21,6 +21,7 @@ public:
 	virtual std::shared_ptr<Maze2d> getMaze(std::string name){
 		 return mazeNameCacheMap[name]; 
 	}
+	void saveSolutionCacheMapToFile() override;
 
 
 protected:
