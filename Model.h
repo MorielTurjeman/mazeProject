@@ -28,7 +28,7 @@ public:
 	// 	return NULL;
 	// }
 
-private:
-	std::unordered_map<std::string, Solution<Position>> solutionCacheMap;
+protected:
+	std::unordered_map<std::string, shared_ptr<Solution<Position>>> solutionCacheMap;
 };
 

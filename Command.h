@@ -174,8 +174,16 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-	}
 
+	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end)
+		{
+			_name = start->at(1);
+			_algorithm = start->at(2);
+		}
+	}
 private:
 	std::string _name;
 	std::string _algorithm;
@@ -189,12 +197,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		// for (auto i : Model::solutionCacheMap)
-		// {
-		// 	if (i)
-		// 	{
-		// 	}
-		// }
+		Command::model.checkIfSolutionIsInCacheMap(_name);
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
@@ -210,7 +213,7 @@ private:
 
 /************************************************************************************/
 
-class ExitCommand : public Command
+class ExitCommand : public Command // todo: decide if we need it
 {
 public:
 	using Command::Command;

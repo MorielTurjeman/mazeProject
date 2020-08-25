@@ -3,3 +3,13 @@
 //
 
 #include "MyModel.h"
+
+shared_ptr<Solution<Position>> MyModel::checkIfSolutionIsInCacheMap(std::string name)
+{
+	auto it = solutionCacheMap.find(name);
+	if (it == solutionCacheMap.end())
+	{
+		return NULL;
+	}
+	return it->second;
+}
