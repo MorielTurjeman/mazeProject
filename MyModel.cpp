@@ -13,3 +13,14 @@ shared_ptr<Solution<Position>> MyModel::checkIfSolutionIsInCacheMap(std::string 
 	}
 	return it->second;
 }
+
+shared_ptr<Maze2d> MyModel::checkIfMazeIsInCacheMap(std::string name)
+{
+	auto it = mazeNameCacheMap.find(name);
+	if (it == mazeNameCacheMap.end())
+	{
+		return NULL;
+	}
+	return it->second;
+	
+}

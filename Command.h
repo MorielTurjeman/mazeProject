@@ -256,8 +256,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		
-
+		Command::model.checkIfMazeIsInCacheMap(_name);
 
 		Maze2dSearchable s(_myMaze);
 		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")

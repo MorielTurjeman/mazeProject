@@ -9,12 +9,11 @@
 class MyModel : public Model
 {	//todo:	
 public:
-	virtual void saveMazeToCache(std::shared_ptr<Maze2d> maze)=0;//implemnt needed here for everything!!!!!!!!!!!!!!!!!!!!!! not pure virtual
-	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name)=0;
-	virtual std::shared_ptr<Maze2d> getMaze(std::string name) = 0;
+	virtual void saveMazeToCache(Maze2d& m)=0;//implemnt needed here for everything!!!!!!!!!!!!!!!!!!!!!! not pure virtual
+	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name);
+	virtual Maze2d getMaze(std::string name) = 0;
+	virtual shared_ptr<Maze2d> checkIfMazeIsInCacheMap(std::string name);
 
-protected:
-	std::unordered_map<std::string, shared_ptr<Maze2d>> _mazeNameCacheMap;
 };
 
 
