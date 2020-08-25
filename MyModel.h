@@ -9,9 +9,9 @@
 class MyModel : public Model
 { //todo:
 public:
-	virtual void saveMazeToCache(Maze2d &m)
+	virtual void saveMazeToCache(std::shared_ptr<Maze2d> &m)
 	{
-		mazeNameCacheMap[m.getMazeName()] = std::make_shared<Maze2d>(m);
+		mazeNameCacheMap[m->getMazeName()] = m;
 	}
 
 	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name)//todo

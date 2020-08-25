@@ -97,20 +97,20 @@ public:
 
 	//TODO MAYBE: implement == operator if we need it for caching
 
-	std::vector<int> getData(Maze2d maze)
+	std::vector<int> getData()
 	{
 		std::vector<int> mazeData;
-		mazeData.push_back(maze.getStartPosition().getXPosition());
-		mazeData.push_back(maze.getStartPosition().getYPosition());
-		mazeData.push_back(maze.getEndPosition().getXPosition());
-		mazeData.push_back(maze.getEndPosition().getYPosition());
-		mazeData.push_back(maze.getMaze().size());
-		int size = maze.getMaze().size();
+		mazeData.push_back(getStartPosition().getXPosition());
+		mazeData.push_back(getStartPosition().getYPosition());
+		mazeData.push_back(getEndPosition().getXPosition());
+		mazeData.push_back(getEndPosition().getYPosition());
+		mazeData.push_back(getMaze().size());
+		int size = getMaze().size();
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				mazeData.push_back(maze.getMaze()[i][j]);
+				mazeData.push_back(getMaze()[i][j]);
 			}
 		}
 		return mazeData;

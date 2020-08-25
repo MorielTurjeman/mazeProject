@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include "Maze2d.h"
+#include <memory>
 
 
 class MazeCompression
@@ -56,13 +57,22 @@ public:
 		}
 		return decompressedMazeData;
 	}
-	bool writeToFile(ofstream &out,Maze2d& maze2D) //todo
+	bool writeToFile(ostream &out,Maze2d& maze2D) //todo
 	{
-		//call to compress	
+		auto compressed = this->compress(maze2D.getData());
+		for (auto v : compressed)
+			std::cout << v;
 	}
-	Maze2d readFromFile(ifstream& in) //todo: after implementation change return val to auto instead writing the long shared_ptr
+	auto readFromFile(istream& in) //todo: after implementation change return val to auto instead writing the long shared_ptr
 	{
-		//call to decompress
+		vector<int> data;
+		while (in)
+		{
+			int i;
+			in >> i;
+			data.push_back(i);
+		}
+		return std::make_shared<Maze2d>(data);
 	}
 };
 

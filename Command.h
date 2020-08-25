@@ -184,22 +184,19 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		auto m = model.getMaze(_name);
-		if (m == nullptr)
-		{
-			view.showMsg("Maze named " + _name + " not found");
-		}
-
 		MazeCompression mc;
 		std::ifstream file(_fileName);
-		// if (mc.readFromFile(file) ! = nullptr)
-		// {	
-		// 	model.saveMazeToCache(m);
-		// 	view.showMsg("Maze read from: " + _fileName + " Successfully");
+		
+		std::shared_ptr<Maze2d> m = mc.readFromFile(file);
+		if (m != nullptr)
+		{	
+			m->setMazeName(_name);
+			model.saveMazeToCache(m);
+			view.showMsg("Maze read from: " + _fileName + " Successfully");
 
-		// }
+		}
 
-		// else
+		else
 		{
 			view.showMsg("Could not load maze");
 		}
