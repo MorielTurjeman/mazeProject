@@ -9,6 +9,7 @@
 
 class MyView : public View
 {
+public:
     MyView (CLI& cli): cli(cli){};
 
     virtual void display(Maze2d &maze)//todo: need to implement
@@ -21,8 +22,11 @@ class MyView : public View
         cli.getout()<<s<<std::endl;
     }
 
+    void displaySolution(Maze2d& maze, Solution& solution)
+    {
 
-    private:
+    }
+private:
     CLI cli;
 };
 

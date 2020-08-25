@@ -306,7 +306,16 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		Command::model.checkIfSolutionIsInCacheMap(_name);
+		auto sol = Command::model.checkIfSolutionIsInCacheMap(_name);
+		if (sol == NULL)
+		{
+			view.showMsg("Solution for " + _name + "not found");
+			return;
+		}
+		for (auto p : sol->getPath())
+		{
+			std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+		}
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
