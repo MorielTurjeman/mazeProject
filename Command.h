@@ -170,11 +170,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 82023ce0b2c43331038c886aacbd3f090bfedbb7
 	}
 
 private:
@@ -218,9 +214,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-<<<<<<< HEAD
-		
-
+		Command::model.checkIfMazeIsInCacheMap(_name);
 
 		Maze2dSearchable s(_myMaze);
 		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
@@ -243,8 +237,7 @@ public:
 		model.saveMazeToCache(m);
 
 		view.showMsg("Maze " + _name + "is ready");
-=======
->>>>>>> 82023ce0b2c43331038c886aacbd3f090bfedbb7
+
 	}
 	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
