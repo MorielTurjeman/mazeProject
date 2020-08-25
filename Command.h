@@ -17,6 +17,7 @@
 namespace fs = std::filesystem;
 #include "Searcher.h"
 #include "Maze2dSearchable.h"
+#include "MazeCompression.h"
 
 //here we are using the Command design pattern
 //the goal is to separate the Invoker of a Command from the Receiver of that Command
@@ -242,6 +243,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+
 	}
 
 private:

@@ -11,6 +11,7 @@
 
 class MazeCompression
 {
+public:
 	std::vector<int> compress(std::vector<int> mazeData)
 	{
 		std::vector<int> compressedMazeData;
