@@ -230,7 +230,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		auto maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		auto maze = Command::model.getMaze(_name);
 		if (maze == NULL)
 		{
 			view.showMsg("Maze not found. \n");
@@ -288,7 +288,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		shared_ptr<Maze2d> _maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		shared_ptr<Maze2d> _maze = Command::model.getMaze(_name);
 		if (_maze == NULL)
 		{
 			view.showMsg("Maze not found. \n");

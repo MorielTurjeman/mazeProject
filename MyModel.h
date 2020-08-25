@@ -13,8 +13,7 @@ public:
 		
 	}
 	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name);
-		virtual std::shared_ptr<Maze2d> getMaze(std::string name) ;
-	virtual shared_ptr<Maze2d> checkIfMazeIsInCacheMap(std::string name);
+	virtual std::shared_ptr<Maze2d> getMaze(std::string name) ;
 
 };
 
