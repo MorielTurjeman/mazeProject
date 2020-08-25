@@ -189,7 +189,7 @@ public:
 		return pMoves;
 	}
 
-	void printMaze(std::ostream& out = std::cout)
+	void printMaze(std::ostream& out = std::cout) const
 	{
 		for (int i = 0; i < maze.size(); i++)
 		{
