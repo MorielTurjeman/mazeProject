@@ -63,7 +63,7 @@ public:
 		model.saveMazeToCache(m);
 
 		view.showMsg("Maze " + _name + "is ready");
-		//add error msg
+		//todo: add error msg
 	}
 
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
@@ -91,8 +91,8 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		Maze2d m = model.getMaze(_name); //should return ptr and check if not null (maze not found)
-		m.printMaze();					 //should be out << m; but we need to implement the operator
+		Maze2d m = model.getMaze(_name); //todo: should return ptr and check if not null (maze not found)
+		m.printMaze();					 //todo: should be out << m; but we need to implement the operator
 	}
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
@@ -156,6 +156,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
+
 	}
 
 private:
@@ -192,6 +193,13 @@ public:
 		// 	}
 		// }
 	}
+	void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
+	{
+		if (start != end) //we only have one param, no need for loop.
+		{
+			_name = *start;
+		}
+	}
 
 private:
 	std::string _name;
@@ -205,7 +213,7 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		exit(0); //todo: check if this function cleans up after the program
+		exit(0);
 	}
 };
 
