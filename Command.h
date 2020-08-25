@@ -353,7 +353,7 @@ public:
 	void execute(std::ostream &out) override
 	{
 		auto sol = Command::model.checkIfSolutionIsInCacheMap(_name);
-		if (sol == NULL)
+		if (sol == nullptr)
 		{
 			view.showMsg("Solution for " + _name + "not found. \n");
 			return;
