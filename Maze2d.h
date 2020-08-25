@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include "Maze2d.h"
-#include<random>
+#include <random>
 using namespace std;
 
 //class Position represents a possible position to be in during the game
@@ -35,6 +35,7 @@ private:
 class Maze2d
 {
 public:
+	friend ostream &operator<<(ostream &os, const Maze2d &m);
 	Maze2d(int size, bool fillWalls = false)
 	{
 
@@ -74,11 +75,19 @@ public:
 	Position getStartPosition() { return this->start; }
 	Position getEndPosition() { return this->end; }
 	Position getCurrentPosition() { return this->current; } //not sure if necessary, delete later if not!!!!!
-	void setStartPosition(Position p) { this->start = p; maze[p.getYPosition()][p.getXPosition()] = 0; }
-	void setEndPosition(Position p) { this->end = p;  maze[p.getYPosition()][p.getXPosition()] = 0;}
+	void setStartPosition(Position p)
+	{
+		this->start = p;
+		maze[p.getYPosition()][p.getXPosition()] = 0;
+	}
+	void setEndPosition(Position p)
+	{
+		this->end = p;
+		maze[p.getYPosition()][p.getXPosition()] = 0;
+	}
 	void setCurrentPosition(Position p) { this->current = p; }
-	void setMazeName(std::string mazeName) {_mazeName = mazeName;}
-	std::string getMazeName(){return _mazeName;}
+	void setMazeName(std::string mazeName) { _mazeName = mazeName; }
+	std::string getMazeName() { return _mazeName; }
 
 	void setCurrentPosition(int x, int y)
 	{
@@ -180,28 +189,27 @@ public:
 		return pMoves;
 	}
 
-	void printMaze()
+	void printMaze(std::ostream& out = std::cout)
 	{
 		for (int i = 0; i < maze.size(); i++)
 		{
 			for (int j = 0; j < maze.size(); j++)
 			{
 				if (maze[i][j] == 1)
-					std::cout << "\u2593";
+					out << "\u2593";
 				else if (i == start.getYPosition() && j == start.getXPosition())
 				{
-					std::cout << "*";
+					out << "*";
 				}
 				else
 				{
-					std::cout << " ";
+					out << " ";
 				}
 			}
-			std::cout << "\n";
+			out << "\n";
 		}
-		std::cout << "Start Position Row: " << start.getYPosition() << ", Column: " << start.getXPosition() << std::endl;
-		std::cout << "End Position Row: " << end.getYPosition() << ", Column: " << end.getXPosition() << std::endl;
-
+		out << "Start Position Row: " << start.getYPosition() << ", Column: " << start.getXPosition() << std::endl;
+		out << "End Position Row: " << end.getYPosition() << ", Column: " << end.getXPosition() << std::endl;
 	}
 
 	void alternativePrintMaze()
@@ -268,19 +276,18 @@ public:
 	Position randomWallPosition()
 	{
 		std::vector<Position> wallPosition;
-		for (int i = 1; i < maze.size() - 1; i+=2)
+		for (int i = 1; i < maze.size() - 1; i += 2)
 		{
 			wallPosition.push_back({0, i});
 			wallPosition.push_back({i, 0});
-			wallPosition.push_back({i, (int)maze.size()-1});
-			wallPosition.push_back({(int)maze.size()-1, i});
-
+			wallPosition.push_back({i, (int)maze.size() - 1});
+			wallPosition.push_back({(int)maze.size() - 1, i});
 		}
 
 		std::random_device rd;
-        std::mt19937 generator(rd());
-        std::uniform_int_distribution<int> distribution(0, wallPosition.size()-1);
-		int idx=distribution(generator);
+		std::mt19937 generator(rd());
+		std::uniform_int_distribution<int> distribution(0, wallPosition.size() - 1);
+		int idx = distribution(generator);
 
 		return wallPosition[idx];
 	}
@@ -289,7 +296,10 @@ private:
 	std::vector<std::vector<int>> maze;
 	Position start, end, current;
 	std::string _mazeName;
-
 };
 
+ostream &operator<<(ostream &os, const Maze2d &m)
+{
+	m.printMaze(os);
+}
 #endif //MAZEPROJECT_MAZE2D_H

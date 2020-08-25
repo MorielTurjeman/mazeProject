@@ -88,11 +88,15 @@ private:
 class DisplayCommand : public Command
 {
 public:
-	using Command::Command;
+	// using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		Maze2d m = model.getMaze(_name); //todo: should return ptr and check if not null (maze not found)
-		m.printMaze();					 //todo: should be out << m; but we need to implement the operator
+		auto m = model.getMaze(_name); 
+		if (m == nullptr)
+		{
+			view.showMsg("Maze named " + _name + " not found");
+		}
+		view.display(*m); 
 	}
 	virtual void setArgs(std::vector<std::string>::iterator start, std::vector<std::string>::iterator end) override
 	{
@@ -156,7 +160,6 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-
 	}
 
 private:
