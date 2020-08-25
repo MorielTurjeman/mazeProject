@@ -280,7 +280,7 @@ public:
 			view.showMsg("Solution for " + _name + "is ready");
 			for (auto p : solBFS.getPath())
 			{
-				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+				view.showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
 			}
 		}
 		if(this->_mazeSolutionAlgorithm == "AStar arial" || this->_mazeSolutionAlgorithm == "A* arial")
@@ -291,7 +291,7 @@ public:
 			view.showMsg("Solution for " + _name + "is ready");
 			for (auto p : solAerial.getPath())
 			{
-				std::cout << "Row: " << p->data.getYPosition() << " , Column: " << p->data.getXPosition() << std::endl;
+				view.showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
 			}
 		}
 		if(this->_mazeSolutionAlgorithm == "AStar Manhattan" || this->_mazeSolutionAlgorithm == "A* Manhattan")
