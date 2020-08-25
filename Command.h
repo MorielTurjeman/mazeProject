@@ -13,6 +13,8 @@
 #include "SimpleMaze2dGenerator.h"
 #include "Maze2d.h"
 #include "View.h"
+#include "Searcher.h"
+#include "Maze2dSearchable.h"
 
 //here we are using the Command design pattern
 //the goal is to separate the Invoker of a Command from the Receiver of that Command
@@ -175,10 +177,17 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		std::shared_ptr<Solution<Position>> sol;
-		if(_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
+		
+
+
+		Maze2dSearchable s(_myMaze);
+		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
 		{
-			
+			sol = std::make_shared<BFS<Position>>();
+		}
+		else if(this->_mazeSolutionAlgorithm == "AStar" || this->_mazeSolutionAlgorithm == "A*")
+		{
+			sol = std::make_shared<AStar<Position>>()
 		}
 		/*************/
 		std::shared_ptr<Maze2dGenerator> generator;
