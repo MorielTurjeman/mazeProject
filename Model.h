@@ -17,17 +17,8 @@ public:
 	virtual void saveMazeToCache(std::shared_ptr<Maze2d> maze)=0;
 	virtual shared_ptr<Solution<Position>> checkIfSolutionIsInCacheMap(std::string name)=0;
 	virtual std::shared_ptr<Maze2d> getMaze(std::string name) = 0;
-	// {
-	// 	for(const std::pair<std::string, Solution<Position>> &val : solutionCacheMap)
-	// 	{
-	// 		if (val.first == name)
-	// 		{
-	// 			return val.second;
-	// 		}
-	// 	}
-	// 	return NULL;
-	// }
-	virtual void saveSolutionCacheMapToFile() = 0;
+	virtual void saveSolutionToCache(std::string name, std::shared_ptr<Solution<Position>> sol) = 0;
+	// virtual void saveSolutionCacheMapToFile() = 0;
 
 
 };

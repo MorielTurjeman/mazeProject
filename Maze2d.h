@@ -35,6 +35,7 @@ public:
 	friend ostream &operator<<(ostream &os, const Maze2d &m)
 	{
 			m.printMaze(os);
+			return os;
 	}
 	Maze2d(int size, bool fillWalls = false)
 	{
@@ -54,18 +55,28 @@ public:
 	//this constructor uses a vector created by the 'getData' method in this class
 	Maze2d(std::vector<int> mazeData)
 	{
+		
+		int size = mazeData[4];
+
+		maze.resize(size);
+		for (int i = 0; i < size; i++)
+		{
+			maze[i].resize(size);
+		
+		}
+
 		Position startPosition(mazeData[0], mazeData[1]);
 		this->setStartPosition(startPosition);
 		Position endPosition(mazeData[2], mazeData[3]);
 		this->setEndPosition(endPosition);
-		int size = mazeData[4];
-		Maze2d _maze(size);
+		
+		// Maze2d _maze(size);
 		int currVectorIndex = 5;
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				_maze.getMaze()[i][j] = mazeData[currVectorIndex];
+				maze[i][j] = mazeData[currVectorIndex];
 				currVectorIndex++;
 			}
 		}
@@ -104,13 +115,13 @@ public:
 		mazeData.push_back(getStartPosition().getYPosition());
 		mazeData.push_back(getEndPosition().getXPosition());
 		mazeData.push_back(getEndPosition().getYPosition());
-		mazeData.push_back(getMaze().size());
-		int size = getMaze().size();
+		mazeData.push_back(maze.size());
+		int size = maze.size();
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				mazeData.push_back(getMaze()[i][j]);
+				mazeData.push_back(maze[i][j]);
 			}
 		}
 		return mazeData;
@@ -212,48 +223,14 @@ public:
 		out << "End Position Row: " << end.getYPosition() << ", Column: " << end.getXPosition() << std::endl;
 	}
 
-	void alternativePrintMaze()
-	{
-		for (int i = 0; i < maze.size(); i++)
-		{
-			for (int j = 0; j < maze.size(); j++)
-			{
-				if (maze[i][j] == maze[this->getStartPosition().getXPosition()][this->getStartPosition().getYPosition()])
-				{
-					std::cout << "S ";
-					continue;
-				}
-				if (maze[i][j] == maze[this->getEndPosition().getXPosition()][this->getEndPosition().getYPosition()])
-				{
-					std::cout << " E";
-					continue;
-				}
-
-				if (maze[i][j] == 1)
-				{
-					std::cout << "{}";
-				}
-
-				if (maze[i][j] == 0)
-				{
-					std::cout << "  ";
-				}
-				// std::cout << "|";
-
-				// std::cout << maze[i][j] << " ";
-			}
-			std::cout << "\n";
-		}
-	}
-
 	void removeWall(Position &first, Position &second)
 	{
-		maze[first.getYPosition()][first.getXPosition()] = 5;
-		maze[second.getYPosition()][second.getXPosition()] = 5;
+		maze[first.getYPosition()][first.getXPosition()] = 0;
+		maze[second.getYPosition()][second.getXPosition()] = 0;
 		if (first.getXPosition() == second.getXPosition())
-			maze[std::min(first.getYPosition(), second.getYPosition()) + 1][first.getXPosition()] = 5;
+			maze[std::min(first.getYPosition(), second.getYPosition()) + 1][first.getXPosition()] = 0;
 		else
-			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition()) + 1] = 5;
+			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition()) + 1] = 0;
 
 		// int col = p.getXPosition();
 		// int row = p.getYPosition();

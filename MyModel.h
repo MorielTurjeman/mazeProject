@@ -8,7 +8,7 @@
 class MyModel : public Model
 { //todo:
 public:
-	virtual void saveMazeToCache(std::shared_ptr<Maze2d> &m)
+	virtual void saveMazeToCache(std::shared_ptr<Maze2d> m)
 	{
 		mazeNameCacheMap[m->getMazeName()] = m;
 	}
@@ -20,7 +20,12 @@ public:
 	virtual std::shared_ptr<Maze2d> getMaze(std::string name){
 		 return mazeNameCacheMap[name]; 
 	}
-	void saveSolutionCacheMapToFile() override;
+
+	virtual void saveSolutionToCache(std::string name, std::shared_ptr<Solution<Position>> sol) {
+		solutionCacheMap[name] = sol;
+	}
+
+	
 
 
 protected:

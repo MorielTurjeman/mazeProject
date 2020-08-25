@@ -1,16 +1,13 @@
-//
-// Created by Sapir Ezra on 24/08/2020.
-//
 
-#ifndef MAZEPROJECT_MYCONTROLLER_H
-#define MAZEPROJECT_MYCONTROLLER_H
+#pragma once
 #include "Controller.h"
+#include "memory"
 
 
-class MyController : public Controller
+class MyController : public Controller,public  std::enable_shared_from_this<MyController>
 {
 public:
-	MyController(Model& model, View& view ) : model(model), view(view) {
+	MyController(std::shared_ptr<Model>model, std::shared_ptr<View> view) : model(model), view(view) {
 		this->commandMap["generate maze"] = std::make_shared<GenerateMazeCommand>(model, view);
 		this->commandMap["dir"]= std::make_shared<DirCommand>(model, view);
 		this->commandMap["display"]=std::make_shared<DisplayCommand>(model, view);
@@ -27,11 +24,14 @@ public:
 		return commandMap[command];
 	}
 
+	virtual void start() {
+		view->start(shared_from_this());
+	}
+
 private:
-	Model& model;
-	View& view;
+	std::shared_ptr<Model> model;
+	std::shared_ptr<View> view;
 	std::unordered_map<std::string, shared_ptr<Command>> commandMap;
 };
 
 
-#endif //MAZEPROJECT_MYCONTROLLER_H

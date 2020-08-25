@@ -15,7 +15,7 @@ public:
 	std::vector<int> compress(std::vector<int> mazeData)
 	{
 		std::vector<int> compressedMazeData;
-
+		
 		compressedMazeData.push_back(mazeData[0]); //for x index of start position
 		compressedMazeData.push_back(mazeData[1]); //for y index of start position
 		compressedMazeData.push_back(mazeData[2]); //for x index of end position
@@ -26,7 +26,7 @@ public:
 
 		for (int i = 5; i < mazeData.size(); i++)
 		{
-			if (mazeData.at(i) == mazeData.at(i+1))
+			if (i < mazeData.size() -1 &&  mazeData.at(i) == mazeData.at(i+1))
 			{
 				numOfOccurrencesInARow++;
 			}
@@ -48,6 +48,8 @@ public:
 		decompressedMazeData.push_back(compressedMazeData[3]); //for y index of end position
 		decompressedMazeData.push_back(compressedMazeData[4]); //for maze size
 
+		
+
 		for (int i = 5; i < compressedMazeData.size(); i=i+2)
 		{
 			for (int j = 0; j < compressedMazeData[i+1]; j++)
@@ -60,19 +62,21 @@ public:
 	bool writeToFile(ostream &out,Maze2d& maze2D) //todo
 	{
 		auto compressed = this->compress(maze2D.getData());
-		for (auto v : compressed)
-			std::cout << v;
+
+		return true;
 	}
-	auto readFromFile(istream& in) //todo: after implementation change return val to auto instead writing the long shared_ptr
+	auto readFromFile(istream& in) 
 	{
 		vector<int> data;
-		while (in)
+		MazeCompression mc;
+		do
 		{
 			int i;
 			in >> i;
 			data.push_back(i);
-		}
-		return std::make_shared<Maze2d>(data);
+		} while (in);
+		data.pop_back();		
+		return std::make_shared<Maze2d>(mc.decompress(data));
 	}
 };
 

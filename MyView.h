@@ -8,7 +8,10 @@ class MyView : public View
 {
 public:
     MyView (CLI& cli): cli(cli){};
-
+    virtual void start(std::shared_ptr<Controller> c) 
+    {
+        this->cli.start(c);
+    }
     virtual void display(Maze2d &maze)
     {
         cli.getout()<<maze<<std::endl;
@@ -33,17 +36,21 @@ public:
                 State<Position> p = {{j,i}, 0};
 				if (_maze[i][j] == 1)
 					out << "\u2593";
-                else if (std::find(sol.begin(), sol.end(), std::make_shared<State<Position>>(p)) != sol.end())
-                {
-                    out << '$';
-                }
-				else if (i == start.getYPosition() && j == start.getXPosition())
+                else if (i == start.getYPosition() && j == start.getXPosition())
 				{
-					out << "*";
+					out << "$";
 				}
 				else
 				{
-					out << " ";
+                    bool inSol = false;
+                    for (auto p : sol)
+                        if (p->data == Position{ j, i })
+                        {
+                            inSol = true;
+                            break;
+                        }
+                    
+					out << (inSol ? "*" :  " ");
 				}
 			}
 			out << "\n";
