@@ -256,17 +256,21 @@ public:
 	using Command::Command;
 	void execute(std::ostream &out) override
 	{
-		Command::model.checkIfMazeIsInCacheMap(_name);
+		shared_ptr<Maze2d> _maze = Command::model.checkIfMazeIsInCacheMap(_name);
+		Maze2dSearchable s(*_maze);
 
-		Maze2dSearchable s(_myMaze);
 		if(this->_mazeSolutionAlgorithm == "BFS" || _mazeSolutionAlgorithm == "bfs")
 		{
-			sol = std::make_shared<BFS<Position>>();
+			BFS<Position> bfs;
+			auto solBFS = bfs.search(s);
 		}
 		else if(this->_mazeSolutionAlgorithm == "AStar" || this->_mazeSolutionAlgorithm == "A*")
 		{
-			sol = std::make_shared<AStar<Position>>()
+			AerialDistance ad(s.getGoalState());
+			AStar<Position> Arialdis(ad);
+			auto solAerial = Arialdis.search(s);
 		}
+		view.showMsg("Solution for " + _name + "is ready");
 		/*************/
 		std::shared_ptr<Maze2dGenerator> generator;
 		if (_mazeSolutionAlgorithm == "DFS")				   //

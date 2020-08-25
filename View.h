@@ -15,6 +15,7 @@ public:
 	View(){}
 	virtual void display(Maze2d &maze)=0;
 	virtual void showMsg(std::string s)=0;
+	virtual void displaySolution(Maze2d& maze, Solution& solution) = 0;
 	
 
 };
