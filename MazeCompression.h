@@ -62,6 +62,8 @@ public:
 	bool writeToFile(ostream &out,Maze2d& maze2D) //todo
 	{
 		auto compressed = this->compress(maze2D.getData());
+		for (auto i : compressed)
+			out << i << " ";
 
 		return true;
 	}
