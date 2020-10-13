@@ -1,12 +1,10 @@
-//
-// Created by Sapir Ezra on 24/08/2020.
-//
+
 #pragma once
 
 #include "Model.h"
 
 class MyModel : public Model
-{ //todo:
+{ 
 public:
 	virtual void saveMazeToCache(std::shared_ptr<Maze2d> m)
 	{

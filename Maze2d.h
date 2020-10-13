@@ -192,11 +192,7 @@ public:
 			pMoves.push_back(right);
 		}
 
-		// auto neighbors = getNeighbours(p);
-		// vector<Position> pMoves;
-		// for (auto p : neighbors)
-		// 	if (maze[p.getYPosition()][p.getXPosition()] == 0)
-		// 		pMoves.push_back(p);
+		
 		return pMoves;
 	}
 
@@ -232,11 +228,7 @@ public:
 		else
 			maze[first.getYPosition()][std::min(first.getXPosition(), second.getXPosition()) + 1] = 0;
 
-		// int col = p.getXPosition();
-		// int row = p.getYPosition();
-
-		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
-		// maze[row][col] = 0;
+		
 		return;
 	}
 
@@ -245,7 +237,7 @@ public:
 		int col = p.getXPosition();
 		int row = p.getYPosition();
 
-		// [row][col]: [0][0] [0][1] [0][2] [0][3] [0][4]
+		
 		maze[row][col] = 1;
 		return;
 	}

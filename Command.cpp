@@ -1,6 +1,4 @@
-//
-// Created by Sapir Ezra on 23/08/2020.
-//
+
 
 #include "Command.h"
 #include <string>
@@ -20,10 +18,7 @@ namespace fs = std::filesystem;
 #include "MazeCompression.h"
 #include "View.h"
 
-// class DirCommand : public Command 
-// {
-// public:
-	// using Command::Command; // allows us to use the parent c`tor
+
 	void DirCommand:: execute(std::ostream &out) 
 	{
 		std::string path = _name;
@@ -42,17 +37,7 @@ namespace fs = std::filesystem;
 			view->showMsg("Invalid Parameters");
 	}
 
-// private:
-	
-// 	std::string _name;
-// };
-
-/************************************************************************************/
-
-// class GenerateMazeCommand : public Command
-// {
-// public:
-// 	using Command::Command;
+/
 
 	void GenerateMazeCommand::execute(std::ostream &out) 
 	{
@@ -82,19 +67,7 @@ namespace fs = std::filesystem;
 			view->showMsg("Invalid Parameters");
 	}
 
-// private:
-// 	std::string _name;
-// 	int _size;
-// 	std::string _mazeGenerationAlgorithm;
-// };
 
-/************************************************************************************/
-
-//display maze
-// class DisplayCommand : public Command
-// {
-// public:
-	// using Command::Command;
 	void DisplayCommand::execute(std::ostream &out) 
 	{
 		auto m = model->getMaze(_name);
@@ -114,16 +87,7 @@ namespace fs = std::filesystem;
 			view->showMsg("Invalid Parameters");
 	}
 
-// private:
-// 	std::string _name;
-// };
 
-/************************************************************************************/
-
-// class SaveMazeCommand : public Command
-// {
-// public:
-// 	using Command::Command;
 	void SaveMazeCommand::execute(std::ostream &out) 
 	{
 		auto m = model->getMaze(_name);
@@ -157,16 +121,7 @@ namespace fs = std::filesystem;
 			view->showMsg("Invalid Parameters");
 	}
 
-// private:
-// 	std::string _name;
-// 	std::string _fileName;
-// };
 
-/************************************************************************************/
-// class LoadMazeCommand : public Command
-// {
-// public:
-// 	using Command::Command;
 	void LoadMazeCommand::execute(std::ostream &out) 
 	{
 		MazeCompression mc;
@@ -206,17 +161,7 @@ namespace fs = std::filesystem;
 			view->showMsg("Invalid Parameters");
 	}
 
-// private:
-// 	std::string _name;
-// 	std::string _fileName;
-// };
 
-/************************************************************************************/
-
-// class MazeSizeCommand : public Command
-// {
-// public:
-// 	using Command::Command;
 	
 	void MazeSizeCommand::execute(std::ostream &out) 
 	{
@@ -241,16 +186,7 @@ namespace fs = std::filesystem;
 		}
 
 	}
-// private:
-// 	std::string _name;
-// };
 
-/************************************************************************************/
-
-// class FileSizeCommand : public Command
-// {
-// public:
-	// using Command::Command;
 	void FileSizeCommand::execute(std::ostream &out) 
 	{
 		std::ifstream _infile;
@@ -266,16 +202,7 @@ namespace fs = std::filesystem;
 		}
 
 	}
-// private:
-// 	std::string _name;
-// };
 
-/************************************************************************************/
-
-// class SolveCommand : public Command
-// {
-// public:
-// 	using Command::Command;
 	void SolveCommand::execute(std::ostream &out) 
 	{
 		shared_ptr<Maze2d> _maze = Command::model->getMaze(_name);
@@ -295,38 +222,20 @@ namespace fs = std::filesystem;
 		if(this->_mazeSolutionAlgorithm == "BFS")
 		{
 			alg = std::make_shared<BFS<Position>>(); // BFS<Position> bfs;
-			// auto solBFS = bfs.search(s);
-			// view->showMsg("Solution for " + _name + "is ready");
-			// for (auto p : solBFS.getPath())
-			// {
-			// 	view->showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
-			// }
+			
 		}
 		if(this->_mazeSolutionAlgorithm == "AStar" && this->_h == "aerial")
 		{
 			AerialDistance ad(s.getGoalState());
 			alg = std::make_shared<AStar<Position>>(ad);
-			// AStar<Position> Arialdis(ad);
-			// auto solAerial = Arialdis.search(s);
-			// view->showMsg("Solution for " + _name + "is ready");
-			// for (auto p : solAerial.getPath())
-			// {
-			// 	view->showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
-			// }
+			
 		}
 		if(this->_mazeSolutionAlgorithm == "AStar" && this->_h == "manhattan")
 		{
 			ManhattanDistance amd(s.getGoalState());
 			alg = std::make_shared<AStar<Position>>(amd);
 			
-			// AStar<Position> manhattendis(amd);
-			// auto solManhattan = manhattendis.search(s);
-			// view->showMsg("Solution for " + _name + "is ready");
-			// model->
-			// for (auto p : solManhattan.getPath())
-			// {
-			// 	view->showMsg("Row: " + std::to_string(p->data.getYPosition()) + " , Column: " + std::to_string(p->data.getXPosition()) + "\n");
-			// }
+			
 		}
 		auto sol = alg->search(s);
 		view->showMsg("Solultion for " + _name + " is ready");
@@ -343,17 +252,7 @@ namespace fs = std::filesystem;
 		}
 	}
 
-// private:
-// 	std::string _name;
-// 	std::string _mazeSolutionAlgorithm;
-// };
 
-/************************************************************************************/
-
-// class DisplaySolutionCommand : public Command
-// {
-// public:
-// 	using Command::Command;
 	void DisplaySolutionCommand::execute(std::ostream &out) 
 	{
 		auto sol = Command::model->checkIfSolutionIsInCacheMap(_name);
@@ -377,9 +276,5 @@ namespace fs = std::filesystem;
 		}
 	}
 
-// private:
-// 	std::string _name;
-// };
 
-/************************************************************************************/
 
